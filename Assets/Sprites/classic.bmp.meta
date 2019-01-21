@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 28fd9b561232f3e46bcef19ecdcd7d9b
-timeCreated: 1508084283
+timeCreated: 1510136919
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -16,6 +16,10 @@ TextureImporter:
     21300018: classic_9
     21300020: classic_10
     21300022: classic_11
+    21300024: classic_12
+    21300026: classic_13
+    21300028: classic_14
+    21300030: classic_15
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -41,7 +45,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -66,7 +70,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 72
+        y: 108
         width: 36
         height: 36
       alignment: 0
@@ -76,7 +80,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 36
-        y: 72
+        y: 108
         width: 36
         height: 36
       alignment: 0
@@ -86,7 +90,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 72
-        y: 72
+        y: 108
         width: 36
         height: 36
       alignment: 0
@@ -96,7 +100,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 108
-        y: 72
+        y: 108
         width: 36
         height: 36
       alignment: 0
@@ -106,7 +110,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 36
+        y: 72
         width: 36
         height: 36
       alignment: 0
@@ -116,7 +120,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 36
-        y: 36
+        y: 72
         width: 36
         height: 36
       alignment: 0
@@ -126,7 +130,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 72
-        y: 36
+        y: 72
         width: 36
         height: 36
       alignment: 0
@@ -136,7 +140,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 108
-        y: 36
+        y: 72
         width: 36
         height: 36
       alignment: 0
@@ -146,7 +150,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 36
         width: 36
         height: 36
       alignment: 0
@@ -156,7 +160,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 36
-        y: 0
+        y: 36
         width: 36
         height: 36
       alignment: 0
@@ -166,13 +170,53 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 72
-        y: 0
+        y: 36
         width: 36
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: classic_11
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 36
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: classic_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: classic_13
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 0
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: classic_14
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: classic_15
       rect:
         serializedVersion: 2
         x: 108

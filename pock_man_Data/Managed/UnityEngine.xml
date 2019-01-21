@@ -17889,15 +17889,6 @@ GUILayout::ref::MaxHeight, GUILayout::ref::ExpandWidth, GUILayout::ref::ExpandHe
       </summary>
       <param name="index"></param>
     </member>
-    <member name="M:UnityEngine.Input.IsJoystickPreconfigured(System.String)">
-      <summary>
-        <para>Determine whether a particular joystick model has been preconfigured by Unity. (Linux-only).</para>
-      </summary>
-      <param name="joystickName">The name of the joystick to check (returned by [[Input.GetJoystickNames]]).</param>
-      <returns>
-        <para>True if the joystick layout has been preconfigured; false otherwise.</para>
-      </returns>
-    </member>
     <member name="M:UnityEngine.Input.ResetInputAxes">
       <summary>
         <para>Resets all input. After ResetInputAxes all axes return to 0 and all buttons return to 0 for one frame.</para>

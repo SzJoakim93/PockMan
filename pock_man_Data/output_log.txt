@@ -1,0 +1,21 @@
+Initialize engine version: 5.2.0f3 (e7947df39b5c)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 6700 Series (ID=0x68ba)
+    Vendor:   ATI
+    VRAM:     1013 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Alonso\Documents\Unity\PockMan\pock_man_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Alonso\Documents\Unity\PockMan\pock_man_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Alonso\Documents\Unity\PockMan\pock_man_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Alonso\Documents\Unity\PockMan\pock_man_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Alonso\Documents\Unity\PockMan\pock_man_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Alonso\Documents\Unity\PockMan\pock_man_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Alonso\Documents\Unity\PockMan\pock_man_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Alonso\Documents\Unity\PockMan\pock_man_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Alonso\Documents\Unity\PockMan\pock_man_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.541 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.

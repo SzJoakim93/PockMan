@@ -5,7 +5,7 @@ public class deactive_graphics : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		gameObject.SetActive (false);
+		//gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -14,6 +14,7 @@ public class deactive_graphics : MonoBehaviour {
 	}
 
 	void deactive() {
-		gameObject.SetActive (false);
+		//gameObject.SetActive (false);
+		Destroy (gameObject);
 	}
 }

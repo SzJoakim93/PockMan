@@ -18,10 +18,10 @@ Loading C:\Users\Alonso\Documents\Unity\PockMan\pac_man_Data\Managed\UnityEngine
 Platform assembly: C:\Users\Alonso\Documents\Unity\PockMan\pac_man_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\Alonso\Documents\Unity\PockMan\pac_man_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Alonso\Documents\Unity\PockMan\pac_man_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.056 seconds
+- Completed reload, in  0.117 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: C:\Users\Alonso\Documents\Unity\PockMan\pac_man_Data\Managed\System.dll (this message is harmless)
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 11d0 -> priority: 1 
+  Thread -> id: f4c -> priority: 1 
