@@ -31,9 +31,9 @@ public class load_level : MonoBehaviour {
 		"Textures/snow1.bmp", "Textures/snow2.bmp", //17.
 		"Textures/desert1.bmp", "Textures/desert2.bmp", //19.
 		"Textures/grave1.bmp", "Textures/grave2.bmp", //21
-		"Textures/medieval1.bmp", "Textures/medieval2.bmp", "Textures/medieval3.bmp", //24
-		"Textures/digital1.bmp", "Textures/digital2.bmp", "Textures/digital3.bmp", "Textures/digital4.bmp", "Textures/digital5.bmp", //29
-		"Textures/space1.bmp", "Textures/space2.bmp", "Textures/space3.bmp", "Textures/space4.bmp", "Textures/space5.bmp" //34
+		"Textures/classic11.bmp", "Textures/classic12.bmp", "Textures/classic13.bmp", "Textures/classic14.bmp", "Textures/classic15.bmp",//26
+		"Textures/digital1.bmp", "Textures/digital2.bmp", "Textures/digital3.bmp", "Textures/digital4.bmp", "Textures/digital5.bmp", //31
+		"Textures/space1.bmp", "Textures/space2.bmp", "Textures/space3.bmp", "Textures/space4.bmp", "Textures/space5.bmp" //36
 	};
 
 	int minor_offset = 0;
@@ -94,16 +94,16 @@ public class load_level : MonoBehaviour {
 					level_graphics = line;
 					do
 						level_graphics_int++;
-					while (level_graphics_int < 22 && level_graphics != level_list[level_graphics_int]);
+					while (level_graphics_int < 36 && level_graphics != level_list[level_graphics_int]);
 
 					if (level_graphics_int > 12 && level_graphics_int < 16)
 						minor_offset = 4;
 					else if (level_graphics_int > 15 && level_graphics_int < 18)
-						minor_offset = 15;
-					else if (level_graphics_int > 17 && level_graphics_int < 20)
 						minor_offset = 16;
+					else if (level_graphics_int > 17 && level_graphics_int < 20)
+						minor_offset = 20;
                     else if (level_graphics_int > 19 && level_graphics_int < 22)
-                        minor_offset = 20;
+                        minor_offset = 24;
 
 					if (level_graphics_int == 5)
 						main_camera.backgroundColor = new Color(0.375f, 0.25f, 0);
@@ -173,7 +173,7 @@ public class load_level : MonoBehaviour {
 										turrets.Add(new Vector3((j-k)*0.5f, (i-4)*0.5f, 270.0f));
 								}
 								else if (line[j] >= 'A' && line[j] <= 'L')
-									Instantiate(minor_objects[line[j]-'A'+minor_offset+1], new Vector3((j-k)*0.5f + 0.25f, (i-4)*0.5f - 0.25f, 0.0f) , Quaternion.identity);
+                                    Instantiate(minor_objects[line[j] - 'A' + minor_offset + 1], new Vector3((j - k) * 0.5f /*+ 0.25f*/ + minor_objects[line[j] - 'A' + minor_offset + 1].localScale.x / 1.5f / 4.0f , (i - 4) * 0.5f /*- 0.25f*/ - minor_objects[line[j] - 'A' + minor_offset + 1].localScale.y / 1.5f / 4.0f , 0.0f), Quaternion.identity);
                                 else if (line[j] >= 'M' && line[j] <= '\\')
                                     Instantiate(flowers[line[j]-'L'], new Vector3((j-k)*0.5f + 0.25f, (i-4)*0.5f - 0.25f, 0.0f) , Quaternion.identity);
 								else {
@@ -195,12 +195,40 @@ public class load_level : MonoBehaviour {
 				for (int j=0; j<line.Length; j++) {
 
 					if (line[j] >= '0' && line[j] < 'D') {
-						//if (Global.levelmatrix[i/2,(j-k)/2] == 0)
-							Instantiate(pickup_graph[line[j]-48], new Vector3((j-k)*0.25f, (i-1)*0.25f, 0.0f), Quaternion.identity);
-						/*else if (Global.levelmatrix[i/2,j/2] == 1)
-							Instantiate(pickup_graph[line[j]-48], new Vector3((j-k)*0.25f, (i-1)*0.25f, 0.0f), Quaternion.identity);
+						if (line[j] == '1' || line[j] == '2')
+						{
+							if (level_graphics_int == 13 || level_graphics_int == 14)
+								Instantiate(pickup_graph[line[j]-27], new Vector3((j-k)*0.25f, (i-1)*0.25f, 0.0f), Quaternion.identity);
+							else if (level_graphics_int == 15)
+								Instantiate(pickup_graph[line[j]-25], new Vector3((j-k)*0.25f, (i-1)*0.25f, 0.0f), Quaternion.identity);
+							else if (level_graphics_int == 16 || level_graphics_int == 17)
+								Instantiate(pickup_graph[line[j]-29], new Vector3((j-k)*0.25f, (i-1)*0.25f, 0.0f), Quaternion.identity);
+							else
+								Instantiate(pickup_graph[line[j]-48], new Vector3((j-k)*0.25f, (i-1)*0.25f, 0.0f), Quaternion.identity);
+
+							//change enemies skin
+							if (level_graphics_int > 10 && level_graphics_int < 13) //city
+								Global.enemy_animation_offset = 7;
+							else if (level_graphics_int > 12 && level_graphics_int < 16) //garden
+								Global.enemy_animation_offset = 14;
+							else if (level_graphics_int > 15 && level_graphics_int < 18) //snow
+								Global.enemy_animation_offset = 21;
+							else if (level_graphics_int > 17 && level_graphics_int < 20) //desert
+								Global.enemy_animation_offset = 28;
+							else if (level_graphics_int > 19 && level_graphics_int < 22) //ghost
+								Global.enemy_animation_offset = 35;
+							else if (level_graphics_int > 26 && level_graphics_int < 32) //pixel
+								Global.enemy_animation_offset = 42;
+							else if (level_graphics_int > 31 && level_graphics_int < 37) //alien
+								Global.enemy_animation_offset = 49;
+							else //classic
+								Global.enemy_animation_offset = 0;
+
+
+						}
 						else
-							Instantiate(pickup_graph[line[j]-48], new Vector3((j-k)*0.25f, (i-1)*0.25f, 0.0f), Quaternion.identity);*/
+							Instantiate(pickup_graph[line[j]-48], new Vector3((j-k)*0.25f, (i-1)*0.25f, 0.0f), Quaternion.identity);
+
 
                             if (line[j] == '1')
                             {

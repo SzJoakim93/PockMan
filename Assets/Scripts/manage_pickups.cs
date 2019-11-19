@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEditor.Audio;
+using UnityEngine.Audio;
 
 public class manage_pickups : MonoBehaviour {
 

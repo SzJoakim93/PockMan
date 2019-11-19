@@ -36,7 +36,8 @@ public class pac_movement : MonoBehaviour {
 	public Image star3;
 	public Sprite active_star;
 
-	public GameObject [] enemy;
+	public GameObject [] enemy_pack;
+	GameObject [] enemy;
 	public Transform [] enemy_trans;
 	enemy_movement [] enemy_scripts = new enemy_movement[Global.max_enemy];
 
@@ -60,7 +61,8 @@ public class pac_movement : MonoBehaviour {
 
 	int respawn_delay = 0;
 
-    public Sound[] bg_music;
+    //public Sound[] bg_music;
+	AudioSource bg_music;
 
     public GameObject warn_panel;
 
@@ -71,6 +73,18 @@ public class pac_movement : MonoBehaviour {
 	void Start () {
 		/*pickups = new List<Transform> ();
 		invertibility = new List<Transform> ();*/
+
+		/*Transform [] enemy_temp;
+		enemy_temp = enemy_pack[Global.enemy_animation_offset].GetComponentsInChildren<Transform> (true);
+
+		enemy = new GameObject[enemy_temp.Length-1];
+		for (int i = 1; i < enemy_temp.Length; i++)
+			enemy[i-1] = enemy_temp[i].gameObject;*/
+
+		Debug.Log ("Enemy animation: " + Global.enemy_animation_offset);
+		enemy = new GameObject[Global.max_enemy];
+		for (int i = Global.enemy_animation_offset, j = 0; i < Global.enemy_animation_offset + Global.max_enemy; i++, j++)
+			enemy[j] = enemy_pack [i];
 
         camera_speed = base_camera_speed;
 		req_direction = -1;
@@ -101,6 +115,7 @@ public class pac_movement : MonoBehaviour {
 			//enemy [i].SetActive (false);
 			enemy_scripts[i] = enemy[i].GetComponent<enemy_movement>();
 		}
+		    
 
 		Global.pause_game = false;
 
@@ -140,7 +155,35 @@ public class pac_movement : MonoBehaviour {
 
         if (Global.music_enabled)
         {
-            foreach (Sound s in bg_music)
+			bg_music = GetComponent<AudioSource>();
+			if (Global.level % 25 == 1 || Global.level % 50 == 13 || Global.level % 50 == 31 || Global.level % 50 == 40 || Global.level % 50 == 44)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/Sunset on the Bay (Electronic, Synthwave)");
+			else if (Global.level % 25 == 2 || Global.level % 50 == 6 || Global.level % 50 == 12 || Global.level % 50 == 35 || Global.level % 50 == 42 || Global.level % 50 == 47)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/Action-Reaction (8bit, Action)");
+			else if (Global.level % 25 == 3 || Global.level % 50 == 17 || Global.level % 50 == 38 || Global.level % 50 == 46)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/At the Castle Gate (8bit, RPG)");
+			else if (Global.level % 25 == 4 || Global.level % 50 == 10 ||  Global.level % 50 == 23 || Global.level % 50 == 39 || Global.level % 50 == 48)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/Zen Puzzle (World, Puzzle)");
+			else if (Global.level % 25 == 5 || Global.level % 50 == 9 ||  Global.level % 50 == 22 || Global.level % 50 == 37)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/Hopeful Horizon (Electronic)");
+			else if (Global.level % 50 == 7 || Global.level % 50 == 14 || Global.level % 50 == 20 || Global.level % 50 == 25 || Global.level % 50 == 34 || Global.level % 50 == 43)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/Solar Eclipse (Electronic, Space)");
+			else if (Global.level % 50 == 8 || Global.level % 50 == 21 || Global.level % 50 == 36 || Global.level % 50 == 49)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/New Toy in Town (Pop, Kids)");
+			else if (Global.level % 50 == 11 || Global.level % 50 == 15 || Global.level % 50 == 24)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/In a Rush (Rock, Action)");
+			else if (Global.level % 50 == 16)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/Ghost");
+			else if (Global.level % 50 == 18 || Global.level % 50 == 33 || Global.level % 50 == 45)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/This Can't be the End (Orchestral, Horror)");
+			else if (Global.level % 50 == 19 || Global.level % 50 == 32 || Global.level % 50 == 41 || Global.level % 50 == 50)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/Underwater (Electronic, Action)");
+
+
+			bg_music.Play();
+			//Play the sound
+
+			/*foreach (Sound s in bg_music)
             {
                 s.source = gameObject.AddComponent<AudioSource>();
                 s.source.clip = s.clip;
@@ -150,13 +193,14 @@ public class pac_movement : MonoBehaviour {
                 //s.source.outputAudioMixerGroup = mixerGroup;
             }
 
-            bg_music[Global.level % 10].source.Play();
+            bg_music[Global.level % 10].source.Play();*/
         }
 			
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log ("Enemy animation: " + Global.enemy_animation_offset);
 		if (Global.ready_to_go == 0 && !Global.pause_game) {
 
 			if (Input.GetKey (KeyCode.LeftArrow))

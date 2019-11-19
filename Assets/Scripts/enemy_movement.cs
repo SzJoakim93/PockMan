@@ -19,18 +19,22 @@ public class enemy_movement : MonoBehaviour {
 
 	SpriteRenderer current_sprite; //the enym's current sprite
 
-	public GameObject collider; //the collider object that using for ally mode
+	GameObject collider; //the collider object that using for ally mode
 
 	public short isAlly = 0;
 	short ally_sprite = 0; //offset to ally sprite in sprites array
 
 	BoxCollider2D bc; //the collider that disabled in allymode to not kill the player
 
+	public int animation_type;
+
 	//bool selectable=true;
 
 	// Use this for initialization
 	void Start () {
 		current_sprite = this.GetComponent<SpriteRenderer> ();
+		Transform [] temp = this.GetComponentsInChildren<Transform> ();
+		collider = temp [1].gameObject;
 		collider.SetActive (false);
 
 		bc = this.GetComponent<BoxCollider2D> ();
@@ -79,17 +83,25 @@ public class enemy_movement : MonoBehaviour {
 						direction = 2;
 
                     //move back if the enemy go out of camera view
-					if (transform.position.y > camera.transform.position.y + Global.view_range_top && enemy_pos != 0 && enemy_pos != 2 && enemy_pos != 3 && enemy_pos != 7 && enemy_pos != 11)
+					if (transform.position.y > camera.transform.position.y + Global.view_range_top && enemy_pos != 0 && enemy_pos != 2 && enemy_pos != 3 && enemy_pos != 7 && enemy_pos != 11) {
 						direction = 3;
-					else if (transform.position.y < camera.transform.position.y + Global.view_range_bottom + 1.0f && enemy_pos != 0 && enemy_pos != 6 && enemy_pos != 4 && enemy_pos != 5 && enemy_pos != 11)
+						if (animation_type == 1)
+							transform.localEulerAngles = new Vector3 (0, 0, 180);
+					}
+					else if (transform.position.y < camera.transform.position.y + Global.view_range_bottom + 1.0f && enemy_pos != 0 && enemy_pos != 6 && enemy_pos != 4 && enemy_pos != 5 && enemy_pos != 11) {
 						direction = 2;
+						if (animation_type == 1)
+							transform.localEulerAngles = new Vector3 (0, 0, 0);
+					}
                     //determine enemy's moving direction
 					else
 						determine_direction ();
 
                     //change enemy's sprite
-					if (Global.inv_time == 0)
-						current_sprite.sprite = sprites [direction+ally_sprite];
+					if (Global.inv_time == 0) {
+						if (animation_type == 0)
+							current_sprite.sprite = sprites [direction+ally_sprite];
+					}
 
                     if (!Global.classic)
                     {
@@ -108,14 +120,27 @@ public class enemy_movement : MonoBehaviour {
 				if (Global.inv_time > 0) {
                     //enemy sprite will be bule if invertibility is active and change lower speed
 					if (Global.inv_time > 200) {
-						current_sprite.sprite = sprites [4];
+						if (animation_type == 0)
+							current_sprite.sprite = sprites [4];
+						else
+							current_sprite.sprite = sprites [1];
 						speed = 0.8f;
-					} else if (Global.inv_time < 200 && Global.inv_time / 20 % 2 == 0)
-						current_sprite.sprite = sprites [4];
+					} else if (Global.inv_time < 200 && Global.inv_time / 20 % 2 == 0) {
+						if (animation_type == 0)
+							current_sprite.sprite = sprites [4];
+						else
+							current_sprite.sprite = sprites [1];
+					}
 					else if (Global.inv_time < 200 && Global.inv_time / 20 % 2 == 1)
-						current_sprite.sprite = sprites [5];
-					if (Global.inv_time < 5)
+						if (animation_type == 0)
+							current_sprite.sprite = sprites [5];
+						else
+							current_sprite.sprite = sprites [2];
+					if (Global.inv_time < 5) {
 						speed = Global.enemy_speed;
+						if (animation_type == 1)
+							current_sprite.sprite = sprites [0];
+					}
 				}
 
                 //ally activation section
@@ -123,7 +148,10 @@ public class enemy_movement : MonoBehaviour {
 
                     //begining of ally
 					if (isAlly == 1000) {
-						ally_sprite = 10;
+						if (animation_type == 0)
+							ally_sprite = 10;
+						else
+							ally_sprite = 7;
 						collider.SetActive (true);
 						bc.enabled = false;
 					}
@@ -140,6 +168,7 @@ public class enemy_movement : MonoBehaviour {
 
 
                 //movo of enemy
+			if (animation_type == 0 || animation_type == 2) {
 				if (direction == 0)
 					transform.Translate (-speed*Time.deltaTime, 0, 0);
 				else if (direction == 1)
@@ -148,18 +177,28 @@ public class enemy_movement : MonoBehaviour {
 					transform.Translate (0, speed*Time.deltaTime, 0);
 				else if (direction == 3)
 					transform.Translate (0, -speed*Time.deltaTime, 0);
+			}
+			else
+				transform.Translate (0, speed*Time.deltaTime, 0);
 
 		} else if (count_down != 0) {  
 			count_down--;
 
             //animatoin of enemy respawning
-			current_sprite.sprite = sprites[6 + (count_down / 5 % 4)];
+			if (animation_type == 0)
+				current_sprite.sprite = sprites[6 + (count_down / 5 % 4)];
+			else
+				current_sprite.sprite = sprites[3 + (count_down / 5 % 4)];
 
             //deactivation at end of level
 			if (count_down < -8) {
 				gameObject.SetActive(false);
 				count_down = 0;
 			}
+
+			if (count_down == 0) 
+				current_sprite.sprite = sprites[0];
+
 		}
 
 	}
@@ -555,6 +594,17 @@ public class enemy_movement : MonoBehaviour {
             }
 		}
 
+		if (animation_type == 1) {
+			if (direction == 0)
+				transform.localEulerAngles = new Vector3 (0, 0, 90);
+			else if (direction == 1)
+				transform.localEulerAngles = new Vector3 (0, 0, 270);
+			else if (direction == 2)
+				transform.localEulerAngles = new Vector3 (0, 0, 0);
+			else if (direction == 3)
+				transform.localEulerAngles = new Vector3 (0, 0, 180);
+		}
+
 	}
 
 
@@ -589,11 +639,12 @@ public class enemy_movement : MonoBehaviour {
             for (; k < 14 && (Global.levelmatrix[j, k] == -1 || !no_safe); k++)
             {
                 no_safe = true;
-                foreach (var pos in Global.safety_coords)
-                {
-                    if (Math.Abs(pos.y * 2.0f - j) < 1.0 && Math.Abs(pos.x * 2.0f - k) < 1.0)
-                        no_safe = false;
-                }
+				if (Global.safety_coords != null)
+	                foreach (var pos in Global.safety_coords)
+	                {
+	                    if (Math.Abs(pos.y * 2.0f - j) < 1.0 && Math.Abs(pos.x * 2.0f - k) < 1.0)
+	                        no_safe = false;
+	                }
             }
 
             if (k == 14)
@@ -603,11 +654,12 @@ public class enemy_movement : MonoBehaviour {
                 for (; k > 0 && (Global.levelmatrix[j, k] == -1 || !no_safe); k--)
                 {
                     no_safe = true;
-                    foreach (var pos in Global.safety_coords)
-                    {
-                        if (Math.Abs(pos.y * 2.0f - j) < 1.0 && Math.Abs(pos.x * 2.0f - k) < 1.0)
-                            no_safe = false;
-                    }
+					if (Global.safety_coords != null)
+	                    foreach (var pos in Global.safety_coords)
+	                    {
+	                        if (Math.Abs(pos.y * 2.0f - j) < 1.0 && Math.Abs(pos.x * 2.0f - k) < 1.0)
+	                            no_safe = false;
+	                    }
                 }
 
                 if (k == 0)

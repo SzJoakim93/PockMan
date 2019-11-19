@@ -16,6 +16,7 @@ public class Global : MonoBehaviour {
 	public static int startcoord_x, startcoord_y, endcoord_x, endcoord_y;
 	public static int max_enemy = 7;
 	public static float enemy_speed;
+	public static int enemy_animation_offset = 0;
 
 	public static int inv_time=0;
 	public static int ready_to_go;
@@ -76,7 +77,7 @@ public class Global : MonoBehaviour {
 	#endif
 	
 	//public static string [] levels = new string[] {"level1.txt", "level2.txt", "level3.txt", "level4.txt", "level5.txt"};
-	public static int level = 0;
+	public static int level = 30;
 
 	public static List<Vector4> speed_zones;
 	public static List<Vector4> slow_zones;
