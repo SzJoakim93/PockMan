@@ -9,7 +9,7 @@ public class manage_pickups : MonoBehaviour {
 	public Text Combo_text;
 
 	BoxCollider2D boxCollider;
-	public GameObject [] enemy;
+	public GameObject [] enemy_ally;
 	public bool isEnemy;
 	public short enemy_index;
 	public Transform enemy_dead;
@@ -19,7 +19,7 @@ public class manage_pickups : MonoBehaviour {
 	
 	public Text rate_text;
 
-	public Sound [] sounds;
+	public Sound_manager sound_manager;
 		
 	int rate_count_down; //determine the rating text's appearance time
 
@@ -34,9 +34,9 @@ public class manage_pickups : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		boxCollider = GetComponent<BoxCollider2D>();
-		enemy_scripts = new enemy_movement[enemy.Length];
+		/*enemy_scripts = new enemy_movement[enemy.Length];
 		for (int i = 0; i < 5; i++)
-			enemy_scripts[i] = enemy[i].GetComponent<enemy_movement>();
+			enemy_scripts[i] = enemy[i].GetComponent<enemy_movement>();*/
 		combo_count = 0;
 		combo = 0;
 
@@ -51,22 +51,14 @@ public class manage_pickups : MonoBehaviour {
 				card_bonus = 1.4f;
 		}
 
-		foreach (Sound s in sounds)
-		{
-			s.source = gameObject.AddComponent<AudioSource>();
-			s.source.clip = s.clip;
-			s.source.loop = s.loop;
-			s.source.volume = s.volume;
-			s.source.loop = s.loop;
-			//s.source.outputAudioMixerGroup = mixerGroup;
-		}
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Global.magneton > 0) {
 			Global.magneton--;
-			if (Global.magneton == 1)
+			if (Global.magneton < 10)
 				boxCollider.size = new Vector2 (0.2f, 0.2f);
 		}
 
@@ -158,90 +150,93 @@ public class manage_pickups : MonoBehaviour {
 			score_text.text = Global.score.ToString ();
 			Global.remaining--;
 			score_count_down = 40;
-			sounds[0].source.Play();
+			sound_manager.PlaySound(0);
 
 		} else if (coll.gameObject.tag == "invertibility") {
 			Destroy (coll.gameObject);
 			add_point(10);
 			Global.inv_time = (int)(500.0f * card_bonus);
-            sounds[1].source.Play();
+            sound_manager.PlaySound(1);
 
 		} else if (coll.gameObject.tag == "bananna") {
 			Destroy (coll.gameObject);
 			add_point(100);
-            sounds[2].source.Play();
+            sound_manager.PlaySound(2);
 
 		} else if (coll.gameObject.tag == "pineapple") {
 			Destroy (coll.gameObject);
 			add_point(100);
-            sounds[2].source.Play();
+            sound_manager.PlaySound(2);
 
 		} else if (coll.gameObject.tag == "melone") {
 			Destroy (coll.gameObject);
 			add_point(100);
-            sounds[2].source.Play();
+            sound_manager.PlaySound(2);
 
 		} else if (coll.gameObject.tag == "apple") {
 			Destroy (coll.gameObject);
 			add_point(100);
-            sounds[2].source.Play();
+            sound_manager.PlaySound(2);
 
 		} else if (coll.gameObject.tag == "rewind") {
 			Destroy (coll.gameObject);
 			Global.rewind = 200;
             score_count_down = 40;
-            sounds[4].source.Play();
+            sound_manager.PlaySound(4);
 
 		} else if (coll.gameObject.tag == "pause") {
 			Destroy (coll.gameObject);
 			Global.pause = (int)(Global.max_pause * card_bonus);
 			score_count_down = 40;
-            sounds[4].source.Play();
+            sound_manager.PlaySound(4);
 
 		} else if (coll.gameObject.tag == "pause_enemy") {
 			Destroy (coll.gameObject);
 			Global.pause_enemy = (int)(300.0f * card_bonus);
 			score_count_down = 40;
-            sounds[4].source.Play();
+            sound_manager.PlaySound(4);
 
 		} else if (coll.gameObject.tag == "double_score") {
 			Destroy (coll.gameObject);
 			Global.double_score = (int)(Global.max_double * card_bonus);
 			score_count_down = 40;
-            sounds[4].source.Play();
+            sound_manager.PlaySound(4);
 
 		} else if (coll.gameObject.tag == "magneton") {
 			Destroy (coll.gameObject);
 			Global.magneton = (int)(Global.max_magneton * card_bonus);
 			score_count_down = 40;
 			boxCollider.size = new Vector2 (2.0f, 2.0f);
-            sounds[4].source.Play();
+            sound_manager.PlaySound(4);
 
 		} else if (coll.gameObject.tag == "mine") {
 			Destroy (coll.gameObject);
 			Global.mines = Global.max_mines;
 			score_count_down = 40;
-            sounds[4].source.Play();
+            sound_manager.PlaySound(4);
 		} else if (coll.gameObject.tag == "ammo") {
 			Destroy (coll.gameObject);
 			Global.ammo = Global.max_ammo;
 			score_count_down = 40;
-            sounds[4].source.Play();
+            sound_manager.PlaySound(4);
 
 		} else if (coll.gameObject.tag == "convert_enemy") {
+			for (int i=0; i<Global.max_convert; i++) {
+				GameObject new_enemy = (GameObject)Instantiate(enemy_ally[Global.enemy_animation_offset], coll.transform.position, Quaternion.identity);
+				new_enemy.SetActive(true);
+			}
+			
 			Destroy (coll.gameObject);
-			for (int i = 0; i < Global.max_convert; i++)
-				enemy_scripts[i].isAlly = 1000;
 			score_count_down = 40;
-            sounds[4].source.Play();
+            sound_manager.PlaySound(4);
 
 		} else if (coll.gameObject.tag == "clone") {
 			Global.clone_reamining = (int)(Global.max_clone * card_bonus);
 			Destroy (coll.gameObject);
 			clone_man.gameObject.SetActive (true);
-			clone_man.position = transform.parent.position;
+			clone_man.position = coll.transform.position;
 			score_count_down = 40;
-            sounds[4].source.Play();
+            sound_manager.PlaySound(4);
 
 		} else if (coll.gameObject.tag == "extend_points") {
 			Global.dropping_mode = 0;
@@ -249,7 +244,7 @@ public class manage_pickups : MonoBehaviour {
 			dropper.position = new Vector2(8.0f, Mathf.Round(transform.parent.position.y) + 4.0f);
 			dropper.gameObject.SetActive(true);
 			score_count_down = 40;
-            sounds[4].source.Play();
+            sound_manager.PlaySound(4);
 
 		} else if (coll.gameObject.tag == "extend_fruits") {
 			Global.dropping_mode = 1;
@@ -257,7 +252,7 @@ public class manage_pickups : MonoBehaviour {
 			dropper.position = new Vector2(8.0f, Mathf.Round(transform.parent.position.y) + 10.0f);
 			dropper.gameObject.SetActive(true);
 			score_count_down = 40;
-            sounds[4].source.Play();
+            sound_manager.PlaySound(4);
 			
 		} else if (coll.gameObject.tag == "safety_road") {
 			Global.dropping_mode = 2;
@@ -267,51 +262,59 @@ public class manage_pickups : MonoBehaviour {
 			dropper.gameObject.SetActive(true);
 			score_count_down = 40;
             Global.safety_coords.Clear();
-            sounds[4].source.Play();
+            sound_manager.PlaySound(4);
 			
 		} else if (coll.gameObject.tag == "thunder") {
 			Destroy (coll.gameObject);
-            sounds[3].source.Play();
+            sound_manager.PlaySound(3);
 
-			short [] index = new short[Global.max_thunder];
+			for (short i = 0; i < Global.max_thunder && Global.enemies.Count > 0; i++) {
 
-			for (short i = 0; i< Global.max_thunder && i < Global.enemy_active; i++) {
+				var enemy_to_dead = getNearestenemy();
 
-				float distance = 999.0f;
-				for (short j = 0; j < 5; j++) {
-					float curr_distance = Vector3.Distance (transform.position, enemy[j].transform.position);
-					if ((i == 0 || j != index[i-1]) && curr_distance < distance && enemy[j].activeInHierarchy) {
-						distance = curr_distance;
-						index[i] = j;
-					}
+				if (enemy_to_dead != null) {
+					Transform new_thunder = (Transform)Instantiate(thunder, transform.position, Quaternion.identity);
+					new_thunder.position = enemy_to_dead.transform.position;
+					new_thunder.gameObject.SetActive (true);
+					Transform new_dead = (Transform)Instantiate(enemy_dead, transform.position, Quaternion.identity);
+					new_dead.position = enemy_to_dead.transform.position;
+					new_dead.gameObject.SetActive (true);
+
+					Global.enemies.Remove(enemy_to_dead);
+					Destroy(enemy_to_dead);
 				}
+				
 
-				enemy[index[i]].gameObject.SetActive (false);
-
-				Transform new_thunder = (Transform)Instantiate(thunder, transform.position, Quaternion.identity);
-				new_thunder.position = enemy[index[i]].transform.position;
-				new_thunder.gameObject.SetActive (true);
-				Transform new_dead = (Transform)Instantiate(enemy_dead, transform.position, Quaternion.identity);
-				new_dead.position = enemy[index[i]].transform.position;
-				new_dead.gameObject.SetActive (true);
-
-				Global.enemy_active--;
 				Global.score += 100;
 				score_count_down = 40;
 
 			}
 
 			
-		} else if (isEnemy && coll.gameObject.tag == "enemy" && coll.gameObject != transform.parent.gameObject && (enemy_index == -1 || enemy_scripts[enemy_index].isAlly > 0)) {
-				coll.gameObject.SetActive (false);
-				Global.enemy_active--;
+		} else if (isEnemy && coll.gameObject.tag == "enemy" && coll.gameObject != transform.parent.gameObject) {
 				Global.score += 10;
 				
 				Transform new_dead = (Transform)Instantiate(enemy_dead, transform.position, Quaternion.identity);
 				new_dead.position = coll.transform.position;
 				new_dead.gameObject.SetActive (true);
-                sounds[3].source.Play();
-		} 
+
+				Global.enemies.Remove(coll.gameObject);
+				Destroy(coll.gameObject);
+		}
 	
+	}
+
+	GameObject getNearestenemy() {
+		GameObject nearest_enemy = null;
+		float distance = 999.0f;
+		foreach (var enemy in Global.enemies) {
+			float curr_distance = Vector3.Distance (transform.position, enemy.transform.position);
+			if (curr_distance < distance && enemy.activeInHierarchy) {
+				distance = curr_distance;
+				nearest_enemy = enemy;
+			}
+		}
+
+		return nearest_enemy;
 	}
 }

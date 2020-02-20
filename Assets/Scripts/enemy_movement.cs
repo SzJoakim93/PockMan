@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 
 public class enemy_movement : MonoBehaviour {
 
 	int direction=0; //enemy's moving direction (0: <- , 1: -> , 2: ^ , 3: ˇ
-	public static float speed=Global.enemy_speed; //determine enemy's speed from a global const
+	public static float speed = Global.enemy_speed; //determine enemy's speed from a global const
 	int enemy_pos; //value of enemy's position on levelmatrix
 	public int count_down; //use for enemy respawning and deactivating at the end of level
 
@@ -14,6 +15,8 @@ public class enemy_movement : MonoBehaviour {
 	public Transform camera; //camera position
 	public Transform pock_man; //players's position
 	public Transform enemy_dead; //a sample object to clne to the enemy psition in case of dead
+	public Text ghost_combo_txt;
+	public Text rate_text;
 
 	public Sprite [] sprites; //an arry containing all enym sprites
 
@@ -21,19 +24,21 @@ public class enemy_movement : MonoBehaviour {
 
 	GameObject collider; //the collider object that using for ally mode
 
-	public short isAlly = 0;
+	public short isAlly;
 	short ally_sprite = 0; //offset to ally sprite in sprites array
 
 	BoxCollider2D bc; //the collider that disabled in allymode to not kill the player
 
 	public int animation_type;
+	pac_movement pac_script;
 
 	//bool selectable=true;
 
 	// Use this for initialization
 	void Start () {
+		speed = Global.enemy_speed;
 		current_sprite = this.GetComponent<SpriteRenderer> ();
-		Transform [] temp = this.GetComponentsInChildren<Transform> ();
+		Transform [] temp = this.GetComponentsInChildren<Transform> (true);
 		collider = temp [1].gameObject;
 		collider.SetActive (false);
 
@@ -50,12 +55,23 @@ public class enemy_movement : MonoBehaviour {
         }
 
         Global.safety_coords = new System.Collections.Generic.List<Vector2>();
+		pac_script = pock_man.GetComponent<pac_movement>();
+
+		int enemy_pos = Global.levelmatrix[(int)transform.position.y*2,(int)transform.position.x*2];
+		if (enemy_pos == 0 || enemy_pos == 3 || enemy_pos == 7 || enemy_pos == 11)
+			direction = 1;
+		else if  (enemy_pos == 1 || enemy_pos == 4 || enemy_pos == 5 || enemy_pos == 8 || enemy_pos == 9 || enemy_pos == 10)
+			direction = 3;
+		else if (enemy_pos == 2)
+			direction = 0;
+
+		count_down = 50;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (Global.ready_to_go == 0 && Global.pause_enemy == 0 && !Global.pause_game)
+		if (Global.ready_to_go == 0 && Global.pause_enemy == 0 && !Global.pause_game) {
 			if (count_down == 0) {
 
                 //get level matrix coordinates
@@ -63,18 +79,12 @@ public class enemy_movement : MonoBehaviour {
 					int matrix_x = (int)(transform.position.x * 2);
 					int matrix_y = (int)(transform.position.y * 2);
 
-
-                    //fix enemy position when go out of playground
-					if (matrix_x < 0) {
-						matrix_x = 0;
-						transform.position = new Vector3(0.0f, transform.position.y, transform.position.z);
-					} else if (matrix_x > 19) {
-						matrix_x = 19;
-						transform.position = new Vector3(10.5f, transform.position.y, transform.position.z);
-					}
-
                     //get enemy pos from coordinates
 					enemy_pos = Global.levelmatrix [matrix_y, matrix_x];
+
+                    //fix enemy position when go out of playground
+					if (enemy_pos == -1)
+						fix_enemy_pos(matrix_x, matrix_y);
 
 				    //fix direction
 					if (enemy_pos == 0 && (direction == 2 || direction == 3))
@@ -88,7 +98,7 @@ public class enemy_movement : MonoBehaviour {
 						if (animation_type == 1)
 							transform.localEulerAngles = new Vector3 (0, 0, 180);
 					}
-					else if (transform.position.y < camera.transform.position.y + Global.view_range_bottom + 1.0f && enemy_pos != 0 && enemy_pos != 6 && enemy_pos != 4 && enemy_pos != 5 && enemy_pos != 11) {
+					else if (isAlly > 0 && transform.position.y < camera.transform.position.y + Global.view_range_bottom + 1.0f && enemy_pos != 0 && enemy_pos != 6 && enemy_pos != 4 && enemy_pos != 5 && enemy_pos != 11) {
 						direction = 2;
 						if (animation_type == 1)
 							transform.localEulerAngles = new Vector3 (0, 0, 0);
@@ -103,7 +113,7 @@ public class enemy_movement : MonoBehaviour {
 							current_sprite.sprite = sprites [direction+ally_sprite];
 					}
 
-                    if (!Global.classic)
+                    /*if (!Global.classic)
                     {
                         //respawn enemy when go out of camera view so far
                         if (transform.position.y < camera.transform.position.y - 3.2f)
@@ -112,16 +122,16 @@ public class enemy_movement : MonoBehaviour {
                         //deactivate enemy at top of level
                         if (matrix_y > Global.level_height - 10 && enemy_type < 4)
                             count_down = -1;
-                    }
+                    }*/
 				}
 
 				
                 //invertibility time section
 				if (Global.inv_time > 0) {
-                    //enemy sprite will be bule if invertibility is active and change lower speed
+                    //enemy sprite will be blue if invertibility is active and change lower speed
 					if (Global.inv_time > 200) {
 						if (animation_type == 0)
-							current_sprite.sprite = sprites [4];
+							current_sprite.sprite = sprites [direction+4];
 						else
 							current_sprite.sprite = sprites [1];
 						speed = 0.8f;
@@ -133,27 +143,30 @@ public class enemy_movement : MonoBehaviour {
 					}
 					else if (Global.inv_time < 200 && Global.inv_time / 20 % 2 == 1)
 						if (animation_type == 0)
-							current_sprite.sprite = sprites [5];
+							current_sprite.sprite = sprites [direction+8];
 						else
 							current_sprite.sprite = sprites [2];
 					if (Global.inv_time < 5) {
 						speed = Global.enemy_speed;
-						if (animation_type == 1)
-							current_sprite.sprite = sprites [0];
+						if (animation_type < 5)
+							current_sprite.sprite = sprites [ally_sprite];
 					}
 				}
 
                 //ally activation section
 				if (isAlly > 0) {
-
-                    //begining of ally
+					//begining of ally
 					if (isAlly == 1000) {
 						if (animation_type == 0)
-							ally_sprite = 10;
-						else
+							ally_sprite = 16;
+						else {
 							ally_sprite = 7;
+							current_sprite.sprite = sprites [ally_sprite];
+						}
+							
 						collider.SetActive (true);
 						bc.enabled = false;
+							
 					}
 
                     //end of ally
@@ -162,52 +175,97 @@ public class enemy_movement : MonoBehaviour {
 						bc.enabled = true;
 						collider.SetActive(false); 
 					}
-
+					
 					isAlly--;
 				}
 
+				if (!Global.classic && transform.position.y < camera.transform.position.y + Global.view_range_bottom) {
+					Global.enemies.Remove(gameObject);
+					Destroy(gameObject);
+				}
 
                 //movo of enemy
-			if (animation_type == 0 || animation_type == 2) {
-				if (direction == 0)
-					transform.Translate (-speed*Time.deltaTime, 0, 0);
-				else if (direction == 1)
-					transform.Translate (speed*Time.deltaTime, 0, 0);
-				else if (direction == 2)
+				if (animation_type == 0 || animation_type == 2) {
+					if (direction == 0)
+						transform.Translate (-speed*Time.deltaTime, 0, 0);
+					else if (direction == 1)
+						transform.Translate (speed*Time.deltaTime, 0, 0);
+					else if (direction == 2)
+						transform.Translate (0, speed*Time.deltaTime, 0);
+					else if (direction == 3)
+						transform.Translate (0, -speed*Time.deltaTime, 0);
+				}
+				else
 					transform.Translate (0, speed*Time.deltaTime, 0);
-				else if (direction == 3)
-					transform.Translate (0, -speed*Time.deltaTime, 0);
+
+				//collision of enemy
+				if (isAlly == 0 && Global.pause_enemy == 0 && !pac_script.dead && count_down == 0 && Vector2.Distance(transform.position, pock_man.position) < 0.25f) {
+						
+						//enemy kills the player
+						if (Global.inv_time == 0) {
+							pac_script.anim.SetBool ("dead", true);
+							pac_script.dead = true;
+							Global.pause_game = true;
+
+						//invertibility enabled
+						} else {
+
+						
+						//Global.enemy_active--;
+						
+						Global.score += pac_script.ghost_combo;
+						
+						//show total ghost combo
+						if (pac_script.ghost_combo == 250) {
+							rate_text.text = "Total ghost combo!";
+							rate_text.gameObject.SetActive(true);
+							pac_script.rate_countdown = 100;
+						}
+						
+						//set and show ghost combo title
+						pac_script.ghost_combo_countdown = 100;
+						ghost_combo_txt.gameObject.SetActive(true);
+						ghost_combo_txt.text = "+" + pac_script.ghost_combo.ToString();
+
+						Transform new_dead = (Transform)Instantiate(enemy_dead, transform.position, Quaternion.identity);
+						new_dead.position = transform.position;
+						new_dead.gameObject.SetActive (true);
+
+						pac_script.ghost_combo += 50;
+
+						Global.enemies.Remove(gameObject);
+						Destroy(gameObject);
+					}
+				}
+
+			} else if (count_down != 0) {  
+				count_down--;
+
+				//animatoin of enemy respawning
+				if (animation_type == 0)
+					current_sprite.sprite = sprites[6 + (count_down / 5 % 4)];
+				else
+					current_sprite.sprite = sprites[3 + (count_down / 5 % 4)];
+
+				//deactivation at end of level
+				if (count_down < -8) {
+					count_down = 0;
+					Global.enemies.Remove(gameObject);
+					Destroy(gameObject);
+				}
+
+				if (count_down == 0) 
+					current_sprite.sprite = sprites[0];
+
 			}
-			else
-				transform.Translate (0, speed*Time.deltaTime, 0);
-
-		} else if (count_down != 0) {  
-			count_down--;
-
-            //animatoin of enemy respawning
-			if (animation_type == 0)
-				current_sprite.sprite = sprites[6 + (count_down / 5 % 4)];
-			else
-				current_sprite.sprite = sprites[3 + (count_down / 5 % 4)];
-
-            //deactivation at end of level
-			if (count_down < -8) {
-				gameObject.SetActive(false);
-				count_down = 0;
-			}
-
-			if (count_down == 0) 
-				current_sprite.sprite = sprites[0];
-
 		}
-
 	}
 
 	void determine_direction() {
 
         //if the gost out of region
 
-		if ((enemy_type == 0 && (transform.position.x < 5 || transform.position.y < camera.position.y + 3.5f)) || //top-right
+		/*if ((enemy_type == 0 && (transform.position.x < 5 || transform.position.y < camera.position.y + 3.5f)) || //top-right
 		    (enemy_type == 1 && (transform.position.x > 3.5f || transform.position.y < camera.position.y + 3.5f)) || //top-left
             (enemy_type == 2 && (transform.position.x > 3.5f || transform.position.y > camera.position.y + 4.0f)) || //bottom-left
             (enemy_type == 3 && (transform.position.x < 5 || transform.position.y > camera.position.y + 4.0f)) || //bottom-rigth
@@ -435,11 +493,11 @@ public class enemy_movement : MonoBehaviour {
 
 
 
-		} else {
+		} else {*/
 			if (enemy_pos == 10) {
-				int x = (int)UnityEngine.Random.Range(0.0f, 2.9f);
+				int x = (int)UnityEngine.Random.Range(0.0f, 3.9f);
 				while (x == 0 && direction == 1 || x == 1 && direction == 0 || x == 2 && direction == 3 || x == 3 && direction == 2)
-                    x = (int)UnityEngine.Random.Range(0.0f, 2.9f);
+                    x = (int)UnityEngine.Random.Range(0.0f, 3.9f);
 				
 				direction = x;
 			}
@@ -561,7 +619,7 @@ public class enemy_movement : MonoBehaviour {
 					direction = 1;
 			}
 
-            if (enemy_pos != 0 && enemy_pos != 1)
+            /*if (enemy_pos != 0 && enemy_pos != 1)
             {
                 if (enemy_type == 0)
                 {
@@ -591,8 +649,8 @@ public class enemy_movement : MonoBehaviour {
                     else if (transform.position.x < 5 && enemy_pos != 2 && enemy_pos != 5 && enemy_pos != 9)
                         direction = 1;
                 }
-            }
-		}
+            }*/
+		//}
 
 		if (animation_type == 1) {
 			if (direction == 0)
@@ -706,7 +764,6 @@ public class enemy_movement : MonoBehaviour {
 	{
         //if enemy bump into a trap or ammo
 		if (coll.gameObject.tag == "enemy_trap" || coll.gameObject.tag == "enemy_fire") {
-			gameObject.SetActive (false);
 
 			if (coll.gameObject.tag == "enemy_trap")
 				Destroy (coll.gameObject);
@@ -720,6 +777,9 @@ public class enemy_movement : MonoBehaviour {
 
             Global.score += 100;
 
+			Global.enemies.Remove(gameObject);
+			Destroy(gameObject);
+
         //go back if the enemy reaches the border of safe_zone
 		} else if (coll.gameObject.tag == "safe_zone") {
 			if (direction == 0)
@@ -731,6 +791,27 @@ public class enemy_movement : MonoBehaviour {
 			else if (direction == 3)
 				direction = 2;
 		}
+	}
+
+	void fix_enemy_pos(int x, int y) {
+		int i, j;
+		if (direction == 0) {
+			for (i = x, j = y; i < 20 && Global.levelmatrix[j, i] == -1; i++);
+			transform.position = new Vector3(i/2.0f+0.1f, j/2.0f, 0);
+		}
+		else if (direction == 1) {
+			for (i = x, j = y; i > 0 && Global.levelmatrix[j, i] == -1; i--);
+			transform.position = new Vector3(i/2.0f-0.1f, j/2.0f, 0);
+		}
+		else if (direction == 2) {
+			for (i = x, j = y; j > 0 && Global.levelmatrix[j, i] == -1; j--);
+			transform.position = new Vector3(i/2.0f, j/2.0f-0.1f, 0);
+		}	
+		else {
+			for (i = x, j = y; j < Global.level_height && Global.levelmatrix[j, i] == -1; j++);
+			transform.position = new Vector3(i/2.0f, j/2.0f+0.1f, 0);
+		}
+			
 	}
 
 }

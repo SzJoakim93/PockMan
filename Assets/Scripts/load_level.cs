@@ -8,7 +8,7 @@ public class load_level : MonoBehaviour {
 	public Transform player;
 	public Transform Pickup_pack;
 	public Transform Tile_pack;
-	public GameObject Minor_pack;
+	public GameObject [] Minor_pack;
     public GameObject flower_pack;
 	public GameObject fire;
 
@@ -23,26 +23,11 @@ public class load_level : MonoBehaviour {
     Transform[] flowers;
 
 	string level_graphics;
-	
-	string[] level_list = {"Textures/classic.bmp", "Textures/classic2.bmp", "Textures/classic3.bmp", "Textures/classic4.bmp", "Textures/classic5.bmp", //4.
-		"Textures/classic6.bmp", "Textures/classic7.bmp", "Textures/classic8.bmp", "Textures/classic9.bmp", "Textures/classic10.bmp", //9.
-		"Textures/town1.bmp", "Textures/town2.bmp", "Textures/town3.bmp", //12.
-		"Textures/garden1.bmp", "Textures/garden2.bmp", "Textures/garden3.bmp", //15.
-		"Textures/snow1.bmp", "Textures/snow2.bmp", //17.
-		"Textures/desert1.bmp", "Textures/desert2.bmp", //19.
-		"Textures/grave1.bmp", "Textures/grave2.bmp", //21
-		"Textures/classic11.bmp", "Textures/classic12.bmp", "Textures/classic13.bmp", "Textures/classic14.bmp", "Textures/classic15.bmp",//26
-		"Textures/digital1.bmp", "Textures/digital2.bmp", "Textures/digital3.bmp", "Textures/digital4.bmp", "Textures/digital5.bmp", //31
-		"Textures/space1.bmp", "Textures/space2.bmp", "Textures/space3.bmp", "Textures/space4.bmp", "Textures/space5.bmp" //36
-	};
-
-	int minor_offset = 0;
 
 	// Use this for initialization
 	void Start () {
 		tiles = Tile_pack.GetComponentsInChildren<Transform>();
 		pickup_graph = Pickup_pack.GetComponentsInChildren<Transform> ();
-		minor_objects = Minor_pack.GetComponentsInChildren<Transform> ();
         flowers = flower_pack.GetComponentsInChildren<Transform>();
 
 		Global.speed_zones = new List<Vector4> ();
@@ -77,6 +62,7 @@ public class load_level : MonoBehaviour {
 		
 		int i;
 		int level_graphics_int = -1;
+		int minor_offset = 0;
 		
 		for (i = 0; i<500; i++)
 			for (int j = 0; j<20; j++)
@@ -92,39 +78,7 @@ public class load_level : MonoBehaviour {
 			if (level_load) {
 				if (i == 0) {
 					level_graphics = line;
-					do
-						level_graphics_int++;
-					while (level_graphics_int < 36 && level_graphics != level_list[level_graphics_int]);
-
-					if (level_graphics_int > 12 && level_graphics_int < 16)
-						minor_offset = 4;
-					else if (level_graphics_int > 15 && level_graphics_int < 18)
-						minor_offset = 16;
-					else if (level_graphics_int > 17 && level_graphics_int < 20)
-						minor_offset = 20;
-                    else if (level_graphics_int > 19 && level_graphics_int < 22)
-                        minor_offset = 24;
-
-					if (level_graphics_int == 5)
-						main_camera.backgroundColor = new Color(0.375f, 0.25f, 0);
-					else if (level_graphics_int == 6)
-						main_camera.backgroundColor = new Color(0.125f, 0.25f, 0.5f);
-					else if (level_graphics_int == 8)
-						main_camera.backgroundColor = new Color(0.625f, 0, 0);
-					else if (level_graphics_int == 7 || level_graphics_int == 9 || level_graphics_int == 11 || level_graphics_int == 12)
-						main_camera.backgroundColor = new Color(0.125f, 0.75f, 0.25f);
-					else if (level_graphics_int == 11 || level_graphics_int == 14 || level_graphics_int == 21)
-						main_camera.backgroundColor = new Color(0, 0.25f, 0);
-					else if (level_graphics_int == 10 || level_graphics_int == 13 || level_graphics_int == 15)
-						main_camera.backgroundColor = new Color(0, 0.5f, 0);
-					else if (level_graphics_int == 16)
-						main_camera.backgroundColor = new Color(1, 1, 1);
-					else if (level_graphics_int == 17)
-						main_camera.backgroundColor = new Color(0.375f, 0.625f, 0.75f);
-					else if (level_graphics_int == 18 || level_graphics_int == 19)
-						main_camera.backgroundColor = new Color(0.63f, 0.51f, 0.27f);
-					else if (level_graphics_int == 20)
-						main_camera.backgroundColor = new Color(0.9f, 0.8f, 0.6f);
+					set_level_graph(ref level_graphics_int, ref minor_offset);
 					
 				}
 				else if (i == 1) {
@@ -173,7 +127,7 @@ public class load_level : MonoBehaviour {
 										turrets.Add(new Vector3((j-k)*0.5f, (i-4)*0.5f, 270.0f));
 								}
 								else if (line[j] >= 'A' && line[j] <= 'L')
-                                    Instantiate(minor_objects[line[j] - 'A' + minor_offset + 1], new Vector3((j - k) * 0.5f /*+ 0.25f*/ + minor_objects[line[j] - 'A' + minor_offset + 1].localScale.x / 1.5f / 4.0f , (i - 4) * 0.5f /*- 0.25f*/ - minor_objects[line[j] - 'A' + minor_offset + 1].localScale.y / 1.5f / 4.0f , 0.0f), Quaternion.identity);
+                                    Instantiate(minor_objects[line[j] - 'A'], new Vector3((j - k) * 0.5f /*+ 0.25f*/ + minor_objects[line[j] - 'A'].localScale.x / 1.5f / 4.0f , (i - 4) * 0.5f /*- 0.25f*/ - minor_objects[line[j] - 'A'].localScale.y / 1.5f / 4.0f , 0.0f), Quaternion.identity);
                                 else if (line[j] >= 'M' && line[j] <= '\\')
                                     Instantiate(flowers[line[j]-'L'], new Vector3((j-k)*0.5f + 0.25f, (i-4)*0.5f - 0.25f, 0.0f) , Quaternion.identity);
 								else {
@@ -205,25 +159,6 @@ public class load_level : MonoBehaviour {
 								Instantiate(pickup_graph[line[j]-29], new Vector3((j-k)*0.25f, (i-1)*0.25f, 0.0f), Quaternion.identity);
 							else
 								Instantiate(pickup_graph[line[j]-48], new Vector3((j-k)*0.25f, (i-1)*0.25f, 0.0f), Quaternion.identity);
-
-							//change enemies skin
-							if (level_graphics_int > 10 && level_graphics_int < 13) //city
-								Global.enemy_animation_offset = 7;
-							else if (level_graphics_int > 12 && level_graphics_int < 16) //garden
-								Global.enemy_animation_offset = 14;
-							else if (level_graphics_int > 15 && level_graphics_int < 18) //snow
-								Global.enemy_animation_offset = 21;
-							else if (level_graphics_int > 17 && level_graphics_int < 20) //desert
-								Global.enemy_animation_offset = 28;
-							else if (level_graphics_int > 19 && level_graphics_int < 22) //ghost
-								Global.enemy_animation_offset = 35;
-							else if (level_graphics_int > 26 && level_graphics_int < 32) //pixel
-								Global.enemy_animation_offset = 42;
-							else if (level_graphics_int > 31 && level_graphics_int < 37) //alien
-								Global.enemy_animation_offset = 49;
-							else //classic
-								Global.enemy_animation_offset = 0;
-
 
 						}
 						else
@@ -270,5 +205,75 @@ public class load_level : MonoBehaviour {
         else
             Global.enemy_speed = 1.3f;
 
-	} 
+	}
+
+	void set_level_graph(ref int level_graphics_int, ref int minor_offset) {
+		string[] level_list = {"Textures/classic.bmp", "Textures/classic2.bmp", "Textures/classic3.bmp", "Textures/classic4.bmp", "Textures/classic5.bmp", //4.
+			"Textures/classic6.bmp", "Textures/classic7.bmp", "Textures/classic8.bmp", "Textures/classic9.bmp", "Textures/classic10.bmp", //9.
+			"Textures/town1.bmp", "Textures/town2.bmp", "Textures/town3.bmp", //12.
+			"Textures/garden1.bmp", "Textures/garden2.bmp", "Textures/garden3.bmp", //15.
+			"Textures/snow1.bmp", "Textures/snow2.bmp", //17.
+			"Textures/desert1.bmp", "Textures/desert2.bmp", //19.
+			"Textures/grave1.bmp", "Textures/grave2.bmp", //21
+			"Textures/classic11.bmp", "Textures/classic12.bmp", "Textures/classic13.bmp", "Textures/classic14.bmp", "Textures/classic15.bmp",//26
+			"Textures/digital1.bmp", "Textures/digital2.bmp", "Textures/digital3.bmp", "Textures/digital4.bmp", "Textures/digital5.bmp", //31
+			"Textures/space1.bmp", "Textures/space2.bmp", "Textures/space3.bmp", "Textures/space4.bmp", "Textures/space5.bmp" //36
+		};
+
+		do
+			level_graphics_int++;
+		while (level_graphics_int < 36 && level_graphics != level_list[level_graphics_int]);
+
+		if (level_graphics_int > 9 && level_graphics_int < 13) //town
+			minor_offset = 1;
+		else if (level_graphics_int > 12 && level_graphics_int < 16) //garden
+			minor_offset = 0;
+		else if (level_graphics_int > 15 && level_graphics_int < 18) //snow
+			minor_offset = 3;
+		else if (level_graphics_int > 17 && level_graphics_int < 20) //desert
+			minor_offset = 4;
+		else if (level_graphics_int > 19 && level_graphics_int < 22) //grave
+			minor_offset = 2;
+
+		minor_objects = Minor_pack[minor_offset].GetComponentsInChildren<Transform> ();
+
+		if (level_graphics_int == 5)
+			main_camera.backgroundColor = new Color(0.375f, 0.25f, 0);
+		else if (level_graphics_int == 6)
+			main_camera.backgroundColor = new Color(0.125f, 0.25f, 0.5f);
+		else if (level_graphics_int == 8)
+			main_camera.backgroundColor = new Color(0.625f, 0, 0);
+		else if (level_graphics_int == 7 || level_graphics_int == 9 || level_graphics_int == 11 || level_graphics_int == 12)
+			main_camera.backgroundColor = new Color(0.125f, 0.75f, 0.25f);
+		else if (level_graphics_int == 11 || level_graphics_int == 14 || level_graphics_int == 21)
+			main_camera.backgroundColor = new Color(0, 0.25f, 0);
+		else if (level_graphics_int == 10 || level_graphics_int == 13 || level_graphics_int == 15)
+			main_camera.backgroundColor = new Color(0, 0.5f, 0);
+		else if (level_graphics_int == 16)
+			main_camera.backgroundColor = new Color(1, 1, 1);
+		else if (level_graphics_int == 17)
+			main_camera.backgroundColor = new Color(0.375f, 0.625f, 0.75f);
+		else if (level_graphics_int == 18 || level_graphics_int == 19)
+			main_camera.backgroundColor = new Color(0.63f, 0.51f, 0.27f);
+		else if (level_graphics_int == 20)
+			main_camera.backgroundColor = new Color(0.9f, 0.8f, 0.6f);
+
+		//change enemies skin
+		if (level_graphics_int > 10 && level_graphics_int < 13) //city
+			Global.enemy_animation_offset = 2;
+		else if (level_graphics_int > 12 && level_graphics_int < 16) //garden
+			Global.enemy_animation_offset = 7;
+		else if (level_graphics_int > 15 && level_graphics_int < 18) //snow
+			Global.enemy_animation_offset = 3;
+		else if (level_graphics_int > 17 && level_graphics_int < 20) //desert
+			Global.enemy_animation_offset = 6;
+		else if (level_graphics_int > 19 && level_graphics_int < 22) //ghost
+			Global.enemy_animation_offset = 5;
+		else if (level_graphics_int > 26 && level_graphics_int < 32) //pixel
+			Global.enemy_animation_offset = 4;
+		else if (level_graphics_int > 31 && level_graphics_int < 37) //alien
+			Global.enemy_animation_offset = 1;
+		else //classic
+			Global.enemy_animation_offset = 0;
+	}
 }

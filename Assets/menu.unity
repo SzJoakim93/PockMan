@@ -5501,7 +5501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active_star: {fileID: 21300000, guid: 953f950d5ff20e345a477dcfb4e4f332, type: 3}
-  level: 0
+  level: 1
   classic: 0
 --- !u!1 &562423684
 GameObject:

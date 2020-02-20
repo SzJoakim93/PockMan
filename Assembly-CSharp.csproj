@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
 	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	<ProductVersion>9.0.21022</ProductVersion>
+	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
 	<ProjectGuid>{6BAB3DC6-132B-5341-C8D4-664B54830240}</ProjectGuid>
@@ -38,15 +38,16 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AudioManager\AudioManager.cs" />
      <Compile Include="Assets\Scripts\ButtonManagement.cs" />
+     <Compile Include="Assets\Scripts\GameEvents.cs" />
      <Compile Include="Assets\Scripts\Global.cs" />
      <Compile Include="Assets\Scripts\Language_manager.cs" />
      <Compile Include="Assets\Scripts\Manage_settings.cs" />
@@ -54,6 +55,7 @@
      <Compile Include="Assets\Scripts\Manage_tutorials.cs" />
      <Compile Include="Assets\Scripts\Scroll_fixer.cs" />
      <Compile Include="Assets\Scripts\Sound.cs" />
+     <Compile Include="Assets\Scripts\Sound_manager.cs" />
      <Compile Include="Assets\Scripts\Start_game.cs" />
      <Compile Include="Assets\Scripts\Turret_shoting.cs" />
      <Compile Include="Assets\Scripts\Upgrade_manager.cs" />
@@ -66,40 +68,80 @@
      <Compile Include="Assets\Scripts\manage_pickups.cs" />
      <Compile Include="Assets\Scripts\pac_movement.cs" />
      <None Include="Assets\Levels\level21.txt" />
+     <None Include="Assets\Levels\level27.txt" />
      <None Include="Assets\Sprites\level6.txt" />
      <None Include="Assets\Levels\level15.txt" />
+     <None Include="Assets\Levels\level33.txt" />
+     <None Include="Assets\Levels\clevel20.txt" />
      <None Include="Assets\Levels\level17.txt" />
      <None Include="Assets\Levels\level14.txt" />
      <None Include="Assets\Levels\level9.txt" />
+     <None Include="Assets\Levels\level26.txt" />
+     <None Include="Assets\Levels\level31.txt" />
      <None Include="Assets\Levels\level8.txt" />
      <None Include="Assets\Levels\level12.txt" />
      <None Include="Assets\Levels\clevel1.txt" />
+     <None Include="Assets\Levels\clevel17.txt" />
+     <None Include="Assets\Levels\clevel14.txt" />
      <None Include="Assets\Levels\level19.txt" />
+     <None Include="Assets\Levels\level30.txt" />
      <None Include="Assets\Levels\level18.txt" />
      <None Include="Assets\Levels\level10.txt" />
+     <None Include="Assets\Levels\clevel12.txt" />
+     <None Include="Assets\Levels\clevel9.txt" />
+     <None Include="Assets\Levels\clevel5.txt" />
+     <None Include="Assets\Levels\clevel6.txt" />
      <None Include="Assets\Complete Music Collection FREE Edition\readme.txt" />
+     <None Include="Assets\Levels\level23.txt" />
+     <None Include="Assets\Levels\clevel8.txt" />
      <None Include="Assets\Levels\level16.txt" />
      <None Include="Assets\Levels\level7.txt" />
+     <None Include="Assets\Levels\level28.txt" />
      <None Include="Assets\Levels\level1.txt" />
+     <None Include="Assets\Levels\level32.txt" />
+     <None Include="Assets\Levels\level25.txt" />
+     <None Include="Assets\Levels\clevel13.txt" />
      <None Include="Assets\Levels\level13.txt" />
+     <None Include="Assets\Levels\clevel2.txt" />
+     <None Include="Assets\Levels\level24.txt" />
      <None Include="Assets\Levels\level4.txt" />
      <None Include="Assets\Levels\level6.txt" />
+     <None Include="Assets\Levels\level34.txt" />
+     <None Include="Assets\Levels\clevel10.txt" />
+     <None Include="Assets\Levels\level20.txt" />
+     <None Include="Assets\Levels\clevel11.txt" />
      <None Include="Assets\Levels\level5.txt" />
+     <None Include="Assets\Levels\clevel4.txt" />
+     <None Include="Assets\Levels\clevel16.txt" />
+     <None Include="Assets\Levels\clevel15.txt" />
      <None Include="Assets\Levels\level2.txt" />
+     <None Include="Assets\Levels\clevel3.txt" />
+     <None Include="Assets\Levels\clevel7.txt" />
+     <None Include="Assets\languages_ingame.xml" />
      <None Include="Assets\Levels\level3.txt" />
      <None Include="Assets\languages.xml" />
+     <None Include="Assets\Levels\clevel18.txt" />
+     <None Include="Assets\Levels\level22.txt" />
+     <None Include="Assets\Levels\level29.txt" />
+     <None Include="Assets\Levels\clevel19.txt" />
      <None Include="Assets\Levels\level11.txt" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
- <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
+ <HintPath>D:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ <HintPath>D:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

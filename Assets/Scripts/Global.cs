@@ -82,6 +82,7 @@ public class Global : MonoBehaviour {
 	public static List<Vector4> speed_zones;
 	public static List<Vector4> slow_zones;
     public static List<Vector2> safety_coords;
+	public static List<GameObject> enemies;
 
     public static bool Free_slot_exist()
     {

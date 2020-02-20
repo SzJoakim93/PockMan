@@ -1,4 +1,4 @@
-Textures/classic11.bmp
+Textures/snow2.bmp
 4 0
 8 183
 0

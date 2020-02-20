@@ -7,48 +7,25 @@ using System.Collections.Generic;
 public class pac_movement : MonoBehaviour {
 
 	public float speed;
-	public float base_camera_speed;
-    float camera_speed;
 
 	public Transform camera;
-	public Transform enemy_dead;
 	public GameObject fire;
 	public Transform mine;
 	public Transform ammo;
-	public GameObject double_score_signal;
 	GameObject ammo_obj;
 
-	public Text score_text;
 	public Text life_text;
 	public Text ready_to_go;
-	//public Text game_over_text;
 	public GameObject game_over_panel;
-	public GameObject comp_panel;
-	public Text comp_text;
 	public Text ghost_combo_txt;
-	public Text rate_text;
 
+	public int ghost_combo;
+	public int ghost_combo_countdown;
+	public int rate_countdown;
 
-	public Text gain_points;
-	public Text global_points;
-	public Image star1;
-	public Image star2;
-	public Image star3;
-	public Sprite active_star;
+	public bool dead;
 
-	public GameObject [] enemy_pack;
-	GameObject [] enemy;
-	public Transform [] enemy_trans;
-	enemy_movement [] enemy_scripts = new enemy_movement[Global.max_enemy];
-
-
-	int ghost_combo;
-	int ghost_combo_countdown;
-	int rate_countdown;
-
-	bool dead;
-
-	Animator anim;
+	public Animator anim;
 
 	//static int[,] levelmatrix = new int[500, 500];
 	short req_direction;
@@ -59,13 +36,6 @@ public class pac_movement : MonoBehaviour {
 
 	short fire_shield = 0;
 
-	int respawn_delay = 0;
-
-    //public Sound[] bg_music;
-	AudioSource bg_music;
-
-    public GameObject warn_panel;
-
 	/*List<Transform> pickups;
 	List<Transform> invertibility;*/
 
@@ -74,26 +44,10 @@ public class pac_movement : MonoBehaviour {
 		/*pickups = new List<Transform> ();
 		invertibility = new List<Transform> ();*/
 
-		/*Transform [] enemy_temp;
-		enemy_temp = enemy_pack[Global.enemy_animation_offset].GetComponentsInChildren<Transform> (true);
-
-		enemy = new GameObject[enemy_temp.Length-1];
-		for (int i = 1; i < enemy_temp.Length; i++)
-			enemy[i-1] = enemy_temp[i].gameObject;*/
-
-		Debug.Log ("Enemy animation: " + Global.enemy_animation_offset);
-		enemy = new GameObject[Global.max_enemy];
-		for (int i = Global.enemy_animation_offset, j = 0; i < Global.enemy_animation_offset + Global.max_enemy; i++, j++)
-			enemy[j] = enemy_pack [i];
-
-        camera_speed = base_camera_speed;
 		req_direction = -1;
 		pac_direction = 1;
 		dead = false;
-		Global.ready_to_go = 100;
-		Global.enemy_active = 0;
 		
-		Global.score = 0;
 		anim = gameObject.GetComponent<Animator> ();
 
 		ghost_combo = 50;
@@ -102,22 +56,13 @@ public class pac_movement : MonoBehaviour {
 
 		ammo_obj = ammo.gameObject;
 
-
-		//ammo_obj.SetActive (false);
-
-		//game_over_text.gameObject.SetActive (false);
-		//comp_text.gameObject.SetActive (false);
-
-		enemy_trans = new Transform [enemy.Length];
+		/*enemy_trans = new Transform [enemy.Length];
 
 		for (int i = 0; i < Global.max_enemy; i++) {
 			enemy_trans[i] = enemy[i].transform;
 			//enemy [i].SetActive (false);
 			enemy_scripts[i] = enemy[i].GetComponent<enemy_movement>();
-		}
-		    
-
-		Global.pause_game = false;
+		}*/
 
 
         //add dropping cards extras
@@ -130,77 +75,18 @@ public class pac_movement : MonoBehaviour {
 			else if (Global.own_cards [Global.ac] == 10)
 				fire_shield = 150;
 
-			if (Global.own_cards [Global.ac] == 1)
-				camera_speed *= 0.9f;
-			else if (Global.own_cards [Global.ac] == 6)
-				camera_speed *= 0.85f;
-			else if (Global.own_cards [Global.ac] == 11)
-				camera_speed *= 0.8f;
-
-			if (Global.own_cards [Global.ac] == 3)
-				respawn_delay = 15;
-			else if (Global.own_cards [Global.ac] == 8)
-				respawn_delay = 20;
-			else if (Global.own_cards [Global.ac] == 13)
-				respawn_delay = 35;
-
 			if (Global.own_cards [Global.ac] == 4)
 				speed *= 1.1f;
 			else if (Global.own_cards [Global.ac] == 9)
 				speed *= 1.15f;
 			else if (Global.own_cards [Global.ac] == 14)
 				speed *= 1.2f;
-
 		}
-
-        if (Global.music_enabled)
-        {
-			bg_music = GetComponent<AudioSource>();
-			if (Global.level % 25 == 1 || Global.level % 50 == 13 || Global.level % 50 == 31 || Global.level % 50 == 40 || Global.level % 50 == 44)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Sunset on the Bay (Electronic, Synthwave)");
-			else if (Global.level % 25 == 2 || Global.level % 50 == 6 || Global.level % 50 == 12 || Global.level % 50 == 35 || Global.level % 50 == 42 || Global.level % 50 == 47)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Action-Reaction (8bit, Action)");
-			else if (Global.level % 25 == 3 || Global.level % 50 == 17 || Global.level % 50 == 38 || Global.level % 50 == 46)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/At the Castle Gate (8bit, RPG)");
-			else if (Global.level % 25 == 4 || Global.level % 50 == 10 ||  Global.level % 50 == 23 || Global.level % 50 == 39 || Global.level % 50 == 48)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Zen Puzzle (World, Puzzle)");
-			else if (Global.level % 25 == 5 || Global.level % 50 == 9 ||  Global.level % 50 == 22 || Global.level % 50 == 37)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Hopeful Horizon (Electronic)");
-			else if (Global.level % 50 == 7 || Global.level % 50 == 14 || Global.level % 50 == 20 || Global.level % 50 == 25 || Global.level % 50 == 34 || Global.level % 50 == 43)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Solar Eclipse (Electronic, Space)");
-			else if (Global.level % 50 == 8 || Global.level % 50 == 21 || Global.level % 50 == 36 || Global.level % 50 == 49)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/New Toy in Town (Pop, Kids)");
-			else if (Global.level % 50 == 11 || Global.level % 50 == 15 || Global.level % 50 == 24)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/In a Rush (Rock, Action)");
-			else if (Global.level % 50 == 16)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Ghost");
-			else if (Global.level % 50 == 18 || Global.level % 50 == 33 || Global.level % 50 == 45)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/This Can't be the End (Orchestral, Horror)");
-			else if (Global.level % 50 == 19 || Global.level % 50 == 32 || Global.level % 50 == 41 || Global.level % 50 == 50)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Underwater (Electronic, Action)");
-
-
-			bg_music.Play();
-			//Play the sound
-
-			/*foreach (Sound s in bg_music)
-            {
-                s.source = gameObject.AddComponent<AudioSource>();
-                s.source.clip = s.clip;
-                s.source.loop = s.loop;
-                s.source.volume = s.volume;
-                s.source.loop = s.loop;
-                //s.source.outputAudioMixerGroup = mixerGroup;
-            }
-
-            bg_music[Global.level % 10].source.Play();*/
-        }
 			
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("Enemy animation: " + Global.enemy_animation_offset);
 		if (Global.ready_to_go == 0 && !Global.pause_game) {
 
 			if (Input.GetKey (KeyCode.LeftArrow))
@@ -232,21 +118,12 @@ public class pac_movement : MonoBehaviour {
 			int matrix_y = (int)(transform.position.y * 2);
 
             //fix position when go out of playground
-            if (matrix_x < 0)
-            {
-                for (int i = 0; Global.levelmatrix[matrix_y, i] == -1; i++ )
-                    matrix_x = 0;
-                transform.position = new Vector3(0.0f, transform.position.y, transform.position.z);
-            }
-            else if (matrix_x > 19)
-            {
-                matrix_x = 19;
-                transform.position = new Vector3(10.5f, transform.position.y, transform.position.z);
-            }
+			if (Global.levelmatrix [matrix_y, matrix_x] == -1)
+            	fix_pos(matrix_x, matrix_y);
 
 			int current_pos = Global.levelmatrix [matrix_y, matrix_x];
 
-
+			//set player's direction
 			if (req_direction != -1 && ((int)(transform.position.x * 20) % 10 == 0 && (int)(transform.position.y * 20) % 10 == 0 || pac_direction == 0 && req_direction == 1 || pac_direction == 1 && req_direction == 0 || pac_direction == 2 && req_direction == 3 || pac_direction == 3 && req_direction == 2) &&
 				(current_pos == 0 && (req_direction == 0 || req_direction == 1) ||
 				current_pos == 1 && (req_direction == 2 || req_direction == 3) ||
@@ -261,16 +138,17 @@ public class pac_movement : MonoBehaviour {
 				current_pos == 10)) {
 
 
-				if (req_direction == 0)
+				/*if (req_direction == 0)
 					transform.localEulerAngles = new Vector3 (0, 180, 0);
 				else if (req_direction == 1)
 					transform.localEulerAngles = new Vector3 (0, 0, 0);
 				else if (req_direction == 2)
 					transform.localEulerAngles = new Vector3 (0, 0, 90);
 				else if (req_direction == 3)
-					transform.localEulerAngles = new Vector3 (0, 180, 270);
+					transform.localEulerAngles = new Vector3 (0, 180, 270);*/
 
 				pac_direction = req_direction;
+				anim.SetInteger("direction", req_direction);
 				req_direction = -1;
 
                 //drop mines under turning
@@ -280,35 +158,6 @@ public class pac_movement : MonoBehaviour {
 					mine_delay=100;
 				}
 
-                //managing the ammo bonus, shooting
-				if (Global.ammo > 0 && !ammo_obj.activeInHierarchy) {
-					float x = transform.position.x;
-					float y = transform.position.y;
-					int xi = (int)(x * 2);
-					int yi = (int)(y * 2);
-					bool isCollision = false;
-					while (!isCollision && (int)(y * 2) > -1 && (int)(x * 2) > -1 && Global.levelmatrix [(int)(y * 2), (int)(x * 2)] != -1) {
-						for (int i = 0; i < 5; i++)
-							if (x > enemy_trans[i].position.x - 0.5 && x < enemy_trans[i].position.x + 0.5 && y > enemy_trans[i].position.y - 0.5 && y < enemy_trans[i].position.y + 0.5) {
-								ammo_obj.SetActive(true);	
-								ammo.position = transform.position;
-								ammo.eulerAngles = transform.eulerAngles;
-								Global.ammo--;
-								isCollision = true;
-								break;
-							}
-
-						if (pac_direction == 0)
-							x--;
-						else if (pac_direction == 1)
-							x++;
-						else if (pac_direction == 2)
-							y++;
-						else
-							y--; 
-					}
-					
-				}
 			}
 
             //determine the player's visible area
@@ -328,85 +177,47 @@ public class pac_movement : MonoBehaviour {
 				Global.pock_front.y = i * 0.5f;
 			}
 
-            //level completed
-			if ( !Global.classic && matrix_x == Global.endcoord_x && matrix_y == Global.endcoord_y || Global.classic && Global.remaining < 1 ) {
-				Global.ready_to_go = 200;
-				comp_text.gameObject.SetActive(true);
-			}
-				
-
-			/*if (pac_direction == 0 && transform.position.x > 2.0f)
-			    camera.transform.Translate (-0.002f, 0, 0);
-		    else if (pac_direction == 1 && transform.position.x < 8.0f)
-			    camera.transform.Translate (0.002f, 0, 0);*/
-
-            
-            //vertical moving of camera
-            if (!Global.classic)
-            {
-                float relative_pos = (transform.position.y - camera.position.y) / 15.0f;
-                camera_speed = base_camera_speed + relative_pos;
-                if (Global.rewind == 0 && Global.pause == 0)
-                    camera.Translate(0, camera_speed * Time.deltaTime, 0);
-                else if (Global.rewind != 0)
-                    camera.Translate(0, -1.0f * Time.deltaTime, 0);
-            }
-
-
-			
-            //spawn enemy
-			if (Global.classic || matrix_y < Global.level_height - 10)
-				for (int i = 0; i < Global.max_enemy; i++) {
-					if (!enemy [i].active && Time.frameCount % ((150 + respawn_delay)*(Global.enemy_active+1)) == 0) {
-						enemy [i].SetActive (true);
-						Global.enemy_active++;
-						//enemy_scripts [i].count_down = 50;
-						enemy_scripts [i].respawn_enemy ();
-						break;
-					}
-				}
-
-
-            //decrease bonus time
-			if (Global.inv_time > 0)
-				Global.inv_time--;
-			if (Global.pause > 0)
-				Global.pause--;
-			if (Global.pause_enemy > 0)
-				Global.pause_enemy--;
-			if (Global.rewind > 0)
-				Global.rewind--;
-			if (Global.double_score > 0) {
-				if (Global.double_score == Global.max_double-1)
-					double_score_signal.SetActive(true);
-				if (Global.double_score == 1)
-					double_score_signal.SetActive(false);
-
-				Global.double_score--;
-			}
-
 
             //player's moving
 			if (!dead && (pac_direction == 0 && (current_pos != 3 && current_pos != 4 && current_pos != 8 && current_pos != 1 || (int)(transform.position.x * 40) % 20 != 0) ||
 				pac_direction == 1 && (current_pos != 2 && current_pos != 5 && current_pos != 9 && current_pos != 1 || (int)(transform.position.x * 40) % 20 != 0) ||
 			    pac_direction == 2 && (current_pos != 4 && current_pos != 5 && current_pos != 6 && current_pos != 0 && transform.position.y < camera.transform.position.y + Global.view_range_top || (int)(transform.position.y * 40) % 20 != 0) ||
 				pac_direction == 3 && (current_pos != 2 && current_pos != 3 && current_pos != 7 && current_pos != 0 && current_pos != 11 || (int)(transform.position.y * 40) % 20 != 0))) {
-				transform.Translate (speed*Time.deltaTime, 0, 0);
+				
+				switch (pac_direction)
+				{
+					case 0:
+						transform.Translate (-speed*Time.deltaTime, 0, 0);
+						break;
+					case 1:
+						transform.Translate (speed*Time.deltaTime, 0, 0);
+						break;
+					case 2:
+						transform.Translate (0, speed*Time.deltaTime, 0);
+						break;
+					default:
+						transform.Translate (0, -speed*Time.deltaTime, 0);
+						break;
+				}
+					
+
 
                 //horizontal moving of camera
-				if (transform.position.x > 2.8f && transform.position.x < 5.4f && transform.eulerAngles.z == 0) {
-					if (transform.eulerAngles.y == 0)
+				if (transform.position.x > 2.8f && transform.position.x < 5.4f)
+				{
+					if (pac_direction == 1)
 						camera.Translate(speed*Time.deltaTime, 0, 0);
-					else
+					else if (pac_direction == 0)
 						camera.Translate(-speed*Time.deltaTime, 0, 0);
 				}
+				 
 
                 //vertical moving of camera in classic mode
-                if (Global.classic && transform.position.y > 2.0f && transform.position.y < Global.level_height - 5.4f && transform.eulerAngles.z != 0)
+                if (Global.classic && transform.position.y > 2.0f && transform.position.y < Global.level_height - 5.4f)
                 {
-                    if (transform.eulerAngles.y == 0)
+                    if (pac_direction == 2)
                         camera.Translate(0, speed * Time.deltaTime, 0);
-                    else
+                    else if (pac_direction == 3)
                         camera.Translate(0, -speed * Time.deltaTime, 0);
                 }
 
@@ -436,45 +247,6 @@ public class pac_movement : MonoBehaviour {
 			if (ammo.gameObject.activeInHierarchy)
 				ammo.Translate(2*speed*Time.deltaTime, 0, 0);
 
-
-            //collision of enemy
-			for (int i=0; i<Global.max_enemy; i++)
-			if (enemy_scripts[i].isAlly == 0 && Global.pause_enemy == 0 && !dead && enemy[i].active && enemy_scripts[i].count_down == 0 && Vector2.Distance(transform.position, enemy_trans[i].position) < 0.25f) {
-				
-                //enemy kills the player
-                if (Global.inv_time == 0) {
-					anim.SetBool ("dead", true);
-					dead = true;
-					Global.pause_game = true;
-
-                //invertibility enabled
-				} else {
-
-					enemy[i].SetActive (false);
-					Global.enemy_active--;
-					
-					Global.score += ghost_combo;
-					
-                    //show total ghost combo
-					if (ghost_combo == 250) {
-						rate_text.text = "Total ghost combo!";
-						rate_text.gameObject.SetActive(true);
-						rate_countdown = 100;
-					}
-					
-                    //set and show ghost combo title
-					ghost_combo_countdown = 100;
-					ghost_combo_txt.gameObject.SetActive(true);
-					ghost_combo_txt.text = "+" + ghost_combo.ToString();
-
-					Transform new_dead = (Transform)Instantiate(enemy_dead, transform.position, Quaternion.identity);
-					new_dead.position = enemy_trans[i].position;
-					new_dead.gameObject.SetActive (true);
-
-                    ghost_combo += 50;
-				}
-			}
-
             //reset ghost combo at the end of invertibility
 			if (Global.inv_time == 1)
 				ghost_combo = 50;
@@ -487,17 +259,6 @@ public class pac_movement : MonoBehaviour {
 				if (ghost_combo_countdown == 1)
 					ghost_combo_txt.gameObject.SetActive(false);		
 			}
-        //end of in-game actions
-		} else if (Global.ready_to_go > 0 && (Global.ready_to_go < 50 || Global.ready_to_go % 100 != 1)) {
-			Global.ready_to_go--;
-			if (Global.ready_to_go == 1)
-				ready_to_go.gameObject.SetActive(false);
-			else if (Global.ready_to_go == 102)
-				//Application.LoadLevel ("menu");
-				end_level();
-			else if (Global.ready_to_go == 202)
-				//Application.LoadLevel ("menu");
-				game_over_panel.SetActive(true);
 		}
 
 	}
@@ -544,14 +305,14 @@ public class pac_movement : MonoBehaviour {
 		else if (pos == 2)
 			pac_direction = 0;
 
-		if (pac_direction == 0)
+		/*if (pac_direction == 0)
 			transform.localEulerAngles = new Vector3(0,180,0);
 		else if (pac_direction == 1)
 			transform.localEulerAngles = new Vector3(0,0,0);
 		else if (pac_direction == 2)
 			transform.localEulerAngles = new Vector3(0,0,90);
 		else if (pac_direction == 3)
-			transform.localEulerAngles = new Vector3(0,180,270);
+			transform.localEulerAngles = new Vector3(0,180,270);*/
 	}
 
 	void new_life()
@@ -590,130 +351,21 @@ public class pac_movement : MonoBehaviour {
                     respawn_player(k / 2.0f, j / 2.0f);
                 }
 
-                for (i = 0; i < Global.max_enemy; i++)
+                /*for (i = 0; i < Global.max_enemy; i++)
                     enemy[i].SetActive(false);
-                Global.enemy_active = 0;
-                /*if (enemy [i].gameObject.active)
-                    enemy_scripts [i].respawn_enemy ();*/
-
-
+                Global.enemy_active = 0;*/
 
                 ready_to_go.gameObject.SetActive(true);
                 Global.ready_to_go = 100;
 
                 dead = false;
                 anim.SetBool("dead", false);
+
+				foreach (var enemy in Global.enemies)
+					Destroy(enemy);
+				Global.enemies.Clear();
             }
 		}
-	}
-
-	void end_level() {
-
-		Global.global_points += Global.score / 10;
-
-		gain_points.text = "Points gained:\n" + (Global.score/10).ToString ();
-		global_points.text = "All points:\n" + Global.global_points.ToString();
-
-		int early_rate = 0;
-		if (Global.classic && PlayerPrefs.HasKey ("Classic_level_star" + Global.level))
-			early_rate = PlayerPrefs.GetInt ("Classic_level_star" + Global.level);
-		else if (!Global.classic && PlayerPrefs.HasKey ("Level_star" + Global.level))
-			early_rate = PlayerPrefs.GetInt ("Level_star" + Global.level);
-
-		int rate = 0;
-        if (!Global.classic && Global.score > Global.max_score - Global.max_score / 3 || Global.classic && Global.score > Global.max_score + Global.max_score * 2)
-        {
-			star1.sprite = active_star;
-			rate = 1;
-		}
-        if (!Global.classic && Global.score > Global.max_score || Global.classic && Global.score > Global.max_score + Global.max_score * 4)
-        {
-			star2.sprite = active_star;
-			rate = 2;
-		}
-        if (!Global.classic && Global.score > Global.max_score + Global.max_score / 3 || Global.classic && Global.score > Global.max_score + Global.max_score * 6)
-        {
-			star3.sprite = active_star;
-			rate = 3;
-		}
-
-
-		PlayerPrefs.SetInt ("Global_points", Global.global_points);
-
-
-        //decrease usage number of dropping card
-		if (Global.ac > -1) {
-			Global.card_remaining [Global.ac]--;
-            PlayerPrefs.SetInt("Card_remaining" + Global.ac, Global.card_remaining[Global.ac]);
-
-			if (Global.card_remaining [Global.ac] == 0) {
-				Global.own_cards [Global.ac] = -1;
-                PlayerPrefs.SetInt("Card_place" + Global.ac, -1);
-				Global.ac = -1;
-			}
-		}
-
-		if (rate > early_rate) {
-			Global.global_stars += rate - early_rate;
-			PlayerPrefs.SetInt("Global_stars", Global.global_stars);
-
-			if (Global.classic)
-				PlayerPrefs.SetInt ("Classic_level_star" + (Global.level-100), rate);
-			else
-				PlayerPrefs.SetInt ("Level_star" + Global.level, rate);
-		}
-
-		if (!Global.classic && Global.level == Global.unlocked_levels-1 && Global.unlocked_levels % 5 != 0) {
-			Global.unlocked_levels++;
-			PlayerPrefs.SetInt("Unlocked_levels", Global.unlocked_levels);
-		} else if (Global.classic && Global.level-100 == Global.unlocked_clevels-1 && Global.unlocked_clevels % 5 != 0) {
-			Global.unlocked_clevels++;
-			PlayerPrefs.SetInt("Unlocked_levels_classic", Global.unlocked_clevels);
-		}
-
-		if (!Global.isPlayed) {
-			Global.isPlayed = true;
-			PlayerPrefs.SetInt("Played_at_day", 1);
-		}
-
-        if (Global.global_stars >= Global.next_card_stars && !Global.Free_slot_exist())
-        {
-            //case when the storage of dropping cards is full
-            int selected = (int)Random.Range(0.0f, 3.9f);
-
-            if (Global.own_cards[selected] < 5) //basic card
-            {
-                if (Global.next_card_stars % 400 == 0) //dropping gold card
-                    Global.card_remaining[selected] += 10;
-                else if (Global.next_card_stars % 100 == 0) //dropping silver card
-                    Global.card_remaining[selected] += 7;
-                else //dropping basic card
-                    Global.card_remaining[selected] += 5;
-            }
-            else if (Global.own_cards[selected] < 10) //silver card
-            {
-                if (Global.next_card_stars % 400 == 0) //dropping gold card
-                    Global.card_remaining[selected] += 7;
-                else if (Global.next_card_stars % 100 == 0) //dropping silver card
-                    Global.card_remaining[selected] += 5;
-                else //dropping basic card
-                    Global.card_remaining[selected] += 3;
-            }
-            else //gold card card
-            {
-                if (Global.next_card_stars % 400 == 0) //dropping gold card
-                    Global.card_remaining[selected] += 5;
-                else if (Global.next_card_stars % 100 == 0) //dropping silver card
-                    Global.card_remaining[selected] += 3;
-                else //dropping basic card
-                    Global.card_remaining[selected] += 2;
-            }
-
-            warn_panel.SetActive(true);
-        }
-        else
-            comp_panel.SetActive(true);
-
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
@@ -733,6 +385,27 @@ public class pac_movement : MonoBehaviour {
 		if (coll.gameObject.tag == "speed_zone" || coll.gameObject.tag == "slow_zone") {
 			speed = 1.5f;
 		}
+	}
+
+	void fix_pos(int x, int y) {
+		int i, j;
+		if (pac_direction == 0) {
+			for (i = x, j = y; i < 20 && Global.levelmatrix[j, i] == -1; i++);
+			transform.position = new Vector3(i/2.0f+0.1f, j/2.0f, 0);
+		}	
+		else if (pac_direction == 1) {
+			for (i = x, j = y; i > 0 && Global.levelmatrix[j, i] == -1; i--);
+			transform.position = new Vector3(i/2.0f-0.1f, j/2.0f, 0);
+		}	
+		else if (pac_direction == 2) {
+			for (i = x, j = y; j > 0 && Global.levelmatrix[j, i] == -1; j--);
+			transform.position = new Vector3(i/2.0f, j/2.0f-0.1f, 0);
+		}
+		else {
+			for (i = x, j = y; j < Global.level_height && Global.levelmatrix[j, i] == -1; j++);
+			transform.position = new Vector3(i/2.0f, j/2.0f+0.1f, 0);
+		}
+			
 	}
 
 }
