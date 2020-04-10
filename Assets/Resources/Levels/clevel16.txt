@@ -1,7 +1,7 @@
 Textures/grave2.bmp
 12 10
 5 10
-0
+1
        3002       
        1  1       
  F     1  1   F   

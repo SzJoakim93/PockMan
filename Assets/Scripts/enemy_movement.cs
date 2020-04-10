@@ -38,7 +38,10 @@ public class enemy_movement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		speed = Global.enemy_speed;
+		if (Global.classic)
+			speed = Global.enemy_speed;
+		else
+			speed = Global.enemy_speed / 1.25f;
 		current_sprite = this.GetComponent<SpriteRenderer> ();
 		Transform [] temp = this.GetComponentsInChildren<Transform> (true);
 		collider = temp [1].gameObject;
@@ -103,13 +106,30 @@ public class enemy_movement : MonoBehaviour {
                     //determine enemy's moving direction
 					else
 					{
-						if (Global.classic)
+						if (Global.classic && (
+							enemy_type < 2 ||
+							enemy_type < 2 && matrix_x >= 5 && matrix_y >= 5 ||
+							enemy_type < 3 && matrix_x >= 10 && matrix_y >= 10))
 						{
 							if (enemy_pos > 1)
 							{
-								searchAI.search(matrix_x, matrix_y,
-									(Math.Abs(pac_script.back_x - pock_man.position.x * 2) < Math.Abs(pac_script.front_x - pock_man.position.x * 2) ? pac_script.back_x : pac_script.front_x),
-									((Math.Abs(pac_script.back_y - pock_man.position.y * 2) < Math.Abs(pac_script.front_y - pock_man.position.y * 2) ? pac_script.back_y : pac_script.front_y)));
+								switch (enemy_type) {
+									case 0:
+										searchAI.search(matrix_x, matrix_y,
+										(Math.Abs(pac_script.back_x - pock_man.position.x * 2) < Math.Abs(pac_script.front_x - pock_man.position.x * 2) ? pac_script.back_x : pac_script.front_x),
+										((Math.Abs(pac_script.back_y - pock_man.position.y * 2) < Math.Abs(pac_script.front_y - pock_man.position.y * 2) ? pac_script.back_y : pac_script.front_y)));
+										break;
+									case 1:
+										searchAI.search(matrix_x, matrix_y, pac_script.front_x, pac_script.front_y);
+										break;
+									case 2:
+										searchAI.search(matrix_x, matrix_y, pac_script.front_x, pac_script.front_y, 5);
+										break;
+									case 3:
+										searchAI.search(matrix_x, matrix_y, 4, pac_script.front_y, 10);
+										break;
+								}
+								
 
 								if (searchAI.NextWayX() > matrix_x)
 									direction = 1;
@@ -132,8 +152,6 @@ public class enemy_movement : MonoBehaviour {
 										else if ((int)(pock_man.position.x * 2.0f) < matrix_x)
 											direction = 0;
 									}
-
-									Debug.Log("Last node found");
 								}
 							}
 
@@ -183,7 +201,7 @@ public class enemy_movement : MonoBehaviour {
 						else
 							current_sprite.sprite = sprites [2];
 					if (Global.inv_time < 5) {
-						speed = Global.enemy_speed;
+						speed = (Global.classic ? Global.enemy_speed : Global.enemy_speed * 1.25f);
 						if (animation_type < 5)
 							current_sprite.sprite = sprites [ally_sprite];
 					}
@@ -209,14 +227,14 @@ public class enemy_movement : MonoBehaviour {
 					if (isAlly == 1) {
 						ally_sprite = 0;
 						bc.enabled = true;
-						collider.SetActive(false); 
+						collider.SetActive(false);
 					}
 					
 					isAlly--;
 				}
 
 				if (!Global.classic && transform.position.y < camera.transform.position.y + Global.view_range_bottom) {
-					Global.enemies.Remove(gameObject);
+					Global.enemies.Remove(gameObject);			
 					Destroy(gameObject);
 				}
 
@@ -269,8 +287,9 @@ public class enemy_movement : MonoBehaviour {
 
 						pac_script.ghost_combo += 50;
 
-						Global.enemies.Remove(gameObject);
+						Global.enemies.Remove(gameObject);					
 						Destroy(gameObject);
+						Debug.Log("Enemies count: " + Global.enemies.Count);
 					}
 				}
 
@@ -298,282 +317,130 @@ public class enemy_movement : MonoBehaviour {
 	}
 
 	void determine_direction() {
+	
+		if (enemy_pos == 10) {
+			int x = (int)UnityEngine.Random.Range(0.0f, 3.9f);
+			while (x == 0 && direction == 1 || x == 1 && direction == 0 || x == 2 && direction == 3 || x == 3 && direction == 2)
+				x = (int)UnityEngine.Random.Range(0.0f, 3.9f);
+			
+			direction = x;
+		}
+		else if (direction == 0) {
 
-		if ((enemy_type == 1 && Vector3.Distance (transform.position, pock_man.position) > 1.0f) ||
-            (enemy_type == 3 && Vector3.Distance(transform.position, pock_man.position) > 4.0f) ||
-            (enemy_type == 4 && Vector3.Distance(transform.position, pock_man.position) < 3.0f) ||
-		    enemy_type == 2) {
-                    
-			if (enemy_pos == 10) {
-
-				if (enemy_type == 1 || enemy_type == 3 || enemy_type == 4) {
-					float dx = transform.position.x - pock_man.position.x;
-					float dy = transform.position.y - pock_man.position.y;
-					if (Mathf.Abs((int)dx) < Mathf.Abs((int)dy))
-						if (transform.position.y < pock_man.position.y)
-							direction = 2;
-						else
-							direction = 3;
-					else {
-						if (transform.position.x < pock_man.position.x)
-							direction = 1;
-						else
-							direction = 0;
-					}
-				}
-				/*else if (enemy_type == 2) {
-					float dx = transform.position.x - Global.pock_front.x;
-					float dy = transform.position.y - Global.pock_front.y;
-					if (Mathf.Abs((int)dx) < Mathf.Abs((int)dy))
-						if (transform.position.y < Global.pock_front.y)
-							direction = 2;
-					else
-						direction = 3;
-					else {
-						if (transform.position.x < Global.pock_front.x)
-							direction = 1;
-						else
-							direction = 0;
-					}
-				}*/
-			}
-			else if (direction == 0) {
-
-				if (enemy_pos == 3)
-				{
-					if (((enemy_type == 1 || enemy_type == 3 || enemy_type == 4) && transform.position.y > pock_man.position.y + 0.1f) /*||
-					    (enemy_type == 2 && transform.position.y > Global.pock_front.y + 0.1f)*/)
-						direction = 3;
-					
-				}
-				else if (enemy_pos == 7) {
-					
-					if (((enemy_type == 1 || enemy_type == 3 || enemy_type == 4) && transform.position.y < pock_man.position.y - 0.1f) /*||
-					    (enemy_type == 5 && transform.position.y < Global.pock_front.y - 0.1f)*/)
-						direction = 2;
-				}
-				else if (enemy_pos == 8) {
-					if (((enemy_type == 1 || enemy_type == 3 || enemy_type == 4) && transform.position.y > pock_man.position.y + 0.1f) /* ||
-					    (enemy_type == 5 && transform.position.y > Global.pock_front.y + 0.1f)*/)
-						direction = 3;
-					else
-						direction = 2;
-
-				}
-				else if (enemy_pos == 3)
-					direction = 2;
-				else if (enemy_pos == 4)
-					direction = 3;
-			}
-			else if (direction == 1) {
-
-				if (enemy_pos == 6){
-					
-					if (((enemy_type == 1 || enemy_type == 3 || enemy_type == 4) && transform.position.y > pock_man.position.y + 0.1f) /*||
-					    (enemy_type == 5 && transform.position.y > Global.pock_front.y + 0.1f)*/)
-						direction = 3;
-					
-				}
-				else if (enemy_pos == 7) {
-					
-					if (((enemy_type == 1 || enemy_type == 3 || enemy_type == 4) && transform.position.y < pock_man.position.y - 0.1f) /*||
-					    (enemy_type == 2 && transform.position.y < Global.pock_front.y - 0.1f)*/)
-						direction = 2;
-				}
-				else if (enemy_pos == 9) {
-					
-					if (((enemy_type == 1 || enemy_type == 3 || enemy_type == 4) && transform.position.y > pock_man.position.y + 0.1f) /*||
-					    (enemy_type == 2 && transform.position.y > Global.pock_front.y + 0.1f)*/)
-						direction = 3;
-					else
-						direction = 2;
-				}
-				else if (enemy_pos == 2)
-					direction = 2;
-				else if (enemy_pos == 5)
-					direction = 3;
-			}
-			else if (direction == 2) {
-
-				if (enemy_pos == 6) {
-					
-					if (((enemy_type == 1 || enemy_type == 3 || enemy_type == 4) && transform.position.x < pock_man.position.x - 0.1f) /*||
-					    (enemy_type == 2 && transform.position.x < Global.pock_front.x - 0.1f)*/)
-						direction = 0;
-					else
-						direction = 1;
-					
-				}
-				else if (enemy_pos == 8) {
-					
-					if (((enemy_type == 1 || enemy_type == 3 || enemy_type == 4) && transform.position.x < pock_man.position.x - 0.1f) /*||
-					    (enemy_type == 2 && transform.position.x < Global.pock_front.x - 0.1f)*/)
-						direction = 1;
-				}
-				else if (enemy_pos == 9) {
-					
-					if (((enemy_type == 1 || enemy_type == 3 || enemy_type == 4) && transform.position.x > pock_man.position.x + 0.1f) /*||
-					 	(enemy_type == 2 && transform.position.x > Global.pock_front.x + 0.1f)*/)
-						direction = 0;
-				}
-				else if (enemy_pos == 4)
-					direction = 1;
-				else if (enemy_pos == 5)
+			int x = (int)UnityEngine.Random.Range(0.0f, 1.9f);
+			if (enemy_pos == 6)
+			{
+				if (x == 0)
 					direction = 0;
-			}
-			else if (direction == 3) {
-
-				if (enemy_pos == 7) {
-
-					if (((enemy_type == 1 || enemy_type == 3 || enemy_type == 4) && transform.position.x > pock_man.position.x + 0.1f) /*||
-					    (enemy_type == 2 && transform.position.x > Global.pock_front.x + 0.1f)*/)
-						direction = 0;
-					else
-						direction = 1;
-				}
-				else if (enemy_pos == 8) {
-					
-					if (((enemy_type == 1 || enemy_type == 3 || enemy_type == 4) && transform.position.x < pock_man.position.x - 0.1f) /*||
-					    (enemy_type == 2 && transform.position.x < Global.pock_front.x - 0.1f)*/)
-						direction = 1;
-				}
-				else if (enemy_pos == 9) {
-					
-					if (((enemy_type == 1 || enemy_type == 3 || enemy_type == 4) && transform.position.x > pock_man.position.x + 0.1f) /*||
-					    (enemy_type == 2 && transform.position.x > Global.pock_front.x + 0.1f)*/)
-						direction = 0;
-				}
-				else if (enemy_pos == 2)
-					direction = 0;
-				else if (enemy_pos == 3)
-					direction = 1;
-			}
-
-		} else {
-			if (enemy_pos == 10) {
-				int x = (int)UnityEngine.Random.Range(0.0f, 3.9f);
-				while (x == 0 && direction == 1 || x == 1 && direction == 0 || x == 2 && direction == 3 || x == 3 && direction == 2)
-                    x = (int)UnityEngine.Random.Range(0.0f, 3.9f);
+				else
+					direction = 3;
 				
-				direction = x;
 			}
-			else if (direction == 0) {
-
-                int x = (int)UnityEngine.Random.Range(0.0f, 1.9f);
-				if (enemy_pos == 6)
-				{
-					if (x == 0)
-						direction = 0;
-					else
-						direction = 3;
-					
-				}
-				else if (enemy_pos == 7) {
-					
-					if (x == 0)
-						direction = 0;
-					else
-						direction = 2;
-				}
-				else if (enemy_pos == 8) {
-					
-					if (x == 0)
-						direction = 2;
-					else
-						direction = 3;
-				}
-				else if (enemy_pos == 3)
+			else if (enemy_pos == 7) {
+				
+				if (x == 0)
+					direction = 0;
+				else
 					direction = 2;
-				else if (enemy_pos == 4)
+			}
+			else if (enemy_pos == 8) {
+				
+				if (x == 0)
+					direction = 2;
+				else
 					direction = 3;
 			}
-			else if (direction == 1) {
-                int x = (int)UnityEngine.Random.Range(0.0f, 1.9f);
-				if (enemy_pos == 6){
-					
-					if (x == 0)
-						direction = 1;
-					else
-						direction = 3;
-					
-				}
-				else if (enemy_pos == 7) {
-					
-					if (x == 0)
-						direction = 1;
-					else
-						direction = 2;
-				}
-				else if (enemy_pos == 9) {
-					
-					if (x == 0)
-						direction = 2;
-					else
-						direction = 3;
-				}
-				else if (enemy_pos == 2)
+			else if (enemy_pos == 3)
+				direction = 2;
+			else if (enemy_pos == 4)
+				direction = 3;
+		}
+		else if (direction == 1) {
+			int x = (int)UnityEngine.Random.Range(0.0f, 1.9f);
+			if (enemy_pos == 6){
+				
+				if (x == 0)
+					direction = 1;
+				else
+					direction = 3;
+				
+			}
+			else if (enemy_pos == 7) {
+				
+				if (x == 0)
+					direction = 1;
+				else
 					direction = 2;
-				else if (enemy_pos == 5)
+			}
+			else if (enemy_pos == 9) {
+				
+				if (x == 0)
+					direction = 2;
+				else
 					direction = 3;
 			}
-			else if (direction == 2) {
-                int x = (int)UnityEngine.Random.Range(0.0f, 1.9f);
-				if (enemy_pos == 6) {
-					
-					if (x == 0)
-						direction = 0;
-					else
-						direction = 1;
-					
-				}
-				else if (enemy_pos == 8) {
-					
-					if (x == 0)
-						direction = 1;
-					else
-						direction = 2;
-				}
-				else if (enemy_pos == 9) {
-					
-					if (x == 0)
-						direction = 0;
-					else
-						direction = 2;
-				}
-				else if (enemy_pos == 4)
-					direction = 1;
-				else if (enemy_pos == 5)
+			else if (enemy_pos == 2)
+				direction = 2;
+			else if (enemy_pos == 5)
+				direction = 3;
+		}
+		else if (direction == 2) {
+			int x = (int)UnityEngine.Random.Range(0.0f, 1.9f);
+			if (enemy_pos == 6) {
+				
+				if (x == 0)
 					direction = 0;
+				else
+					direction = 1;
+				
 			}
-			else if (direction == 3) {
+			else if (enemy_pos == 8) {
+				
+				if (x == 0)
+					direction = 1;
+				else
+					direction = 2;
+			}
+			else if (enemy_pos == 9) {
+				
+				if (x == 0)
+					direction = 0;
+				else
+					direction = 2;
+			}
+			else if (enemy_pos == 4)
+				direction = 1;
+			else if (enemy_pos == 5)
+				direction = 0;
+		}
+		else if (direction == 3) {
 
-                int x = (int)UnityEngine.Random.Range(0.0f, 1.9f);
-				if (enemy_pos == 7) {
-					if (x == 0)
-						direction = 0;
-					else
-						direction = 1;
-					
-				}
-				else if (enemy_pos == 8) {
-					
-					if (x == 0)
-						direction = 1;
-					else
-						direction = 3;
-				}
-				else if (enemy_pos == 9) {
-					
-					if (x == 0)
-						direction = 0;
-					else
-						direction = 3;
-				}
-				else if (enemy_pos == 2)
+			int x = (int)UnityEngine.Random.Range(0.0f, 1.9f);
+			if (enemy_pos == 7) {
+				if (x == 0)
 					direction = 0;
-				else if (enemy_pos == 3)
+				else
 					direction = 1;
+				
 			}
+			else if (enemy_pos == 8) {
+				
+				if (x == 0)
+					direction = 1;
+				else
+					direction = 3;
+			}
+			else if (enemy_pos == 9) {
+				
+				if (x == 0)
+					direction = 0;
+				else
+					direction = 3;
+			}
+			else if (enemy_pos == 2)
+				direction = 0;
+			else if (enemy_pos == 3)
+				direction = 1;
 		}
 
 		if (animation_type == 1) {

@@ -8,6 +8,8 @@ public class in_game_buttons : MonoBehaviour {
     public GameObject comp_panel;
 
 	public void restart() {
+        if (Global.classic)
+            Global.level += 99;
 		Application.LoadLevel("ingame");
 	}
 

@@ -32,7 +32,7 @@ public class pac_movement : MonoBehaviour {
 	//static int[,] levelmatrix = new int[500, 500];
 	short req_direction;
 	short pac_direction;
-	short life=3;
+	short life=2;
 
 	short fire_shield = 0;
 	short max_fire_shield = 0;
@@ -62,6 +62,7 @@ public class pac_movement : MonoBehaviour {
 		dead = false;
 		
 		anim = gameObject.GetComponent<Animator> ();
+		anim.SetInteger("direction", pac_direction);
 
 		ghost_combo = 50;
 		ghost_combo_countdown = 0;
@@ -191,8 +192,6 @@ public class pac_movement : MonoBehaviour {
 					for (; back_y < Global.level_height && Global.levelmatrix[back_y, matrix_x] < 2; back_y++);
 					for (; front_y > 0 && Global.levelmatrix[front_y, matrix_x] < 2; front_y--);
 				}
-			Debug.Log("front " + front_x + " " + front_y);
-			Debug.Log("back" + back_x + " " + back_y);
 					
 			}
 
@@ -321,6 +320,7 @@ public class pac_movement : MonoBehaviour {
 			pac_direction = 2;
 		else if (pos == 2)
 			pac_direction = 0;
+		anim.SetInteger("direction", pac_direction);
 
 		/*if (pac_direction == 0)
 			transform.localEulerAngles = new Vector3(0,180,0);
@@ -353,6 +353,7 @@ public class pac_movement : MonoBehaviour {
             else
             {
                 pac_direction = 1;
+				anim.SetInteger("direction", pac_direction);
 
                 int i, j = ((int)camera.transform.position.y) * 2, k;
                 if (j < 0)

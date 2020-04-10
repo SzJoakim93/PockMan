@@ -54,12 +54,16 @@ public class BalancedSearch
     int start_y;
     int goal_x;
     int goal_y;
+    int range;
+    float begin_time;
 
-    public void search(int _start_x, int _start_y, int _goal_x, int _goal_y) {
+    public void search(int _start_x, int _start_y, int _goal_x, int _goal_y, int _range = 0) {
+        begin_time = Time.time;
         start_x = _start_x;
         start_y = _start_y;
         goal_x = _goal_x;
         goal_y = _goal_y;
+        range = _range;
         ways.Clear();
 
         Node start = new Node(start_x, start_y, 0, -1);
@@ -140,7 +144,10 @@ public class BalancedSearch
 
         //Debug.Log(output);
 
-        if (min_way.GetLastNode().x == goal_x && min_way.GetLastNode().y == goal_y) {
+        if (min_way.GetLastNode().x == goal_x && min_way.GetLastNode().y == goal_y ||
+            (min_way.GetLastNode().x < goal_x + range && min_way.GetLastNode().x > goal_x - range &&
+                min_way.GetLastNode().y < goal_y + range && min_way.GetLastNode().y > goal_y - range) ||
+            Time.time - begin_time > 3.0f) {
             return true;
         }
             

@@ -9,6 +9,7 @@ public class GameEvents : MonoBehaviour {
 
 	public float base_camera_speed;
     float camera_speed;
+	float camera_speed_decreaser;
 
 	public Transform pac_man;
 	public GameObject comp_panel;
@@ -24,7 +25,6 @@ public class GameEvents : MonoBehaviour {
 
 	public GameObject [] enemy_pack;
 	GameObject [] enemy;
-	public Transform [] enemy_trans;
 	enemy_movement [] enemy_scripts = new enemy_movement[Global.max_enemy];
 
 	public GameObject double_score_signal;
@@ -37,6 +37,7 @@ public class GameEvents : MonoBehaviour {
 
 		Global.enemies = new List<GameObject>();
 
+		camera_speed_decreaser = 1.0f;
 		camera_speed = base_camera_speed;
 		Global.ready_to_go = 100;
 		Global.enemy_active = 0;
@@ -46,12 +47,12 @@ public class GameEvents : MonoBehaviour {
 		
 		Global.pause_game = false;
 
-		Transform [] enemy_temp;
-		enemy_temp = enemy_pack[Global.enemy_animation_offset].GetComponentsInChildren<Transform> (true);
+		enemy_movement [] enemy_temp;
+		enemy_temp = enemy_pack[Global.enemy_animation_offset].GetComponentsInChildren<enemy_movement> (true);
 
-		enemy = new GameObject[enemy_temp.Length-1];
-		for (int i = 1; i < enemy_temp.Length; i++)
-			enemy[i-1] = enemy_temp[i].gameObject;
+		enemy = new GameObject[enemy_temp.Length];
+		for (int i = 0; i < enemy_temp.Length; i++)
+			enemy[i] = enemy_temp[i].gameObject;
 
 		/*enemy = new GameObject[Global.max_enemy];
 		for (int i = Global.enemy_animation_offset, j = 0; i < Global.enemy_animation_offset + Global.max_enemy; i++, j++)
@@ -59,11 +60,11 @@ public class GameEvents : MonoBehaviour {
 
 		if (Global.ac > -1) {
 			if (Global.own_cards [Global.ac] == 1)
-				camera_speed *= 0.9f;
+				camera_speed_decreaser = 0.9f;
 			else if (Global.own_cards [Global.ac] == 6)
-				camera_speed *= 0.85f;
+				camera_speed_decreaser = 0.85f;
 			else if (Global.own_cards [Global.ac] == 11)
-				camera_speed *= 0.8f;
+				camera_speed_decreaser = 0.8f;
 
 			if (Global.own_cards [Global.ac] == 3)
 				respawn_delay = 15;
@@ -147,8 +148,8 @@ public class GameEvents : MonoBehaviour {
 			//vertical moving of camera
 			if (!Global.classic)
 			{
-				float relative_pos = (pac_man.position.y - transform.position.y) / 15.0f;
-				camera_speed = base_camera_speed + relative_pos;
+				float relative_pos = (pac_man.position.y - transform.position.y) / 10.0f;
+				camera_speed = (base_camera_speed + relative_pos)*camera_speed_decreaser;
 				if (Global.rewind == 0 && Global.pause == 0)
 					transform.Translate(0, camera_speed * Time.deltaTime, 0);
 				else if (Global.rewind != 0)
@@ -158,10 +159,12 @@ public class GameEvents : MonoBehaviour {
 
 			
 			//spawn enemy
-			if ((Global.classic && Global.enemies.Count < Global.max_enemy || (transform.position.y+10.0f)*2.0f < Global.level_height) && Time.frameCount % 100 == 0)  {
+			if ((Global.classic && Global.enemies.Count < Global.max_enemy && Time.frameCount % 200 == 0) ||
+				((transform.position.y+10.0f)*2.0f < Global.level_height && Time.frameCount % 100 == 0))  {
 				GameObject new_enemy = (GameObject)Instantiate(enemy[(int)Random.Range(0.0f, 4.9f)], spawn_enemy(), Quaternion.identity);
 				new_enemy.SetActive(true);
 				Global.enemies.Add(new_enemy);
+				Debug.Log("Enemy spawned: " + Global.enemies.Count);
 			}
 
 
