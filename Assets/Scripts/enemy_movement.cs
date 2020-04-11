@@ -41,7 +41,7 @@ public class enemy_movement : MonoBehaviour {
 		if (Global.classic)
 			speed = Global.enemy_speed;
 		else
-			speed = Global.enemy_speed / 1.25f;
+			speed = Global.enemy_speed * 0.8f;
 		current_sprite = this.GetComponent<SpriteRenderer> ();
 		Transform [] temp = this.GetComponentsInChildren<Transform> (true);
 		collider = temp [1].gameObject;
@@ -201,7 +201,7 @@ public class enemy_movement : MonoBehaviour {
 						else
 							current_sprite.sprite = sprites [2];
 					if (Global.inv_time < 5) {
-						speed = (Global.classic ? Global.enemy_speed : Global.enemy_speed * 1.25f);
+						speed = (Global.classic ? Global.enemy_speed : Global.enemy_speed * 0.8f);
 						if (animation_type < 5)
 							current_sprite.sprite = sprites [ally_sprite];
 					}

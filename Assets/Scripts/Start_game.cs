@@ -9,7 +9,9 @@ public class Start_game : MonoBehaviour {
 	public Text star_text;
 	
 	public GameObject level_pack;
+	public GameObject classic_pack;
 	Button [] levels;
+	Button [] classic_levels;
 
 	public Text [] upgrade_levels;
 
@@ -23,7 +25,9 @@ public class Start_game : MonoBehaviour {
 	int play_index;
 
 	public Image locker;
+	public Image locker_classic;
 	public Text lock_cost;
+	public Text lock_cost_classic;
 
 	public GameObject not_enought;
 
@@ -44,6 +48,7 @@ public class Start_game : MonoBehaviour {
 		day_text = bonus_panel.GetComponentsInChildren<Text> (true);
 
 		levels = level_pack.GetComponentsInChildren<Button> (true);
+		classic_levels = classic_pack.GetComponentsInChildren<Button> (true);
 
 		last_played = DateTime.Today;
 		play_index = -1;
@@ -156,9 +161,17 @@ public class Start_game : MonoBehaviour {
 	    for (int i = 1; i < Global.unlocked_levels && i < levels.Length; i++)
 			levels[i].interactable = true;
 
+		for (int i = 1; i < Global.unlocked_clevels && i < classic_levels.Length; i++)
+			classic_levels[i].interactable = true;	
+
 		if (Global.unlocked_levels % 5 == 0) {
 			locker.gameObject.SetActive(true);
 			locker.rectTransform.position = levels[Global.unlocked_levels].GetComponent<RawImage>().rectTransform.position;
+		}
+
+		if (Global.unlocked_clevels % 5 == 0) {
+			locker_classic.gameObject.SetActive(true);
+			locker_classic.rectTransform.position = classic_levels[Global.unlocked_clevels].GetComponent<RawImage>().rectTransform.position;
 		}
 
 		for (int i = 0; i < Global.own_cards.Length; i++)
@@ -195,6 +208,20 @@ public class Start_game : MonoBehaviour {
 			PlayerPrefs.SetInt ("Unlocked_levels", Global.unlocked_levels);
 			PlayerPrefs.SetInt("Global_points", Global.global_points);
 			locker.gameObject.SetActive(false);
+
+		} else
+			not_enought.SetActive (true);
+	}
+
+	public void unlock_level_classic() {
+		if (Global.global_points >= 100 * (Global.unlocked_clevels / 5)) {
+			levels [Global.unlocked_clevels].interactable = true;
+			Global.global_points -= 100 * (Global.unlocked_clevels / 5);
+			point_txt.text = Global.global_points.ToString();
+			Global.unlocked_clevels++;
+			PlayerPrefs.SetInt ("Unlocked_levels_classic", Global.unlocked_clevels);
+			PlayerPrefs.SetInt("Global_points", Global.global_points);
+			locker_classic.gameObject.SetActive(false);
 
 		} else
 			not_enought.SetActive (true);

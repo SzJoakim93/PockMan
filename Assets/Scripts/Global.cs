@@ -76,6 +76,7 @@ public class Global : MonoBehaviour {
 	
 	//public static string [] levels = new string[] {"level1.txt", "level2.txt", "level3.txt", "level4.txt", "level5.txt"};
 	public static int level = 30;
+	public static int enemy_rise;
 
 	public static List<Vector4> speed_zones;
 	public static List<Vector4> slow_zones;

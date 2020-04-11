@@ -47,6 +47,8 @@ public class GameEvents : MonoBehaviour {
 		
 		Global.pause_game = false;
 
+		Global.enemy_rise = 0;
+
 		enemy_movement [] enemy_temp;
 		enemy_temp = enemy_pack[Global.enemy_animation_offset].GetComponentsInChildren<enemy_movement> (true);
 
@@ -160,11 +162,13 @@ public class GameEvents : MonoBehaviour {
 			
 			//spawn enemy
 			if ((Global.classic && Global.enemies.Count < Global.max_enemy && Time.frameCount % 200 == 0) ||
-				((transform.position.y+10.0f)*2.0f < Global.level_height && Time.frameCount % 100 == 0))  {
+				((transform.position.y+10.0f)*2.0f < Global.level_height && Time.frameCount % (200) == 0))  {
 				GameObject new_enemy = (GameObject)Instantiate(enemy[(int)Random.Range(0.0f, 4.9f)], spawn_enemy(), Quaternion.identity);
 				new_enemy.SetActive(true);
 				Global.enemies.Add(new_enemy);
-				Debug.Log("Enemy spawned: " + Global.enemies.Count);
+
+				if (Global.enemy_rise < 200)
+					Global.enemy_rise += 20;
 			}
 
 
@@ -237,16 +241,21 @@ public class GameEvents : MonoBehaviour {
 
 
         //decrease usage number of dropping card
-		if (Global.ac > -1) {
-			Global.card_remaining [Global.ac]--;
-            PlayerPrefs.SetInt("Card_remaining" + Global.ac, Global.card_remaining[Global.ac]);
+		if (!Global.classic || (Global.ac != 0 && Global.ac != 5 && Global.ac != 10 &&
+			Global.ac != 1 && Global.ac != 6 && Global.ac != 11))
+		{
+			if (Global.ac > -1) {
+				Global.card_remaining [Global.ac]--;
+				PlayerPrefs.SetInt("Card_remaining" + Global.ac, Global.card_remaining[Global.ac]);
 
-			if (Global.card_remaining [Global.ac] == 0) {
-				Global.own_cards [Global.ac] = -1;
-                PlayerPrefs.SetInt("Card_place" + Global.ac, -1);
-				Global.ac = -1;
+				if (Global.card_remaining [Global.ac] == 0) {
+					Global.own_cards [Global.ac] = -1;
+					PlayerPrefs.SetInt("Card_place" + Global.ac, -1);
+					Global.ac = -1;
+				}
 			}
 		}
+		
 
 		if (rate > early_rate) {
 			Global.global_stars += rate - early_rate;
@@ -261,7 +270,7 @@ public class GameEvents : MonoBehaviour {
 		if (!Global.classic && Global.level == Global.unlocked_levels-1 && Global.unlocked_levels % 5 != 0) {
 			Global.unlocked_levels++;
 			PlayerPrefs.SetInt("Unlocked_levels", Global.unlocked_levels);
-		} else if (Global.classic && Global.level-100 == Global.unlocked_clevels-1 && Global.unlocked_clevels % 5 != 0) {
+		} else if (Global.classic && Global.level == Global.unlocked_clevels-1 && Global.unlocked_clevels % 5 != 0) {
 			Global.unlocked_clevels++;
 			PlayerPrefs.SetInt("Unlocked_levels_classic", Global.unlocked_clevels);
 		}

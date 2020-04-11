@@ -54,8 +54,8 @@ public class load_level : MonoBehaviour {
 		if (Global.level < 100)
 			level_path = Resources.Load<TextAsset>("Levels/level" + (Global.level+1).ToString());
 		else {
-			Global.level -= 99;
-			level_path = Resources.Load<TextAsset>("Levels/clevel" + Global.level.ToString());
+			Global.level -= 100;
+			level_path = Resources.Load<TextAsset>("Levels/clevel" + (Global.level+1).ToString());
 		}
 
         //string[] lines = Regex.Split(level_paths[Global.level].text, "\r\n");

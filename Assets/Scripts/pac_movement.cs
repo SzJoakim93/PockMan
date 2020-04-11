@@ -259,10 +259,6 @@ public class pac_movement : MonoBehaviour {
 			else if (fire_shield < max_fire_shield && fire_shield > -1)
 				fire_shield++;
 
-            //moving ammo
-			if (ammo.gameObject.activeInHierarchy)
-				ammo.Translate(2*speed*Time.deltaTime, 0, 0);
-
             //reset ghost combo at the end of invertibility
 			if (Global.inv_time == 1)
 				ghost_combo = 50;
@@ -339,6 +335,7 @@ public class pac_movement : MonoBehaviour {
 			life_text.text = "X " + life.ToString ();
 
 			Global.pause_game = false;
+			Global.enemy_rise = 0;
 
 			if (life == 0) {
 				Global.ready_to_go = 300;
@@ -436,7 +433,7 @@ public class pac_movement : MonoBehaviour {
 	}
 
 	public void shot_ammo() {
-		if (Global.ammo > 0 && ammo_obj.activeInHierarchy) {
+		if (Global.ammo > 0 && !ammo_obj.activeInHierarchy) {
 			Global.ammo--;
 			ammo_text.text = "X " + Global.ammo.ToString();
 			ammo.position = transform.position;

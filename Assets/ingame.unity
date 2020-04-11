@@ -298,6 +298,7 @@ GameObject:
   - 212: {fileID: 3830499}
   - 114: {fileID: 3830498}
   - 61: {fileID: 3830500}
+  - 50: {fileID: 3830501}
   m_Layer: 0
   m_Name: enemy_garden_ally
   m_TagString: enemy
@@ -386,6 +387,22 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .150000006, y: .150000006}
+--- !u!50 &3830501
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 3830496}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7214841
 GameObject:
   m_ObjectHideFlags: 0
@@ -14096,6 +14113,7 @@ GameObject:
   - 4: {fileID: 729196318}
   - 212: {fileID: 729196317}
   - 61: {fileID: 729196319}
+  - 114: {fileID: 729196320}
   m_Layer: 0
   m_Name: ammo
   m_TagString: enemy_fire
@@ -14154,6 +14172,17 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .319999993, y: .319999993}
+--- !u!114 &729196320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 729196316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37aa067ec7b819043a19fa3643fb8855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &729533661
 GameObject:
   m_ObjectHideFlags: 0
@@ -19335,6 +19364,7 @@ GameObject:
   - 212: {fileID: 1068913169}
   - 114: {fileID: 1068913168}
   - 61: {fileID: 1068913170}
+  - 50: {fileID: 1068913171}
   m_Layer: 0
   m_Name: enemy_garden_5
   m_TagString: enemy
@@ -19423,6 +19453,22 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .150000006, y: .150000006}
+--- !u!50 &1068913171
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1068913166}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1071651299
 GameObject:
   m_ObjectHideFlags: 0
@@ -24529,6 +24575,7 @@ GameObject:
   - 212: {fileID: 1341389369}
   - 114: {fileID: 1341389368}
   - 61: {fileID: 1341389370}
+  - 50: {fileID: 1341389371}
   m_Layer: 0
   m_Name: enemy_garden_3
   m_TagString: enemy
@@ -24617,6 +24664,22 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .150000006, y: .150000006}
+--- !u!50 &1341389371
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1341389366}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1342718590
 GameObject:
   m_ObjectHideFlags: 0
@@ -29350,6 +29413,7 @@ GameObject:
   - 212: {fileID: 1596325677}
   - 114: {fileID: 1596325676}
   - 61: {fileID: 1596325679}
+  - 50: {fileID: 1596325680}
   m_Layer: 0
   m_Name: enemy_garden_2
   m_TagString: enemy
@@ -29438,6 +29502,22 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .150000006, y: .150000006}
+--- !u!50 &1596325680
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1596325675}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1597102898
 GameObject:
   m_ObjectHideFlags: 0
@@ -34488,6 +34568,7 @@ GameObject:
   - 212: {fileID: 1866743174}
   - 114: {fileID: 1866743173}
   - 61: {fileID: 1866743176}
+  - 50: {fileID: 1866743177}
   m_Layer: 0
   m_Name: enemy_garden_1
   m_TagString: enemy
@@ -34576,6 +34657,22 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .150000006, y: .150000006}
+--- !u!50 &1866743177
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1866743172}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1870780160
 GameObject:
   m_ObjectHideFlags: 0
@@ -38322,6 +38419,7 @@ GameObject:
   - 212: {fileID: 2066563309}
   - 114: {fileID: 2066563308}
   - 61: {fileID: 2066563311}
+  - 50: {fileID: 2066563312}
   m_Layer: 0
   m_Name: enemy_garden_4
   m_TagString: enemy
@@ -38410,6 +38508,22 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .150000006, y: .150000006}
+--- !u!50 &2066563312
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2066563307}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2070854607
 GameObject:
   m_ObjectHideFlags: 0
