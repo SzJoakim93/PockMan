@@ -62,6 +62,7 @@ public class enemy_movement : MonoBehaviour {
 			direction = 3;
 		else if (enemy_pos == 2)
 			direction = 0;
+		setRotation();
 
 		count_down = 50;
 
@@ -87,10 +88,16 @@ public class enemy_movement : MonoBehaviour {
 						fix_enemy_pos(matrix_x, matrix_y);
 
 				    //fix direction
-					if (enemy_pos == 0 && (direction == 2 || direction == 3))
+					if (enemy_pos == 0 && (direction == 2 || direction == 3)) {
 						direction = 0;
-					else if (enemy_pos == 1 && (direction == 0 || direction == 1))
+						if (animation_type == 1)
+							transform.localEulerAngles = new Vector3 (0, 0, 90);
+					}
+					else if (enemy_pos == 1 && (direction == 0 || direction == 1)) {
 						direction = 2;
+						if (animation_type == 1)
+							transform.localEulerAngles = new Vector3 (0, 0, 0);
+					}
 
                     //move back if the enemy go out of camera view
 					if (transform.position.y > camera.transform.position.y + Global.view_range_top && enemy_pos != 0 && enemy_pos != 2 && enemy_pos != 3 && enemy_pos != 7 && enemy_pos != 11) {
@@ -108,8 +115,8 @@ public class enemy_movement : MonoBehaviour {
 					{
 						if (Global.classic && (
 							enemy_type < 2 ||
-							enemy_type < 2 && matrix_x >= 5 && matrix_y >= 5 ||
-							enemy_type < 3 && matrix_x >= 10 && matrix_y >= 10))
+							enemy_type == 2 && matrix_x >= 5 && matrix_y >= 5 ||
+							enemy_type == 3 && matrix_x >= 10 && matrix_y >= 10))
 						{
 							if (enemy_pos > 1)
 							{
@@ -153,6 +160,9 @@ public class enemy_movement : MonoBehaviour {
 											direction = 0;
 									}
 								}
+
+								setRotation();
+
 							}
 
 						}
@@ -443,16 +453,7 @@ public class enemy_movement : MonoBehaviour {
 				direction = 1;
 		}
 
-		if (animation_type == 1) {
-			if (direction == 0)
-				transform.localEulerAngles = new Vector3 (0, 0, 90);
-			else if (direction == 1)
-				transform.localEulerAngles = new Vector3 (0, 0, 270);
-			else if (direction == 2)
-				transform.localEulerAngles = new Vector3 (0, 0, 0);
-			else if (direction == 3)
-				transform.localEulerAngles = new Vector3 (0, 0, 180);
-		}
+		setRotation();
 
 	}
 
@@ -551,6 +552,8 @@ public class enemy_movement : MonoBehaviour {
 				direction = 3;
 			else if (enemy_pos == 2)
 				direction = 0;
+
+			setRotation();
 		}
 		
 	}
@@ -585,6 +588,8 @@ public class enemy_movement : MonoBehaviour {
 				direction = 3;
 			else if (direction == 3)
 				direction = 2;
+
+			setRotation();
 		}
 	}
 
@@ -607,6 +612,19 @@ public class enemy_movement : MonoBehaviour {
 			transform.position = new Vector3(i/2.0f, j/2.0f+0.1f, 0);
 		}
 			
+	}
+
+	void setRotation() {
+		if (animation_type == 1) {
+			if (direction == 0)
+				transform.localEulerAngles = new Vector3 (0, 0, 90);
+			else if (direction == 1)
+				transform.localEulerAngles = new Vector3 (0, 0, 270);
+			else if (direction == 2)
+				transform.localEulerAngles = new Vector3 (0, 0, 0);
+			else if (direction == 3)
+				transform.localEulerAngles = new Vector3 (0, 0, 180);
+		}
 	}
 
 }

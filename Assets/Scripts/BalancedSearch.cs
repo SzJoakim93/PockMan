@@ -101,7 +101,7 @@ public class BalancedSearch
     {
         int y = node.y;
         int i = node.x + dir;
-        int cost = 0;
+        int cost = 1;
 
         while(Global.levelmatrix[y, i] == 0)
         {
@@ -116,7 +116,7 @@ public class BalancedSearch
     {
         int i = node.y + dir;
         int x = node.x;
-        int cost = 0;
+        int cost = 1;
 
         while(Global.levelmatrix[i, x] == 1)
         {
@@ -130,19 +130,10 @@ public class BalancedSearch
     bool GetLowestNodeWays() {
         min_way = ways[0];
 
-        //string output = "";
         foreach (var way in ways) {
             if (way.Cost < min_way.Cost)
                 min_way = way;
-            /*output += "(";
-            foreach (var node in way.nodes) {
-                output += "(" + node.x + ", " + node.y + ") ->";
-            }
-
-            output += "" + way.Cost + "), ";  */
         }
-
-        //Debug.Log(output);
 
         if (min_way.GetLastNode().x == goal_x && min_way.GetLastNode().y == goal_y ||
             (min_way.GetLastNode().x < goal_x + range && min_way.GetLastNode().x > goal_x - range &&

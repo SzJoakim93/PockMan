@@ -29433,7 +29433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   count_down: 0
-  enemy_type: 3
+  enemy_type: 4
   camera: {fileID: 1363783259}
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
