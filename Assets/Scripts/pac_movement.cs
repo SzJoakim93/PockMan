@@ -102,6 +102,8 @@ public class pac_movement : MonoBehaviour {
 		prev_pos = -1;
 		prev_pos_x = -1;
 		prev_pos_y = -1;
+
+		setCamera();
 			
 	}
 	
@@ -295,12 +297,7 @@ public class pac_movement : MonoBehaviour {
 	{
 		transform.position = new Vector2 (x, y);
 
-		if (x < 2.8f)
-			camera.position = new Vector3(2.8f, y, camera.position.z);
-		else if (x > 5.2f)
-			camera.position = new Vector3(5.2f, y, camera.position.z);
-		else
-			camera.position = new Vector3(x, y, camera.position.z);
+		setCamera();
 		
 		/*if (x>100 && x<550)
 			camera_offset.x = 20-(x-100)/2;
@@ -455,6 +452,15 @@ public class pac_movement : MonoBehaviour {
 
 			ammo_obj.SetActive(true);
 		}
+	}
+
+	void setCamera() {
+		if (transform.position.x < 2.8f)
+			camera.position = new Vector3(2.8f, transform.position.y, camera.position.z);
+		else if (transform.position.x > 5.2f)
+			camera.position = new Vector3(5.2f, transform.position.y, camera.position.z);
+		else
+			camera.position = new Vector3(transform.position.x, transform.position.y, camera.position.z);
 	}
 
 }

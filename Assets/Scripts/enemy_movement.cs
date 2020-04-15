@@ -33,6 +33,8 @@ public class enemy_movement : MonoBehaviour {
 	pac_movement pac_script;
 
 	BalancedSearch searchAI;
+	int matrix_x;
+	int matrix_y;
 
 	//bool selectable=true;
 
@@ -64,6 +66,10 @@ public class enemy_movement : MonoBehaviour {
 			direction = 0;
 		setRotation();
 
+		matrix_x = (int)(transform.position.x * 2);
+		matrix_y = (int)(transform.position.y * 2);
+		enemy_pos = Global.levelmatrix [matrix_y, matrix_x];
+
 		count_down = 50;
 
 		searchAI = new BalancedSearch();
@@ -77,8 +83,8 @@ public class enemy_movement : MonoBehaviour {
 
                 //get level matrix coordinates
 				if ((int)(transform.position.x * 40) % 20 == 0 && (int)(transform.position.y * 40) % 20 == 0) {
-					int matrix_x = (int)(transform.position.x * 2);
-					int matrix_y = (int)(transform.position.y * 2);
+					matrix_x = (int)(transform.position.x * 2);
+					matrix_y = (int)(transform.position.y * 2);
 
                     //get enemy pos from coordinates
 					enemy_pos = Global.levelmatrix [matrix_y, matrix_x];
@@ -113,13 +119,14 @@ public class enemy_movement : MonoBehaviour {
                     //determine enemy's moving direction
 					else
 					{
-						if (Global.classic && (
-							enemy_type < 2 ||
-							enemy_type == 2 && matrix_x >= 5 && matrix_y >= 5 ||
-							enemy_type == 3 && matrix_x >= 10 && matrix_y >= 10))
+						if (enemy_pos > 1)
 						{
-							if (enemy_pos > 1)
+							if (Global.classic && (
+								enemy_type < 2 ||
+								enemy_type == 2 && Vector3.Distance(transform.position, pock_man.position) > 3.55f ||
+								enemy_type == 3 && Vector3.Distance(transform.position, pock_man.position) > 7.1f))
 							{
+							
 								switch (enemy_type) {
 									case 0:
 										searchAI.search(matrix_x, matrix_y,
@@ -164,10 +171,9 @@ public class enemy_movement : MonoBehaviour {
 								setRotation();
 
 							}
-
+							else
+								determine_direction ();
 						}
-						else
-							determine_direction ();
 					}
 						
 
@@ -177,17 +183,21 @@ public class enemy_movement : MonoBehaviour {
 							current_sprite.sprite = sprites [direction+ally_sprite];
 					}
 
-                    /*if (!Global.classic)
-                    {
-                        //respawn enemy when go out of camera view so far
-                        if (transform.position.y < camera.transform.position.y - 3.2f)
-                            respawn_enemy();
-
-                        //deactivate enemy at top of level
-                        if (matrix_y > Global.level_height - 10 && enemy_type < 4)
-                            count_down = -1;
-                    }*/
+					//deactivate enemy at top of level
+					if (!Global.classic && matrix_y > Global.level_height - 5) {
+						Global.enemies.Remove(gameObject);
+						Destroy(gameObject);
+                    }
 				}
+
+				//fix enemy position when go out of playground
+				if (((enemy_pos == 1 || enemy_pos == 2 || enemy_pos == 5 || enemy_pos == 9) && (int)(transform.position.x * 2.0f) > matrix_x) ||
+					((enemy_pos == 1 || enemy_pos == 3 || enemy_pos == 4 || enemy_pos == 8) && (int)(transform.position.x * 2.0f) < matrix_x) ||
+					((enemy_pos == 0 || enemy_pos == 4 || enemy_pos == 5 || enemy_pos == 6) && (int)(transform.position.y * 2.0f) > matrix_y) ||
+					((enemy_pos == 0 || enemy_pos == 2 || enemy_pos == 3 || enemy_pos == 7) && (int)(transform.position.y * 2.0f) < matrix_y)) {
+						transform.position = new Vector3(matrix_x/2.0f, matrix_y/2.0f, 0);
+						determine_direction();
+					}
 
 				
                 //invertibility time section
@@ -201,7 +211,7 @@ public class enemy_movement : MonoBehaviour {
 						speed = 0.8f;
 					} else if (Global.inv_time < 200 && Global.inv_time / 20 % 2 == 0) {
 						if (animation_type == 0)
-							current_sprite.sprite = sprites [4];
+							current_sprite.sprite = sprites [direction+4];
 						else
 							current_sprite.sprite = sprites [1];
 					}
@@ -308,7 +318,7 @@ public class enemy_movement : MonoBehaviour {
 
 				//animatoin of enemy respawning
 				if (animation_type == 0)
-					current_sprite.sprite = sprites[6 + (count_down / 5 % 4)];
+					current_sprite.sprite = sprites[12 + (count_down / 5 % 4)];
 				else
 					current_sprite.sprite = sprites[3 + (count_down / 5 % 4)];
 
@@ -319,8 +329,13 @@ public class enemy_movement : MonoBehaviour {
 					Destroy(gameObject);
 				}
 
-				if (count_down == 0) 
-					current_sprite.sprite = sprites[0];
+				if (count_down == 0) {
+					if (animation_type == 0)
+						current_sprite.sprite = sprites[direction];
+					else
+						current_sprite.sprite = sprites[0];
+				}
+					
 
 			}
 		}
