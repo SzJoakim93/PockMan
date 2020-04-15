@@ -55,8 +55,7 @@ public class Start_game : MonoBehaviour {
 
 		ReadUserData();
 
-		int dif = (int)(DateTime.Today - last_played).TotalHours;
-        Debug.Log(dif);
+		int dif = (int)(DateTime.Now - last_played).TotalHours;
 
 		if (play_index == -1) { //first time running
 			Global.global_points += 100;

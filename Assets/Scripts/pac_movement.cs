@@ -45,17 +45,12 @@ public class pac_movement : MonoBehaviour {
 	public int front_x;
 	[HideInInspector]
 	public int front_y;
-	int prev_pos;
 	int prev_pos_x;
 	int prev_pos_y;
-
-	/*List<Transform> pickups;
-	List<Transform> invertibility;*/
+	bool nodeReached = true;
 
 	// Use this for initialization
 	void Start () {
-		/*pickups = new List<Transform> ();
-		invertibility = new List<Transform> ();*/
 
 		req_direction = -1;
 		pac_direction = 1;
@@ -69,14 +64,6 @@ public class pac_movement : MonoBehaviour {
 		rate_countdown = -1;
 
 		ammo_obj = ammo.gameObject;
-
-		/*enemy_trans = new Transform [enemy.Length];
-
-		for (int i = 0; i < Global.max_enemy; i++) {
-			enemy_trans[i] = enemy[i].transform;
-			//enemy [i].SetActive (false);
-			enemy_scripts[i] = enemy[i].GetComponent<enemy_movement>();
-		}*/
 
         //add dropping cards extras
 		if (Global.ac > -1) {
@@ -99,7 +86,6 @@ public class pac_movement : MonoBehaviour {
 		mine_text.text = "X " + Global.mines.ToString();
 		ammo_text.text = "X " + Global.ammo.ToString();
 
-		prev_pos = -1;
 		prev_pos_x = -1;
 		prev_pos_y = -1;
 
@@ -177,27 +163,38 @@ public class pac_movement : MonoBehaviour {
 			}
 
             //determine the player's visible area
-			if (current_pos != prev_pos || (current_pos > 1 && (prev_pos_x != matrix_x || prev_pos_y != matrix_y))) {
-				front_y = back_y = matrix_y;
-				front_x = back_x = matrix_x;
+			if (prev_pos_x != matrix_x || prev_pos_y != matrix_y) {
+				if (nodeReached) {
+					front_y = back_y = matrix_y;
+					front_x = back_x = matrix_x;
 
-				if (pac_direction == 0) {
-					for (; front_x > 0 && Global.levelmatrix[matrix_y, front_x] < 2 ; front_x--);
-					for (; back_x < 20 && Global.levelmatrix[matrix_y, back_x] < 2 ; back_x++);
-				} else if (pac_direction == 1) {
-					for (; back_x > 0 && Global.levelmatrix[matrix_y, back_x] < 2 ; back_x--);
-					for (; front_x < 20 && Global.levelmatrix[matrix_y, front_x] < 2; front_x++);
-				} else if (pac_direction == 2) {
-					for (; front_y < Global.level_height && Global.levelmatrix[front_y, matrix_x] < 2; front_y++);
-					for (; back_y > 0 && Global.levelmatrix[back_y, matrix_x] < 2; back_y--);
-				} else if (pac_direction == 3) {
-					for (; back_y < Global.level_height && Global.levelmatrix[back_y, matrix_x] < 2; back_y++);
-					for (; front_y > 0 && Global.levelmatrix[front_y, matrix_x] < 2; front_y--);
+					if (pac_direction == 0) {
+						for (; front_x > 0 && Global.levelmatrix[matrix_y, front_x] < 2 ; front_x--);
+						for (; back_x < 20 && Global.levelmatrix[matrix_y, back_x] < 2 ; back_x++);
+					} else if (pac_direction == 1) {
+						for (; back_x > 0 && Global.levelmatrix[matrix_y, back_x] < 2 ; back_x--);
+						for (; front_x < 20 && Global.levelmatrix[matrix_y, front_x] < 2; front_x++);
+					} else if (pac_direction == 2) {
+						for (; front_y < Global.level_height && Global.levelmatrix[front_y, matrix_x] < 2; front_y++);
+						for (; back_y > 0 && Global.levelmatrix[back_y, matrix_x] < 2; back_y--);
+					} else if (pac_direction == 3) {
+						for (; back_y < Global.level_height && Global.levelmatrix[back_y, matrix_x] < 2; back_y++);
+						for (; front_y > 0 && Global.levelmatrix[front_y, matrix_x] < 2; front_y--);
+					}
+
+					if (current_pos < 2)
+						nodeReached = false;
+						
+				} else {
+					if (current_pos > 1) {
+						nodeReached = true;
+						front_y = back_y = matrix_y;
+						front_x = back_x = matrix_x;
+					}
+						
 				}
-					
 			}
 
-			prev_pos = current_pos;
 			prev_pos_x = matrix_x;
 			prev_pos_y = matrix_y;
 
@@ -353,7 +350,6 @@ public class pac_movement : MonoBehaviour {
                 if (j < 0)
                     j = 0;
 
-                //set_camera_y(camera_offset.y-240);
                 if (Global.classic)
                     respawn_player(Global.startcoord_x / 2.0f, Global.startcoord_y / 2.0f);
                 else
@@ -362,10 +358,6 @@ public class pac_movement : MonoBehaviour {
                         ;
                     respawn_player(k / 2.0f, j / 2.0f);
                 }
-
-                /*for (i = 0; i < Global.max_enemy; i++)
-                    enemy[i].SetActive(false);
-                Global.enemy_active = 0;*/
 
                 ready_to_go.gameObject.SetActive(true);
                 Global.ready_to_go = 100;
