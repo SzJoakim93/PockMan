@@ -64,6 +64,9 @@ public class Global : MonoBehaviour {
     public static string current_language = "HUN";
     public static bool music_enabled = true;
 
+	public static bool followEnemyAlive;
+	public static bool blockenemyAlive;
+
 	#if UNITY_EDITOR
 	public static string default_path = Application.dataPath;
 	#elif UNITY_ANDROID

@@ -368,6 +368,10 @@ public class pac_movement : MonoBehaviour {
 				foreach (var enemy in Global.enemies)
 					Destroy(enemy);
 				Global.enemies.Clear();
+				if (Global.classic) {
+					Global.followEnemyAlive = false;
+					Global.blockenemyAlive = false;
+				}
             }
 		}
 	}

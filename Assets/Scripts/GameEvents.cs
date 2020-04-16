@@ -49,6 +49,9 @@ public class GameEvents : MonoBehaviour {
 
 		Global.enemy_rise = 0;
 
+		Global.followEnemyAlive = false;
+		Global.blockenemyAlive = false;
+
 		enemy_movement [] enemy_temp;
 		enemy_temp = enemy_pack[Global.enemy_animation_offset].GetComponentsInChildren<enemy_movement> (true);
 
@@ -163,7 +166,18 @@ public class GameEvents : MonoBehaviour {
 			//spawn enemy
 			if ((Global.classic && Global.enemies.Count < Global.max_enemy && Time.frameCount % 200 == 0) ||
 				((transform.position.y+10.0f)*2.0f < Global.level_height && Time.frameCount % (200) == 0))  {
-				GameObject new_enemy = (GameObject)Instantiate(enemy[(int)Random.Range(0.0f, 4.9f)], spawn_enemy(), Quaternion.identity);
+
+				GameObject new_enemy;
+
+				if (Global.classic && !Global.followEnemyAlive) {
+					Global.followEnemyAlive = true;
+					new_enemy = (GameObject)Instantiate(enemy[0], spawn_enemy(), Quaternion.identity);
+				} else if (Global.classic && !Global.blockenemyAlive) {
+					Global.blockenemyAlive = true;
+					new_enemy = (GameObject)Instantiate(enemy[1], spawn_enemy(), Quaternion.identity);
+				} else
+					new_enemy = (GameObject)Instantiate(enemy[(int)Random.Range(2.0f, 4.9f)], spawn_enemy(), Quaternion.identity);
+
 				new_enemy.SetActive(true);
 				Global.enemies.Add(new_enemy);
 
@@ -207,6 +221,10 @@ public class GameEvents : MonoBehaviour {
 		foreach (var enemy in Global.enemies)
 			Destroy(enemy);
 		Global.enemies.Clear();
+		if (Global.classic) {
+			Global.followEnemyAlive = false;
+			Global.blockenemyAlive = false;
+		}
 
 		Global.global_points += Global.score / 10;
 

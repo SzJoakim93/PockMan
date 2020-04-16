@@ -35,8 +35,6 @@ public class Manage_stars : MonoBehaviour {
 				stars[1].sprite = active_star;
 			if (rate > 2)
 				stars[2].sprite = active_star;
-
-			//Debug.Log(rate);
 		}
 
 	}

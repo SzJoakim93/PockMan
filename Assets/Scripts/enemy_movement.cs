@@ -123,8 +123,8 @@ public class enemy_movement : MonoBehaviour {
 						{
 							if (Global.classic && (
 								enemy_type < 2 ||
-								enemy_type == 2 && Vector3.Distance(transform.position, pock_man.position) > 3.55f ||
-								enemy_type == 3 && Vector3.Distance(transform.position, pock_man.position) > 7.1f))
+								enemy_type == 2 && Vector3.Distance(transform.position, pock_man.position) > 2.85f ||
+								enemy_type == 3 && Vector3.Distance(transform.position, pock_man.position) > 5.55f))
 							{
 							
 								switch (enemy_type) {
@@ -137,10 +137,10 @@ public class enemy_movement : MonoBehaviour {
 										searchAI.search(matrix_x, matrix_y, pac_script.front_x, pac_script.front_y);
 										break;
 									case 2:
-										searchAI.search(matrix_x, matrix_y, pac_script.front_x, pac_script.front_y, 5);
+										searchAI.search(matrix_x, matrix_y, pac_script.front_x, pac_script.front_y, 4);
 										break;
 									case 3:
-										searchAI.search(matrix_x, matrix_y, 4, pac_script.front_y, 10);
+										searchAI.search(matrix_x, matrix_y, 4, pac_script.front_y, 8);
 										break;
 								}
 								
@@ -253,6 +253,7 @@ public class enemy_movement : MonoBehaviour {
 					isAlly--;
 				}
 
+				//die enemy in case of going out of camera view (in rush mode only)
 				if (!Global.classic && transform.position.y < camera.transform.position.y + Global.view_range_bottom) {
 					Global.enemies.Remove(gameObject);			
 					Destroy(gameObject);
@@ -309,7 +310,8 @@ public class enemy_movement : MonoBehaviour {
 
 						Global.enemies.Remove(gameObject);					
 						Destroy(gameObject);
-						Debug.Log("Enemies count: " + Global.enemies.Count);
+						if (Global.classic)
+							killSpecialEnemy();
 					}
 				}
 
@@ -535,26 +537,6 @@ public class enemy_movement : MonoBehaviour {
             }
 
             transform.position = new Vector2(k / 2.0f, j / 2.0f);
-
-
-			/*int j= (int)(camera.transform.position.y+2.5f)*2, k, l, m;
-			if (j > Global.level_height - 7) {
-
-				gameObject.SetActive(false);
-				return;
-			}
-			  
-
-			for (k=0, l=7, m=7; k % 2 == 0 && Global.levelmatrix[j,l] == -1 || k % 2 == 1 && Global.levelmatrix[j,m] == -1; k++)
-				if (k % 2 == 0)
-					l++;
-				else
-					m--;
-
-			if (k % 2 == 0)
-				transform.position = new Vector2(l/2.0f, j/2.0f);
-			else
-				transform.position = new Vector2(m/2.0f, j/2.0f);*/
 		}
 		
 		
@@ -592,7 +574,9 @@ public class enemy_movement : MonoBehaviour {
 
 			Global.enemies.Remove(gameObject);
 			Destroy(gameObject);
-
+			if (Global.classic)
+				killSpecialEnemy();
+			
         //go back if the enemy reaches the border of safe_zone
 		} else if (coll.gameObject.tag == "safe_zone") {
 			if (direction == 0)
@@ -640,6 +624,13 @@ public class enemy_movement : MonoBehaviour {
 			else if (direction == 3)
 				transform.localEulerAngles = new Vector3 (0, 0, 180);
 		}
+	}
+
+	void killSpecialEnemy() {
+		if (enemy_type == 0)
+			Global.followEnemyAlive = false;
+		else if (enemy_type == 1)
+			Global.blockenemyAlive = false;
 	}
 
 }
