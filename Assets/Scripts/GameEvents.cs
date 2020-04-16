@@ -10,6 +10,7 @@ public class GameEvents : MonoBehaviour {
 	public float base_camera_speed;
     float camera_speed;
 	float camera_speed_decreaser;
+	float nextEnemyTime;
 
 	public Transform pac_man;
 	public GameObject comp_panel;
@@ -47,10 +48,12 @@ public class GameEvents : MonoBehaviour {
 		
 		Global.pause_game = false;
 
-		Global.enemy_rise = 0;
+		Global.enemy_rise = 3.0f;
 
 		Global.followEnemyAlive = false;
 		Global.blockenemyAlive = false;
+
+		nextEnemyTime = 3.0f;
 
 		enemy_movement [] enemy_temp;
 		enemy_temp = enemy_pack[Global.enemy_animation_offset].GetComponentsInChildren<enemy_movement> (true);
@@ -164,8 +167,8 @@ public class GameEvents : MonoBehaviour {
 
 			
 			//spawn enemy
-			if ((Global.classic && Global.enemies.Count < Global.max_enemy && Time.frameCount % 200 == 0) ||
-				((transform.position.y+10.0f)*2.0f < Global.level_height && Time.frameCount % (200) == 0))  {
+			if ((Global.classic && Global.enemies.Count < Global.max_enemy && Time.timeSinceLevelLoad > nextEnemyTime) ||
+				((transform.position.y+10.0f)*2.0f < Global.level_height && Time.timeSinceLevelLoad > nextEnemyTime))  {
 
 				GameObject new_enemy;
 
@@ -181,8 +184,13 @@ public class GameEvents : MonoBehaviour {
 				new_enemy.SetActive(true);
 				Global.enemies.Add(new_enemy);
 
-				if (Global.enemy_rise < 200)
-					Global.enemy_rise += 20;
+				nextEnemyTime += Global.enemy_rise;
+
+				if (Global.enemy_rise > 1.5f) {
+					Global.enemy_rise -= 0.05f;
+					Debug.Log(Global.enemy_rise);
+				}
+					
 			}
 
 

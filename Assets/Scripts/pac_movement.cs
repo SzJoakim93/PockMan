@@ -329,7 +329,7 @@ public class pac_movement : MonoBehaviour {
 			life_text.text = "X " + life.ToString ();
 
 			Global.pause_game = false;
-			Global.enemy_rise = 0;
+			Global.enemy_rise = 3.0f;
 
 			if (life == 0) {
 				Global.ready_to_go = 300;
@@ -430,19 +430,19 @@ public class pac_movement : MonoBehaviour {
 			Global.ammo--;
 			ammo_text.text = "X " + Global.ammo.ToString();
 			ammo.position = transform.position;
-			
+
 			switch(pac_direction) {
 				case 0:
-					ammo.eulerAngles = new Vector3(180.0f, 0.0f, 0.0f);
+					ammo.eulerAngles = new Vector3(0.0f, 0.0f, 180.0f);
 					break;
 				case 1:
 					ammo.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 					break;
 				case 2:
-					ammo.eulerAngles = new Vector3(270.0f, 0.0f, 0.0f);
+					ammo.eulerAngles = new Vector3(0.0f, 0.0f, 90.0f);
 					break;
 				case 3:
-					ammo.eulerAngles = new Vector3(90.0f, 0.0f, 0.0f);
+					ammo.eulerAngles = new Vector3(0.0f, 0.0f, 270.0f);
 					break;
 			}
 

@@ -16,9 +16,7 @@ public class ammo_movement : MonoBehaviour {
 		int matrix_x = (int)(transform.position.x * 2);
 		int matrix_y = (int)(transform.position.y * 2);
 
-		int current_pos = Global.levelmatrix [matrix_y, matrix_x];
-		
-		if (current_pos != 0 && current_pos != 1)
+		if (matrix_x < 0 || matrix_x > 17 || matrix_y < 0 || matrix_y > Global.level_height || Global.levelmatrix[matrix_y, matrix_x] == -1)
 			gameObject.SetActive(false);
 	}
 }
