@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class GameEvents : MonoBehaviour {
 
 	AudioSource bg_music;
-	int respawn_delay = 0;
+	float respawn_delay = 1.0f;
 
 	public float base_camera_speed;
     float camera_speed;
@@ -48,12 +48,12 @@ public class GameEvents : MonoBehaviour {
 		
 		Global.pause_game = false;
 
-		Global.enemy_rise = 3.0f;
+		Global.enemy_rise = 3.5f;
 
 		Global.followEnemyAlive = false;
 		Global.blockenemyAlive = false;
 
-		nextEnemyTime = 3.0f;
+		nextEnemyTime = 3.5f;
 
 		enemy_movement [] enemy_temp;
 		enemy_temp = enemy_pack[Global.enemy_animation_offset].GetComponentsInChildren<enemy_movement> (true);
@@ -75,11 +75,11 @@ public class GameEvents : MonoBehaviour {
 				camera_speed_decreaser = 0.8f;
 
 			if (Global.own_cards [Global.ac] == 3)
-				respawn_delay = 15;
+				respawn_delay = 0.5f;
 			else if (Global.own_cards [Global.ac] == 8)
-				respawn_delay = 20;
+				respawn_delay = 0.3f;
 			else if (Global.own_cards [Global.ac] == 13)
-				respawn_delay = 35;
+				respawn_delay = 0.1f;
 		}
 
 		if (Global.music_enabled)
@@ -186,8 +186,8 @@ public class GameEvents : MonoBehaviour {
 
 				nextEnemyTime += Global.enemy_rise;
 
-				if (Global.enemy_rise > 1.5f) {
-					Global.enemy_rise -= 0.05f;
+				if (!Global.classic && Global.enemy_rise > 1.25f) {
+					Global.enemy_rise -= 0.05f * respawn_delay;
 					Debug.Log(Global.enemy_rise);
 				}
 					

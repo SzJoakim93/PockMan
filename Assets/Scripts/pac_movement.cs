@@ -23,13 +23,10 @@ public class pac_movement : MonoBehaviour {
 
 	public int ghost_combo;
 	public int ghost_combo_countdown;
-	public int rate_countdown;
-
 	public bool dead;
 
 	public Animator anim;
 
-	//static int[,] levelmatrix = new int[500, 500];
 	short req_direction;
 	short pac_direction;
 	short life=2;
@@ -61,8 +58,6 @@ public class pac_movement : MonoBehaviour {
 
 		ghost_combo = 50;
 		ghost_combo_countdown = 0;
-		rate_countdown = -1;
-
 		ammo_obj = ammo.gameObject;
 
         //add dropping cards extras
@@ -329,7 +324,7 @@ public class pac_movement : MonoBehaviour {
 			life_text.text = "X " + life.ToString ();
 
 			Global.pause_game = false;
-			Global.enemy_rise = 3.0f;
+			Global.enemy_rise = 3.5f;
 
 			if (life == 0) {
 				Global.ready_to_go = 300;

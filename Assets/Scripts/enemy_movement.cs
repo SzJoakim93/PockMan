@@ -16,8 +16,6 @@ public class enemy_movement : MonoBehaviour {
 	public Transform pock_man; //players's position
 	public Transform enemy_dead; //a sample object to clne to the enemy psition in case of dead
 	public Text ghost_combo_txt;
-	public Text rate_text;
-
 	public Sprite [] sprites; //an arry containing all enym sprites
 
 	SpriteRenderer current_sprite; //the enym's current sprite
@@ -122,9 +120,10 @@ public class enemy_movement : MonoBehaviour {
 						if (enemy_pos > 1)
 						{
 							if (Global.classic && (
-								enemy_type < 2 ||
-								enemy_type == 2 && Vector3.Distance(transform.position, pock_man.position) > 2.85f ||
-								enemy_type == 3 && Vector3.Distance(transform.position, pock_man.position) > 5.55f))
+									enemy_type < 2 ||
+									enemy_type == 2 && Vector3.Distance(transform.position, pock_man.position) > 2.85f ||
+									enemy_type == 3 && Vector3.Distance(transform.position, pock_man.position) > 5.55f) ||
+								(enemy_type == 5 && Vector3.Distance(transform.position, new Vector3(camera.position.x, camera.position.y+2.5f, camera.position.z)) > 3.55f))
 							{
 							
 								switch (enemy_type) {
@@ -141,6 +140,9 @@ public class enemy_movement : MonoBehaviour {
 										break;
 									case 3:
 										searchAI.search(matrix_x, matrix_y, 4, pac_script.front_y, 8);
+										break;
+									case 5:
+										searchAI.search(matrix_x, matrix_y, (int)(camera.position.x * 2.0f), (int)(camera.position.y * 2.0f)+5, 5);
 										break;
 								}
 								
@@ -184,7 +186,7 @@ public class enemy_movement : MonoBehaviour {
 					}
 
 					//deactivate enemy at top of level
-					if (!Global.classic && matrix_y > Global.level_height - 5) {
+					if (!Global.classic && matrix_y > Global.level_height - 8) {
 						Global.enemies.Remove(gameObject);
 						Destroy(gameObject);
                     }
@@ -209,13 +211,13 @@ public class enemy_movement : MonoBehaviour {
 						else
 							current_sprite.sprite = sprites [1];
 						speed = 0.8f;
-					} else if (Global.inv_time < 200 && Global.inv_time / 20 % 2 == 0) {
+					} else if (Global.inv_time < 100 && Global.inv_time / 20 % 2 == 0) {
 						if (animation_type == 0)
 							current_sprite.sprite = sprites [direction+4];
 						else
 							current_sprite.sprite = sprites [1];
 					}
-					else if (Global.inv_time < 200 && Global.inv_time / 20 % 2 == 1)
+					else if (Global.inv_time < 100 && Global.inv_time / 20 % 2 == 1)
 						if (animation_type == 0)
 							current_sprite.sprite = sprites [direction+8];
 						else
@@ -237,19 +239,19 @@ public class enemy_movement : MonoBehaviour {
 							ally_sprite = 7;
 							current_sprite.sprite = sprites [ally_sprite];
 						}
-							
+
+						enemy_type = 5;
 						collider.SetActive (true);
 						bc.enabled = false;
 							
-					}
-
-                    //end of ally
-					if (isAlly == 1) {
+					} else if (isAlly == 1) { //end of ally
 						ally_sprite = 0;
+						current_sprite.sprite = sprites [ally_sprite];
 						bc.enabled = true;
 						collider.SetActive(false);
+						enemy_type = 0;
 					}
-					
+
 					isAlly--;
 				}
 
@@ -285,16 +287,11 @@ public class enemy_movement : MonoBehaviour {
 						//invertibility enabled
 						} else {
 
-						
-						//Global.enemy_active--;
-						
 						Global.score += pac_script.ghost_combo;
 						
 						//show total ghost combo
 						if (pac_script.ghost_combo == 250) {
-							rate_text.text = "Total ghost combo!";
-							rate_text.gameObject.SetActive(true);
-							pac_script.rate_countdown = 100;
+							pock_man.GetComponentInChildren<manage_pickups>().activate_rate_text("Total ghost combo!");
 						}
 						
 						//set and show ghost combo title

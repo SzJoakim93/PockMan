@@ -99,7 +99,7 @@ public class manage_pickups : MonoBehaviour {
 	}
 
     //appearing rate text
-	void activate_rate_text(string title) {
+	public void activate_rate_text(string title) {
 		rate_text.text = title;
 		rate_text.gameObject.SetActive(true);
 		rate_count_down = 100;
@@ -277,6 +277,7 @@ public class manage_pickups : MonoBehaviour {
 				var enemy_to_dead = getNearestenemy();
 
 				if (enemy_to_dead != null) {
+					enemy_movement enemy_script = enemy_to_dead.GetComponent<enemy_movement>();
 					Transform new_thunder = (Transform)Instantiate(thunder, transform.position, Quaternion.identity);
 					new_thunder.position = enemy_to_dead.transform.position;
 					new_thunder.gameObject.SetActive (true);
@@ -284,6 +285,10 @@ public class manage_pickups : MonoBehaviour {
 					new_dead.position = enemy_to_dead.transform.position;
 					new_dead.gameObject.SetActive (true);
 
+					if (enemy_script.enemy_type == 0)
+						Global.followEnemyAlive = false;
+					else if (enemy_script.enemy_type == 1)
+						Global.blockenemyAlive = false;
 					Global.enemies.Remove(enemy_to_dead);
 					Destroy(enemy_to_dead);
 				}
