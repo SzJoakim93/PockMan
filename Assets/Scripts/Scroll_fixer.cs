@@ -48,4 +48,14 @@ public class Scroll_fixer : MonoBehaviour {
 		}
 
 	}
+
+	public void leftClick() {
+		if (next_level < init_level)
+		next_level += movement_range;
+	}
+
+	public void rightClick() {
+		if (next_level > end_level)
+		next_level -= movement_range;
+	}
 }

@@ -134,9 +134,8 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
-  - {fileID: 21300004, guid: 287db077fb464bb40bbecc4df9ec45cb, type: 3}
+  - {fileID: 21300000, guid: 287db077fb464bb40bbecc4df9ec45cb, type: 3}
   - {fileID: 21300012, guid: 287db077fb464bb40bbecc4df9ec45cb, type: 3}
   - {fileID: 21300014, guid: 287db077fb464bb40bbecc4df9ec45cb, type: 3}
   - {fileID: 21300000, guid: c8067a2c2c721ae4db4d628ffd1c5c99, type: 3}
@@ -336,7 +335,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300000, guid: 0f4155f28971d554ea7bfe61e797f363, type: 3}
   - {fileID: 21300012, guid: 0f4155f28971d554ea7bfe61e797f363, type: 3}
@@ -2253,7 +2251,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1937370769}
-  m_RootOrder: 7
+  m_RootOrder: 4
 --- !u!1 &123679295
 GameObject:
   m_ObjectHideFlags: 0
@@ -4599,7 +4597,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300008, guid: 70340da574eefab40bf319293680a1b6, type: 3}
   - {fileID: 21300012, guid: 70340da574eefab40bf319293680a1b6, type: 3}
@@ -5050,7 +5047,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300006, guid: 94de630c49f33574da17b4a2d03d0fd4, type: 3}
   - {fileID: 21300012, guid: 94de630c49f33574da17b4a2d03d0fd4, type: 3}
@@ -5892,7 +5888,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300004, guid: 70340da574eefab40bf319293680a1b6, type: 3}
   - {fileID: 21300012, guid: 70340da574eefab40bf319293680a1b6, type: 3}
@@ -6742,7 +6737,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300000, guid: 287db077fb464bb40bbecc4df9ec45cb, type: 3}
   - {fileID: 21300012, guid: 287db077fb464bb40bbecc4df9ec45cb, type: 3}
@@ -7714,7 +7708,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1937370769}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!212 &376122812
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8552,7 +8546,7 @@ RectTransform:
   m_Children:
   - {fileID: 306257491}
   m_Father: {fileID: 1479609289}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -533, y: -7.99992752}
@@ -9675,7 +9669,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300004, guid: 287db077fb464bb40bbecc4df9ec45cb, type: 3}
   - {fileID: 21300012, guid: 287db077fb464bb40bbecc4df9ec45cb, type: 3}
@@ -10767,7 +10760,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300006, guid: 684ee2d83a566ca48bd66a13058928d0, type: 3}
   - {fileID: 21300012, guid: 684ee2d83a566ca48bd66a13058928d0, type: 3}
@@ -11539,7 +11531,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300000, guid: 9c83331e3ddfa304589909c289c74237, type: 3}
   - {fileID: 21300002, guid: 9c83331e3ddfa304589909c289c74237, type: 3}
@@ -11937,7 +11928,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300000, guid: b67afb1afa814564ba5e3a1bf76f0d70, type: 3}
   - {fileID: 21300012, guid: b67afb1afa814564ba5e3a1bf76f0d70, type: 3}
@@ -12160,7 +12150,6 @@ MonoBehaviour:
   ammo_text: {fileID: 306257492}
   ghost_combo: 0
   ghost_combo_countdown: 0
-  rate_countdown: 0
   dead: 0
   anim: {fileID: 0}
   back_x: 0
@@ -13051,11 +13040,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
-  m_Father: {fileID: 1479609289}
-  m_RootOrder: 5
+  m_Father: {fileID: 1818245013}
+  m_RootOrder: 10
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -519.000061, y: 92.000061}
+  m_AnchoredPosition: {x: 546.150024, y: 996}
   m_SizeDelta: {x: 42.7000008, y: 50}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &663833542
@@ -13257,7 +13246,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1479609289}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 524, y: 175}
@@ -13504,7 +13493,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300000, guid: 7855f860a4761f64ea805af6cbaf73e0, type: 3}
   - {fileID: 21300012, guid: 7855f860a4761f64ea805af6cbaf73e0, type: 3}
@@ -13757,7 +13745,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300000, guid: 9c83331e3ddfa304589909c289c74237, type: 3}
   - {fileID: 21300002, guid: 9c83331e3ddfa304589909c289c74237, type: 3}
@@ -16073,7 +16060,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300002, guid: 287db077fb464bb40bbecc4df9ec45cb, type: 3}
   - {fileID: 21300012, guid: 287db077fb464bb40bbecc4df9ec45cb, type: 3}
@@ -16661,7 +16647,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1479609289}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -5.53293212e-05, y: 336.000061}
@@ -17883,7 +17869,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300006, guid: 70340da574eefab40bf319293680a1b6, type: 3}
   - {fileID: 21300012, guid: 70340da574eefab40bf319293680a1b6, type: 3}
@@ -19199,7 +19184,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300008, guid: 684ee2d83a566ca48bd66a13058928d0, type: 3}
   - {fileID: 21300012, guid: 684ee2d83a566ca48bd66a13058928d0, type: 3}
@@ -19402,7 +19386,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300000, guid: 0f4155f28971d554ea7bfe61e797f363, type: 3}
   - {fileID: 21300012, guid: 0f4155f28971d554ea7bfe61e797f363, type: 3}
@@ -20295,7 +20278,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300006, guid: b67afb1afa814564ba5e3a1bf76f0d70, type: 3}
   - {fileID: 21300012, guid: b67afb1afa814564ba5e3a1bf76f0d70, type: 3}
@@ -21210,7 +21192,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300004, guid: b67afb1afa814564ba5e3a1bf76f0d70, type: 3}
   - {fileID: 21300012, guid: b67afb1afa814564ba5e3a1bf76f0d70, type: 3}
@@ -22017,7 +21998,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300002, guid: 7855f860a4761f64ea805af6cbaf73e0, type: 3}
   - {fileID: 21300012, guid: 7855f860a4761f64ea805af6cbaf73e0, type: 3}
@@ -23702,7 +23682,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300006, guid: 7855f860a4761f64ea805af6cbaf73e0, type: 3}
   - {fileID: 21300012, guid: 7855f860a4761f64ea805af6cbaf73e0, type: 3}
@@ -23984,7 +23963,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300002, guid: 70340da574eefab40bf319293680a1b6, type: 3}
   - {fileID: 21300012, guid: 70340da574eefab40bf319293680a1b6, type: 3}
@@ -24613,7 +24591,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300004, guid: 0f4155f28971d554ea7bfe61e797f363, type: 3}
   - {fileID: 21300012, guid: 0f4155f28971d554ea7bfe61e797f363, type: 3}
@@ -25070,7 +25047,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300000, guid: 94de630c49f33574da17b4a2d03d0fd4, type: 3}
   - {fileID: 21300012, guid: 94de630c49f33574da17b4a2d03d0fd4, type: 3}
@@ -25243,7 +25219,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300008, guid: 70340da574eefab40bf319293680a1b6, type: 3}
   - {fileID: 21300012, guid: 70340da574eefab40bf319293680a1b6, type: 3}
@@ -26885,7 +26860,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300004, guid: 287db077fb464bb40bbecc4df9ec45cb, type: 3}
   - {fileID: 21300012, guid: 287db077fb464bb40bbecc4df9ec45cb, type: 3}
@@ -27105,7 +27079,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1937370769}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!212 &1471152329
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27369,7 +27343,6 @@ RectTransform:
   - {fileID: 1710844848}
   - {fileID: 1673133821}
   - {fileID: 190515107}
-  - {fileID: 663833541}
   - {fileID: 910464049}
   - {fileID: 671608686}
   - {fileID: 417441101}
@@ -28044,7 +28017,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300002, guid: 94de630c49f33574da17b4a2d03d0fd4, type: 3}
   - {fileID: 21300012, guid: 94de630c49f33574da17b4a2d03d0fd4, type: 3}
@@ -28325,7 +28297,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300004, guid: 684ee2d83a566ca48bd66a13058928d0, type: 3}
   - {fileID: 21300012, guid: 684ee2d83a566ca48bd66a13058928d0, type: 3}
@@ -28399,7 +28370,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300004, guid: 7855f860a4761f64ea805af6cbaf73e0, type: 3}
   - {fileID: 21300012, guid: 7855f860a4761f64ea805af6cbaf73e0, type: 3}
@@ -28557,7 +28527,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300008, guid: 7855f860a4761f64ea805af6cbaf73e0, type: 3}
   - {fileID: 21300012, guid: 7855f860a4761f64ea805af6cbaf73e0, type: 3}
@@ -29364,7 +29333,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300008, guid: 684ee2d83a566ca48bd66a13058928d0, type: 3}
   - {fileID: 21300012, guid: 684ee2d83a566ca48bd66a13058928d0, type: 3}
@@ -29438,7 +29406,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300002, guid: 0f4155f28971d554ea7bfe61e797f363, type: 3}
   - {fileID: 21300012, guid: 0f4155f28971d554ea7bfe61e797f363, type: 3}
@@ -29758,7 +29725,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300016, guid: 9c83331e3ddfa304589909c289c74237, type: 3}
   - {fileID: 21300018, guid: 9c83331e3ddfa304589909c289c74237, type: 3}
@@ -31823,7 +31789,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300002, guid: 684ee2d83a566ca48bd66a13058928d0, type: 3}
   - {fileID: 21300012, guid: 684ee2d83a566ca48bd66a13058928d0, type: 3}
@@ -32079,7 +32044,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300024, guid: 9c83331e3ddfa304589909c289c74237, type: 3}
   - {fileID: 21300026, guid: 9c83331e3ddfa304589909c289c74237, type: 3}
@@ -32315,7 +32279,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300004, guid: 94de630c49f33574da17b4a2d03d0fd4, type: 3}
   - {fileID: 21300012, guid: 94de630c49f33574da17b4a2d03d0fd4, type: 3}
@@ -32658,7 +32621,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300000, guid: 684ee2d83a566ca48bd66a13058928d0, type: 3}
   - {fileID: 21300012, guid: 684ee2d83a566ca48bd66a13058928d0, type: 3}
@@ -33806,6 +33768,7 @@ RectTransform:
   - {fileID: 1081964536}
   - {fileID: 2102747487}
   - {fileID: 1938172423}
+  - {fileID: 663833541}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
@@ -34247,7 +34210,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300008, guid: 7855f860a4761f64ea805af6cbaf73e0, type: 3}
   - {fileID: 21300012, guid: 7855f860a4761f64ea805af6cbaf73e0, type: 3}
@@ -34485,7 +34447,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300008, guid: 94de630c49f33574da17b4a2d03d0fd4, type: 3}
   - {fileID: 21300012, guid: 94de630c49f33574da17b4a2d03d0fd4, type: 3}
@@ -34593,7 +34554,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300008, guid: 0f4155f28971d554ea7bfe61e797f363, type: 3}
   - {fileID: 21300012, guid: 0f4155f28971d554ea7bfe61e797f363, type: 3}
@@ -34805,7 +34765,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300008, guid: 9c83331e3ddfa304589909c289c74237, type: 3}
   - {fileID: 21300010, guid: 9c83331e3ddfa304589909c289c74237, type: 3}
@@ -35542,7 +35501,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300004, guid: 94de630c49f33574da17b4a2d03d0fd4, type: 3}
   - {fileID: 21300012, guid: 94de630c49f33574da17b4a2d03d0fd4, type: 3}
@@ -35788,10 +35746,10 @@ Transform:
   - {fileID: 2032091721}
   - {fileID: 1194517805}
   - {fileID: 1642480079}
+  - {fileID: 123245274}
   - {fileID: 376122811}
   - {fileID: 1471152328}
   - {fileID: 2025877622}
-  - {fileID: 123245274}
   - {fileID: 1237603383}
   - {fileID: 2034125668}
   - {fileID: 941623208}
@@ -36577,7 +36535,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300006, guid: 287db077fb464bb40bbecc4df9ec45cb, type: 3}
   - {fileID: 21300012, guid: 287db077fb464bb40bbecc4df9ec45cb, type: 3}
@@ -37046,7 +37003,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300032, guid: 9c83331e3ddfa304589909c289c74237, type: 3}
   - {fileID: 21300034, guid: 9c83331e3ddfa304589909c289c74237, type: 3}
@@ -37295,7 +37251,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300000, guid: 70340da574eefab40bf319293680a1b6, type: 3}
   - {fileID: 21300012, guid: 70340da574eefab40bf319293680a1b6, type: 3}
@@ -37642,7 +37597,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1937370769}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!212 &2025877623
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -38179,7 +38134,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300002, guid: b67afb1afa814564ba5e3a1bf76f0d70, type: 3}
   - {fileID: 21300012, guid: b67afb1afa814564ba5e3a1bf76f0d70, type: 3}
@@ -38444,7 +38398,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300006, guid: 0f4155f28971d554ea7bfe61e797f363, type: 3}
   - {fileID: 21300012, guid: 0f4155f28971d554ea7bfe61e797f363, type: 3}
@@ -39475,7 +39428,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300008, guid: b67afb1afa814564ba5e3a1bf76f0d70, type: 3}
   - {fileID: 21300012, guid: b67afb1afa814564ba5e3a1bf76f0d70, type: 3}
@@ -39863,7 +39815,6 @@ MonoBehaviour:
   pock_man: {fileID: 618623333}
   enemy_dead: {fileID: 1011204816}
   ghost_combo_txt: {fileID: 910464050}
-  rate_text: {fileID: 192647943}
   sprites:
   - {fileID: 21300008, guid: b67afb1afa814564ba5e3a1bf76f0d70, type: 3}
   - {fileID: 21300012, guid: b67afb1afa814564ba5e3a1bf76f0d70, type: 3}
