@@ -33,6 +33,7 @@ public class Start_game : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Global.isStarted = true;
 
 		for (int i = 0; i < Global.own_cards.Length; i++)
 			Global.own_cards [i] = -1;
@@ -109,26 +110,28 @@ public class Start_game : MonoBehaviour {
 		Global.global_points = PlayerPrefs.GetInt("Global_points");
 		Global.global_stars = PlayerPrefs.GetInt("Global_stars");
 
+		if (Global.isStarted) {
         if (PlayerPrefs.HasKey("Ammo_level"))
-		    Global.level_ammo = PlayerPrefs.GetInt("Ammo_level");
+				setUpgrade(PlayerPrefs.GetInt("Ammo_level"), ref Global.level_ammo, ref Global.max_ammo, false);
         if (PlayerPrefs.HasKey("Clone_level"))
-		    Global.level_clone = PlayerPrefs.GetInt("Clone_level");
+				setUpgrade(PlayerPrefs.GetInt("Clone_level"), ref Global.level_clone, ref Global.max_clone, false);
         if (PlayerPrefs.HasKey("Convert_level"))
-		    Global.level_convert = PlayerPrefs.GetInt("Convert_level");
+				setUpgrade(PlayerPrefs.GetInt("Convert_level"), ref Global.level_convert, ref Global.max_convert, false);
         if (PlayerPrefs.HasKey("Double_level"))
-		    Global.level_double = PlayerPrefs.GetInt("Double_level");
+				setUpgrade(PlayerPrefs.GetInt("Double_level"), ref Global.level_double, ref Global.max_double, true);
         if (PlayerPrefs.HasKey("Fruits_level"))
-		    Global.level_fruits = PlayerPrefs.GetInt("Fruits_level");
+				setUpgrade(PlayerPrefs.GetInt("Fruits_level"), ref Global.level_fruits, ref Global.max_fruits, true);
         if (PlayerPrefs.HasKey("Magneton_level"))
-		    Global.level_magneton = PlayerPrefs.GetInt("Magneton_level");
+				setUpgrade(PlayerPrefs.GetInt("Magneton_level"), ref Global.level_magneton, ref Global.max_magneton, true);
         if (PlayerPrefs.HasKey("Mine_level"))
-		    Global.level_mines = PlayerPrefs.GetInt("Mine_level");
+				setUpgrade(PlayerPrefs.GetInt("Mine_level"), ref Global.level_mines, ref Global.max_mines, false);
         if (PlayerPrefs.HasKey("Pause_level"))
-		    Global.level_pause = PlayerPrefs.GetInt("Pause_level");
+				setUpgrade(PlayerPrefs.GetInt("Pause_level"), ref Global.level_pause, ref Global.max_pause, true);
         if (PlayerPrefs.HasKey("Safe_level"))
-		    Global.level_safe = PlayerPrefs.GetInt("Safe_level");
+				setUpgrade(PlayerPrefs.GetInt("Safe_level"), ref Global.level_safe, ref Global.max_safe, true);
         if (PlayerPrefs.HasKey("Thunder_level"))
-		    Global.level_thunder = PlayerPrefs.GetInt("Thunder_level");
+				setUpgrade(PlayerPrefs.GetInt("Thunder_level"), ref Global.level_thunder, ref Global.max_thunder, false);
+		}
 			
         if (PlayerPrefs.HasKey("Unlocked_levels"))
 			Global.unlocked_levels = PlayerPrefs.GetInt("Unlocked_levels");
@@ -224,5 +227,16 @@ public class Start_game : MonoBehaviour {
 
 		} else
 			not_enought.SetActive (true);
+	}
+
+	void setUpgrade(int pref_value, ref int level, ref int extra_value, bool isPercent) {
+		level = pref_value;
+
+		for (int i = 1; i < level; i++)
+			if (isPercent)
+					extra_value += (int)(extra_value*0.2f);
+				else
+					extra_value++;
+
 	}
 }

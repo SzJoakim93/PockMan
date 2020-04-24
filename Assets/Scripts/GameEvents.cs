@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
@@ -279,6 +279,7 @@ public class GameEvents : MonoBehaviour {
 					Global.own_cards [Global.ac] = -1;
 					PlayerPrefs.SetInt("Card_place" + Global.ac, -1);
 					Global.ac = -1;
+					PlayerPrefs.SetInt("Card_active", -1);
 				}
 			}
 		}
