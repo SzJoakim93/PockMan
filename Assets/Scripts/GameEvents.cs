@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
@@ -53,7 +53,7 @@ public class GameEvents : MonoBehaviour {
 		Global.followEnemyAlive = false;
 		Global.blockenemyAlive = false;
 
-		nextEnemyTime = 3.5f;
+		nextEnemyTime = 3.25f;
 
 		enemy_movement [] enemy_temp;
 		enemy_temp = enemy_pack[Global.enemy_animation_offset].GetComponentsInChildren<enemy_movement> (true);
@@ -186,10 +186,8 @@ public class GameEvents : MonoBehaviour {
 
 				nextEnemyTime += Global.enemy_rise;
 
-				if (!Global.classic && Global.enemy_rise > 1.25f) {
+				if (!Global.classic && Global.enemy_rise > 1.25f)
 					Global.enemy_rise -= 0.05f * respawn_delay;
-					Debug.Log(Global.enemy_rise);
-				}
 					
 			}
 
@@ -222,6 +220,9 @@ public class GameEvents : MonoBehaviour {
 				//Application.LoadLevel ("menu");
 				game_over_panel.SetActive(true);
 		}
+
+		if (Global.pause_game && Time.timeSinceLevelLoad > nextEnemyTime)
+			nextEnemyTime += Global.enemy_rise;
 	}
 
 	void end_level() {
@@ -365,6 +366,7 @@ public class GameEvents : MonoBehaviour {
 			return new Vector2(Global.endcoord_x/2.0f, Global.endcoord_y/2.0f);
         //respawn enemy to the camera position
 		else {
+			int side = (Random.value < 0.5f ? 0 : 1);
 			int j = (int)(transform.position.y+7.0f)*2;
             bool no_safe = false;
 			int k, l, m;
@@ -378,7 +380,7 @@ public class GameEvents : MonoBehaviour {
 	                        no_safe = false;
 	                }
 
-				if (k % 2 == 0)
+				if (k % 2 == side)
 					l++;
 				else
 					m--;

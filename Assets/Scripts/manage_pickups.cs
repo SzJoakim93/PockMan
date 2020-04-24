@@ -226,8 +226,8 @@ public class manage_pickups : MonoBehaviour {
 
 		} else if (coll.gameObject.tag == "convert_enemy") {
 			for (int i=0; i<Global.max_convert; i++) {
-				GameObject new_enemy = (GameObject)Instantiate(enemy_ally[Global.enemy_animation_offset], coll.transform.position, Quaternion.identity);
-				new_enemy.SetActive(true);
+				var enemy_to_convert = getNearestenemy();
+				enemy_to_convert.GetComponent<enemy_movement>().convertToAlly();
 			}
 			
 			Destroy (coll.gameObject);

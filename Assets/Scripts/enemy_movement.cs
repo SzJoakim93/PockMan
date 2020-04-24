@@ -231,25 +231,14 @@ public class enemy_movement : MonoBehaviour {
 
                 //ally activation section
 				if (isAlly > 0) {
-					//begining of ally
-					if (isAlly == 1000) {
-						if (animation_type == 0)
-							ally_sprite = 16;
-						else {
-							ally_sprite = 7;
-							current_sprite.sprite = sprites [ally_sprite];
-						}
+					if (isAlly > 1 && isAlly < 100) {
+						if (isAlly / 20 % 2 == 0)
+							setAllySprite(true);
+						else
+							setAllySprite(false);
 
-						enemy_type = 5;
-						collider.SetActive (true);
-						bc.enabled = false;
-							
 					} else if (isAlly == 1) { //end of ally
-						ally_sprite = 0;
-						current_sprite.sprite = sprites [ally_sprite];
-						bc.enabled = true;
-						collider.SetActive(false);
-						enemy_type = 0;
+						deconvertFromAlly();
 					}
 
 					isAlly--;
@@ -471,6 +460,20 @@ public class enemy_movement : MonoBehaviour {
 
 	}
 
+	public void convertToAlly() {
+		isAlly = 1000;
+		setAllySprite(true);
+		enemy_type = 5;
+		collider.SetActive (true);
+		bc.enabled = false;
+	}
+
+	public void deconvertFromAlly() {
+		setAllySprite(false);
+		bc.enabled = true;
+		collider.SetActive(false);
+		enemy_type = 0;
+	}
 
 	public void respawn_enemy() {
 
@@ -628,6 +631,26 @@ public class enemy_movement : MonoBehaviour {
 			Global.followEnemyAlive = false;
 		else if (enemy_type == 1)
 			Global.blockenemyAlive = false;
+	}
+
+	void setAllySprite(bool value) {
+		if (value) {
+			if (animation_type == 0) {
+				ally_sprite = 16;
+				current_sprite.sprite = sprites [ally_sprite+direction];
+			}
+			else {
+				ally_sprite = 7;
+				current_sprite.sprite = sprites [ally_sprite];
+			}
+		} else {
+			ally_sprite = 0;
+
+			if (animation_type == 0) 
+				current_sprite.sprite = sprites [ally_sprite+direction];
+			else
+				current_sprite.sprite = sprites [ally_sprite];
+		}
 	}
 
 }
