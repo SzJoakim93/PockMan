@@ -128,7 +128,7 @@ public class load_level : MonoBehaviour {
 										turrets.Add(new Vector3((j-k)*0.5f, (i-4)*0.5f, 270.0f));
 								}
 								else if (line[j] >= 'A' && line[j] <= 'L')
-                                    Instantiate(minor_objects[line[j] - 'A'], new Vector3((j - k) * 0.5f /*+ 0.25f*/ + minor_objects[line[j] - 'A'].localScale.x / 1.5f / 4.0f , (i - 4) * 0.5f /*- 0.25f*/ - minor_objects[line[j] - 'A'].localScale.y / 1.5f / 4.0f , 0.0f), Quaternion.identity);
+                                    Instantiate(minor_objects[line[j] - 'A'+1], new Vector3((j - k) * 0.5f /*+ 0.25f*/ + minor_objects[line[j] - 'A'+1].localScale.x / 1.5f / 4.0f , (i - 4) * 0.5f /*- 0.25f*/ - minor_objects[line[j] - 'A'+1].localScale.y / 1.5f / 4.0f , 0.0f), Quaternion.identity);
                                 else if (line[j] >= 'M' && line[j] <= '\\')
                                     Instantiate(flowers[line[j]-'L'], new Vector3((j-k)*0.5f + 0.25f, (i-4)*0.5f - 0.25f, 0.0f) , Quaternion.identity);
 								else {
@@ -174,7 +174,7 @@ public class load_level : MonoBehaviour {
                             else if (line[j] == '2')
                                 Global.max_score += 10;
                             else if (line[j] > '2' && line[j] < '7')
-                                Global.max_score += 100;
+                                Global.max_score += 50;
 					}
 				}
 			}
@@ -199,7 +199,6 @@ public class load_level : MonoBehaviour {
 			Instantiate(turret, new Vector3(tr.x, tr.y, 0.0f), Quaternion.Euler(0, 0, Mathf.RoundToInt(tr.z)));
 
 		//Global.max_score = Global.remaining;
-        Debug.Log(Global.max_score);
 
         if (Global.classic)
             Global.enemy_speed = 1.4f;
@@ -260,7 +259,7 @@ public class load_level : MonoBehaviour {
 			main_camera.backgroundColor = new Color(0.9f, 0.8f, 0.6f);
 
 		//change enemies skin
-		if (level_graphics_int > 10 && level_graphics_int < 13) //city
+		if (level_graphics_int > 9 && level_graphics_int < 13) //city
 			Global.enemy_animation_offset = 2;
 		else if (level_graphics_int > 12 && level_graphics_int < 16) //garden
 			Global.enemy_animation_offset = 7;
