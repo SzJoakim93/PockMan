@@ -25514,6 +25514,7 @@ MonoBehaviour:
   comp_panel: {fileID: 732384339}
   comp_text: {fileID: 471242408}
   score_text: {fileID: 1710844849}
+  nextButton: {fileID: 1633367746}
   gain_points: {fileID: 635870794}
   global_points: {fileID: 831792426}
   star1: {fileID: 1531984226}

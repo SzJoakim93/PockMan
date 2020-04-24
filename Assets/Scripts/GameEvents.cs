@@ -16,6 +16,7 @@ public class GameEvents : MonoBehaviour {
 	public GameObject comp_panel;
 	public Text comp_text;
 	public Text score_text;
+	public Button nextButton;
 
 	public Text gain_points;
 	public Text global_points;
@@ -345,6 +346,9 @@ public class GameEvents : MonoBehaviour {
         }
         else
             comp_panel.SetActive(true);
+
+		if ((!Global.classic && Global.level == 39) || (!Global.classic && Global.level == 19))
+				nextButton.interactable = false;
 
         //end of in-game actions
 		if (Global.ready_to_go > 0 && (Global.ready_to_go < 50 || Global.ready_to_go % 100 != 1)) {

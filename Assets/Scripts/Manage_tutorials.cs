@@ -52,7 +52,7 @@ public class Manage_tutorials : MonoBehaviour {
                 if (Global.own_cards[0] != -1 && tutorial_frame == 0)
                     tutorial_frame = 1;
 
-                if (tutorial_frame > 0 && tutorial_frame < 9000)
+                if (tutorial_frame > 0 && tutorial_frame < 5100)
                 {
                     tutorial_frame++;
 
@@ -64,17 +64,17 @@ public class Manage_tutorials : MonoBehaviour {
                         drop_text.text = "You can find your own\ndropping cards here.";
                         back_btn.SetActive(false);
                     }
-                    else if (tutorial_frame == 700)
+                    else if (tutorial_frame == 600)
                         drop_text.text = "Simply click a card you want to activate.";
-                    else if (tutorial_frame == 1300)
+                    else if (tutorial_frame == 1000)
                         drop_text.text = "This card will make effect while playing";
-                    else if (tutorial_frame == 1800)
+                    else if (tutorial_frame == 1400)
                         drop_text.text = "Basically all cards can be used by 5 times.";
-                    else if (tutorial_frame == 2300)
+                    else if (tutorial_frame == 1800)
                         drop_text.text = "This will be decreased after completing a level successfully";
-                    else if (tutorial_frame == 2800)
+                    else if (tutorial_frame == 2200)
                         drop_text.text = "You can always own 4 cards only";
-                    else if (tutorial_frame == 3300)
+                    else if (tutorial_frame == 2600)
                     {
                         own_place.color = white;
                         drop_btn1.color = red;
@@ -82,7 +82,7 @@ public class Manage_tutorials : MonoBehaviour {
                         drop_btn3.color = red;
                         drop_text.text = "Getting more cards you can always drop for points here";
                     }
-                    else if (tutorial_frame == 4000)
+                    else if (tutorial_frame == 3100)
                     {
                         drop_btn1.color = white;
                         drop_btn2.color = white;
@@ -90,16 +90,16 @@ public class Manage_tutorials : MonoBehaviour {
                         free_card_text.color = red;
                         drop_text.text = "But it worth more to collect stars to get dropping cards for FREE.";
                     }
-                    else if (tutorial_frame == 4500)
+                    else if (tutorial_frame == 3400)
                         drop_text.text = "This title always shows the number of stars required for the next FREE dropping.";
-                    else if (tutorial_frame == 5200)
+                    else if (tutorial_frame == 4000)
                     {
                         free_card_text.color = gold;
                         drop_text.text = "There are 3 category of cards.";
                     }
-                    else if (tutorial_frame == 5700)
+                    else if (tutorial_frame == 4400)
                         drop_text.text = "Those are basic, silver and gold cards containing more and more powerfull effects";
-                    else if (tutorial_frame == 6400)
+                    else if (tutorial_frame == 4900)
                     {
                         drop_text.text = "Tap a card to activate";
                         drop_text.color = gold;

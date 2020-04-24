@@ -33,6 +33,7 @@ public class enemy_movement : MonoBehaviour {
 	BalancedSearch searchAI;
 	int matrix_x;
 	int matrix_y;
+	short eat_time;
 
 	//bool selectable=true;
 
@@ -69,6 +70,7 @@ public class enemy_movement : MonoBehaviour {
 		enemy_pos = Global.levelmatrix [matrix_y, matrix_x];
 
 		count_down = 50;
+		eat_time = 0;
 
 		searchAI = new BalancedSearch();
 	}
@@ -76,7 +78,7 @@ public class enemy_movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Global.ready_to_go == 0 && Global.pause_enemy == 0 && !Global.pause_game) {
+		if (Global.ready_to_go == 0 && Global.pause_enemy == 0 && !Global.pause_game && eat_time == 0) {
 			if (count_down == 0) {
 
                 //get level matrix coordinates
@@ -327,6 +329,9 @@ public class enemy_movement : MonoBehaviour {
 
 			}
 		}
+
+		if (eat_time > 0)
+			eat_time--;
 	}
 
 	void determine_direction() {
@@ -589,6 +594,11 @@ public class enemy_movement : MonoBehaviour {
 				direction = 2;
 
 			setRotation();
+		} else if (Global.classic &&
+		 (coll.gameObject.tag == "apple" || coll.gameObject.tag == "pineapple" ||
+		 coll.gameObject.tag == "melone" || coll.gameObject.tag == "bananna")) {
+			Destroy(coll.gameObject);
+			eat_time = 50;
 		}
 	}
 
