@@ -6,6 +6,12 @@ public class in_game_buttons : MonoBehaviour {
 	public GameObject pause_panel;
     public GameObject warn_panel;
     public GameObject comp_panel;
+    public GameObject arrows;
+
+    void Start() {
+        if (Global.controll_type == 0)
+            arrows.SetActive(false);
+    }
 
 	public void restart() {
         if (Global.classic)

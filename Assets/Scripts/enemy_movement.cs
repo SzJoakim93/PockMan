@@ -39,10 +39,9 @@ public class enemy_movement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (Global.classic)
-			speed = Global.enemy_speed;
-		else
-			speed = Global.enemy_speed * 0.8f;
+
+		speed = Global.enemy_speed;
+
 		current_sprite = this.GetComponent<SpriteRenderer> ();
 		Transform [] temp = this.GetComponentsInChildren<Transform> (true);
 		collider = temp [1].gameObject;

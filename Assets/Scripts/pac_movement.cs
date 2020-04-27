@@ -101,19 +101,22 @@ public class pac_movement : MonoBehaviour {
 			else if (Input.GetKey (KeyCode.DownArrow))
 				req_direction = 3;
 
-			if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+			if (Global.controll_type == 0)
 			{
-				// Get movement of the finger since last frame
-				Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-				Debug.Log("Touched");
-				if (touchDeltaPosition.x < -0.01)
-					req_direction = 0;
-				else if (touchDeltaPosition.x > 0.01)
-					req_direction = 1;
-				else if (touchDeltaPosition.y < -0.01)
-					req_direction = 2;
-				else if (touchDeltaPosition.y > 0.01)
-					req_direction = 3;
+				if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+				{
+					// Get movement of the finger since last frame
+					Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+					Debug.Log("Touched");
+					if (touchDeltaPosition.x < -0.5)
+						req_direction = 0;
+					else if (touchDeltaPosition.x > 0.5)
+						req_direction = 1;
+					else if (touchDeltaPosition.y < -0.5)
+						req_direction = 2;
+					else if (touchDeltaPosition.y > 0.5)
+						req_direction = 3;
+				}
 			}
 
 

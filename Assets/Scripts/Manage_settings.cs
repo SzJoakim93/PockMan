@@ -6,13 +6,16 @@ using System.Xml;
 
 public class Manage_settings : MonoBehaviour {
 
-    public Text lang_text;
-    public Text music_text;
+    public Dropdown music;
+    public Dropdown lang;
+    public Dropdown controll;
     public Language_manager lang_manager;
 
 	// Use this for initialization
 	void Start () {
-        fix_titles();
+        music.value = PlayerPrefs.GetInt("MusicEnabled", 0);
+        controll.value = PlayerPrefs.GetInt("ControlType", 0);
+        lang.value =  LangStrToInt(PlayerPrefs.GetString("Language", "ENG"));
 	}
 	
 	// Update is called once per frame
@@ -20,45 +23,36 @@ public class Manage_settings : MonoBehaviour {
 	
 	}
 
-    void fix_titles()
+    public void set_language(int value)
     {
-        if (Global.music_enabled)
-            music_text.text = Global.GetTextByValue("name", "/Canvas/Settings/music_txt") + ": " + Global.GetTextByValue("name", "SWITCH ON");
-        else
-            music_text.text = Global.GetTextByValue("name", "/Canvas/Settings/music_txt") + ": " + Global.GetTextByValue("name", "SWITCH OFF");
-    }
+        switch (value)
+        {
+            case 0:
+                Global.current_language = "ENG";
+                break;
+            case 1:
+                Global.current_language = "HUN";
+                break;
+        }
 
-    public void set_language()
-    {
-        if (Global.current_language == "ENG")
-            Global.current_language = "HUN";
-        else
-            Global.current_language = "ENG";
         lang_manager.Set_Language();
-
-        //change_settings_text(lang_text, Global.current_language);
         PlayerPrefs.SetString("Language", Global.current_language);
-
-        fix_titles();
     }
 
-    public void set_music()
+    public void set_music(int value)
     {
-        if (Global.music_enabled)
-        {
-            Global.music_enabled = false;
-            music_text.text = Global.GetTextByValue("name", "/Canvas/Settings/music_txt") + ": " + Global.GetTextByValue("name", "SWITCH OFF");
-        }
-        else
-        {
-            Global.music_enabled = true;
-            music_text.text = Global.GetTextByValue("name", "/Canvas/Settings/music_txt") + ": " + Global.GetTextByValue("name", "SWITCH ON");
-        }
+        Global.music_enabled = value == 0;
+        PlayerPrefs.SetInt("MusicEnabled", value);
     }
 
-    void change_settings_text(Text set_text, string option)
-    {
-        string[] splited = set_text.text.Split(':');
-        set_text.text = splited[0] + ": " + option;
+    public void setControllType(int value) {
+        Global.controll_type = value;
+        PlayerPrefs.SetInt("ControlType", value);
+    }
+
+    int LangStrToInt(string langStr) {
+        if (langStr == "HUN")
+            return 1;
+        return 0;
     }
 }

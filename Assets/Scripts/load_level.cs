@@ -201,9 +201,9 @@ public class load_level : MonoBehaviour {
 		//Global.max_score = Global.remaining;
 
         if (Global.classic)
-            Global.enemy_speed = 1.4f;
+            Global.enemy_speed = 1.2f;
         else
-            Global.enemy_speed = 1.3f;
+            Global.enemy_speed = 0.86f;
 
 	}
 

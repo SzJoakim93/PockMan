@@ -112,25 +112,32 @@ public class Start_game : MonoBehaviour {
 
 		if (Global.isStarted) {
         if (PlayerPrefs.HasKey("Ammo_level"))
-				setUpgrade(PlayerPrefs.GetInt("Ammo_level"), ref Global.level_ammo, ref Global.max_ammo, false);
+					setUpgrade(PlayerPrefs.GetInt("Ammo_level"), ref Global.level_ammo, ref Global.max_ammo, false);
         if (PlayerPrefs.HasKey("Clone_level"))
-				setUpgrade(PlayerPrefs.GetInt("Clone_level"), ref Global.level_clone, ref Global.max_clone, false);
+					setUpgrade(PlayerPrefs.GetInt("Clone_level"), ref Global.level_clone, ref Global.max_clone, false);
         if (PlayerPrefs.HasKey("Convert_level"))
-				setUpgrade(PlayerPrefs.GetInt("Convert_level"), ref Global.level_convert, ref Global.max_convert, false);
+					setUpgrade(PlayerPrefs.GetInt("Convert_level"), ref Global.level_convert, ref Global.max_convert, false);
         if (PlayerPrefs.HasKey("Double_level"))
-				setUpgrade(PlayerPrefs.GetInt("Double_level"), ref Global.level_double, ref Global.max_double, true);
+					setUpgrade(PlayerPrefs.GetInt("Double_level"), ref Global.level_double, ref Global.max_double, true);
         if (PlayerPrefs.HasKey("Fruits_level"))
-				setUpgrade(PlayerPrefs.GetInt("Fruits_level"), ref Global.level_fruits, ref Global.max_fruits, true);
+					setUpgrade(PlayerPrefs.GetInt("Fruits_level"), ref Global.level_fruits, ref Global.max_fruits, true);
         if (PlayerPrefs.HasKey("Magneton_level"))
-				setUpgrade(PlayerPrefs.GetInt("Magneton_level"), ref Global.level_magneton, ref Global.max_magneton, true);
+					setUpgrade(PlayerPrefs.GetInt("Magneton_level"), ref Global.level_magneton, ref Global.max_magneton, true);
         if (PlayerPrefs.HasKey("Mine_level"))
-				setUpgrade(PlayerPrefs.GetInt("Mine_level"), ref Global.level_mines, ref Global.max_mines, false);
+					setUpgrade(PlayerPrefs.GetInt("Mine_level"), ref Global.level_mines, ref Global.max_mines, false);
         if (PlayerPrefs.HasKey("Pause_level"))
-				setUpgrade(PlayerPrefs.GetInt("Pause_level"), ref Global.level_pause, ref Global.max_pause, true);
+					setUpgrade(PlayerPrefs.GetInt("Pause_level"), ref Global.level_pause, ref Global.max_pause, true);
         if (PlayerPrefs.HasKey("Safe_level"))
-				setUpgrade(PlayerPrefs.GetInt("Safe_level"), ref Global.level_safe, ref Global.max_safe, true);
+					setUpgrade(PlayerPrefs.GetInt("Safe_level"), ref Global.level_safe, ref Global.max_safe, true);
         if (PlayerPrefs.HasKey("Thunder_level"))
-				setUpgrade(PlayerPrefs.GetInt("Thunder_level"), ref Global.level_thunder, ref Global.max_thunder, false);
+					setUpgrade(PlayerPrefs.GetInt("Thunder_level"), ref Global.level_thunder, ref Global.max_thunder, false);
+
+				if (PlayerPrefs.HasKey("MusicEnabled"))
+					Global.music_enabled = PlayerPrefs.GetInt("MusicEnabled") == 0;
+				if (PlayerPrefs.HasKey("ControlType"))
+					Global.controll_type = PlayerPrefs.GetInt("ControlType");
+				if (PlayerPrefs.HasKey("Language"))
+            Global.current_language = PlayerPrefs.GetString("Language");
 		}
 			
         if (PlayerPrefs.HasKey("Unlocked_levels"))
@@ -187,17 +194,6 @@ public class Start_game : MonoBehaviour {
 
         if (PlayerPrefs.HasKey("Card_active"))
 		Global.ac = PlayerPrefs.GetInt("Card_active");
-
-        if (PlayerPrefs.HasKey("Language"))
-            Global.current_language = PlayerPrefs.GetString("Language");
-        if (PlayerPrefs.HasKey("Music"))
-        {
-            int mus_index = PlayerPrefs.GetInt("Music");
-            if (mus_index == 0)
-                Global.music_enabled = false;
-            else
-                Global.music_enabled = true;
-        }
 
 	}
 

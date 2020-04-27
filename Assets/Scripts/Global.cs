@@ -57,12 +57,9 @@ public class Global : MonoBehaviour {
 
     public static XmlNodeList element_list;
 
-    public static string option_lang;
-    public static string option_mus;
-    public static string option_switch;
-
     public static string current_language = "HUN";
     public static bool music_enabled = true;
+	public static int controll_type = 0;
 
 	public static bool followEnemyAlive;
 	public static bool blockenemyAlive;
