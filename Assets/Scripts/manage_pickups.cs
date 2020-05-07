@@ -22,6 +22,7 @@ public class manage_pickups : MonoBehaviour {
 	public Text rate_text;
 
 	public Sound_manager sound_manager;
+	public InGameTutorials Tutorials;
 		
 	int rate_count_down; //determine the rating text's appearance time
 
@@ -217,12 +218,17 @@ public class manage_pickups : MonoBehaviour {
 			mine_text.text = "X " + Global.mines.ToString();
 			score_count_down = 40;
             sound_manager.PlaySound(4);
+			if (Global.tutorial == 2)
+				Tutorials.invokeTutorial();
+
 		} else if (coll.gameObject.tag == "ammo") {
 			Destroy (coll.gameObject);
 			Global.ammo = Global.max_ammo;
 			ammo_text.text = "X " + Global.ammo.ToString();
 			score_count_down = 40;
             sound_manager.PlaySound(4);
+			if (Global.tutorial == 1)
+				Tutorials.invokeTutorial();
 
 		} else if (coll.gameObject.tag == "convert_enemy") {
 			for (int i=0; i<Global.max_convert; i++) {

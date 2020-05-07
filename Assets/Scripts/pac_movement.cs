@@ -26,6 +26,7 @@ public class pac_movement : MonoBehaviour {
 	public bool dead;
 
 	public Animator anim;
+	public RawImage arrows_smooth;
 
 	short req_direction;
 	short pac_direction;
@@ -108,14 +109,22 @@ public class pac_movement : MonoBehaviour {
 					// Get movement of the finger since last frame
 					Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
 					Debug.Log("Touched");
-					if (touchDeltaPosition.x < -0.5)
+					if (touchDeltaPosition.x < -0.5) {
 						req_direction = 0;
-					else if (touchDeltaPosition.x > 0.5)
+						arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 180);
+					}
+					else if (touchDeltaPosition.x > 0.5) {
 						req_direction = 1;
-					else if (touchDeltaPosition.y < -0.5)
+						arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 0);
+					}
+					else if (touchDeltaPosition.y < -0.5) {
 						req_direction = 2;
+						arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 90);
+
+					}
 					else if (touchDeltaPosition.y > 0.5)
 						req_direction = 3;
+						arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 270);
 				}
 			}
 
@@ -143,16 +152,6 @@ public class pac_movement : MonoBehaviour {
 				current_pos == 9 && req_direction != 1 ||
 				current_pos == 10)) {
 
-
-				/*if (req_direction == 0)
-					transform.localEulerAngles = new Vector3 (0, 180, 0);
-				else if (req_direction == 1)
-					transform.localEulerAngles = new Vector3 (0, 0, 0);
-				else if (req_direction == 2)
-					transform.localEulerAngles = new Vector3 (0, 0, 90);
-				else if (req_direction == 3)
-					transform.localEulerAngles = new Vector3 (0, 180, 270);*/
-
 				pac_direction = req_direction;
 				anim.SetInteger("direction", req_direction);
 				req_direction = -1;
@@ -161,7 +160,7 @@ public class pac_movement : MonoBehaviour {
 			}
 
             //determine the player's visible area
-			if (prev_pos_x != matrix_x || prev_pos_y != matrix_y) {
+			if (matrix_x > -1 && matrix_y > -1 && prev_pos_x != matrix_x || prev_pos_y != matrix_y) {
 				if (nodeReached) {
 					front_y = back_y = matrix_y;
 					front_x = back_x = matrix_x;
@@ -331,8 +330,6 @@ public class pac_movement : MonoBehaviour {
 
 			if (life == 0) {
 				Global.ready_to_go = 300;
-				//game_over_text.gameObject.SetActive(true);
-				//game_over_panel.SetActive(true);
             }
             else if (!Global.classic && transform.position.y * 2 > Global.level_height - 10)
             {

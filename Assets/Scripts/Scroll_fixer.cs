@@ -8,7 +8,7 @@ public class Scroll_fixer : MonoBehaviour {
 	public bool horizontal;
 	public bool vertical;
 
-	public float movement_range;
+	float movement_range;
     public float packages;
 
 	float movement_level;
@@ -21,6 +21,7 @@ public class Scroll_fixer : MonoBehaviour {
     {
         if (horizontal)
         {
+			movement_range = rectTransform.position.x*2;
             movement_level = next_level = init_level = rectTransform.position.x;
             end_level = init_level - movement_range * packages;
         }

@@ -33,6 +33,7 @@ public class GameEvents : MonoBehaviour {
 	public GameObject warn_panel;
 	public Text ready_to_go;
 	public GameObject game_over_panel;
+	public InGameTutorials Tutorials;
 
 	// Use this for initialization
 	void Start () {
@@ -62,10 +63,6 @@ public class GameEvents : MonoBehaviour {
 		enemy = new GameObject[enemy_temp.Length];
 		for (int i = 0; i < enemy_temp.Length; i++)
 			enemy[i] = enemy_temp[i].gameObject;
-
-		/*enemy = new GameObject[Global.max_enemy];
-		for (int i = Global.enemy_animation_offset, j = 0; i < Global.enemy_animation_offset + Global.max_enemy; i++, j++)
-			enemy[j] = enemy_pack [i];*/
 
 		if (Global.ac > -1) {
 			if (Global.own_cards [Global.ac] == 1)
@@ -117,36 +114,6 @@ public class GameEvents : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Global.ready_to_go == 0 && !Global.pause_game) {
-			//managing the ammo bonus, shooting
-			/*if (Global.ammo > 0 && !ammo_obj.activeInHierarchy) {
-				float x = transform.position.x;
-				float y = transform.position.y;
-				int xi = (int)(x * 2);
-				int yi = (int)(y * 2);
-				bool isCollision = false;
-				while (!isCollision && (int)(y * 2) > -1 && (int)(x * 2) > -1 && Global.levelmatrix [(int)(y * 2), (int)(x * 2)] != -1) {
-					for (int i = 0; i < 5; i++)
-						if (x > enemy_trans[i].position.x - 0.5 && x < enemy_trans[i].position.x + 0.5 && y > enemy_trans[i].position.y - 0.5 && y < enemy_trans[i].position.y + 0.5) {
-							ammo_obj.SetActive(true);	
-							ammo.position = transform.position;
-							ammo.eulerAngles = transform.eulerAngles;
-							Global.ammo--;
-							isCollision = true;
-							break;
-						}
-
-					if (pac_direction == 0)
-						x--;
-					else if (pac_direction == 1)
-						x++;
-					else if (pac_direction == 2)
-						y++;
-					else
-						y--; 
-				}
-				
-			}*/
-
 			//level completed
 			if ( !Global.classic && (int)(pac_man.position.x * 2) == Global.endcoord_x && (int)(pac_man.position.y * 2) == Global.endcoord_y || Global.classic && Global.remaining < 1 ) {
 				Global.ready_to_go = 200;
@@ -212,8 +179,11 @@ public class GameEvents : MonoBehaviour {
 			}
 		} else if (Global.ready_to_go > 0 && (Global.ready_to_go < 50 || Global.ready_to_go % 100 != 1)) {
 			Global.ready_to_go--;
-			if (Global.ready_to_go == 1)
+			if (Global.ready_to_go == 1) {
 				ready_to_go.gameObject.SetActive(false);
+				if (Global.tutorial == 0)
+					Tutorials.invokeTutorial();
+			}
 			else if (Global.ready_to_go == 102)
 				//Application.LoadLevel ("menu");
 				end_level();
