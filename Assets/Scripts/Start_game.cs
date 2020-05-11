@@ -33,7 +33,6 @@ public class Start_game : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Global.isStarted = true;
 
 		for (int i = 0; i < Global.own_cards.Length; i++)
 			Global.own_cards [i] = -1;
@@ -103,6 +102,8 @@ public class Start_game : MonoBehaviour {
 
 		point_txt.text = Global.global_points.ToString();
 		star_text.text = Global.global_stars.ToString ();
+
+		Global.isStarted = true;
 	}
 	
 	void ReadUserData()
@@ -110,7 +111,7 @@ public class Start_game : MonoBehaviour {
 		Global.global_points = PlayerPrefs.GetInt("Global_points");
 		Global.global_stars = PlayerPrefs.GetInt("Global_stars");
 
-		if (Global.isStarted) {
+		if (!Global.isStarted) {
 			if (PlayerPrefs.HasKey("Ammo_level"))
 				setUpgrade(PlayerPrefs.GetInt("Ammo_level"), ref Global.level_ammo, ref Global.max_ammo, false);
 			if (PlayerPrefs.HasKey("Clone_level"))

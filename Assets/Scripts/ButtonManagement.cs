@@ -15,6 +15,7 @@ public class ButtonManagement : MonoBehaviour {
     public GameObject Settings_Menu;
 	public GameObject back_btn;
 	public GameObject bonus_panel;
+	public GameObject loadingPanel;
 
     Image[] card_images; //array of owned cards
 	Image[][] card_getables; //matrix of getable cards
@@ -210,6 +211,7 @@ public class ButtonManagement : MonoBehaviour {
 
 
 	public void load(int level) {
+		loadingPanel.SetActive(true);
 		Global.level = level;
 		Application.LoadLevel("ingame");
 	}

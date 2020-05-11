@@ -22,7 +22,7 @@ public class enemy_movement : MonoBehaviour {
 
 	GameObject collider; //the collider object that using for ally mode
 
-	public short isAlly;
+	public short isAlly = 0;
 	short ally_sprite = 0; //offset to ally sprite in sprites array
 
 	BoxCollider2D bc; //the collider that disabled in allymode to not kill the player
@@ -178,7 +178,6 @@ public class enemy_movement : MonoBehaviour {
 								determine_direction ();
 						}
 					}
-						
 
                     //change enemy's sprite
 					if (Global.inv_time == 0) {
@@ -192,6 +191,24 @@ public class enemy_movement : MonoBehaviour {
 						Destroy(gameObject);
                     }
 				}
+
+
+				if (Global.controll_type == 0 && Global.inv_time == 0 && isAlly == 0 &&
+					Vector3.Distance(transform.position, pock_man.position) < 2.0f)
+					if (matrix_y == (int)(pock_man.position.y * 2.0f)) {
+						if ((pac_script.getDirection == 0 && transform.position.x > pock_man.position.x) ||
+							(pac_script.getDirection == 1 && transform.position.x < pock_man.position.x)) {
+							pac_script.setBehindEnemy = true;
+							Debug.Log("Enemy behind horizontal");
+						}
+					} else if (matrix_x == (int)(pock_man.position.x * 2.0f)) {
+						if ((pac_script.getDirection == 2 && transform.position.y < pock_man.position.y) ||
+							(pac_script.getDirection == 3 && transform.position.y > pock_man.position.y)) {
+							pac_script.setBehindEnemy = true;
+							Debug.Log("Enemy behind vertical");
+						}
+					}
+
 
 				//fix enemy position when go out of playground
 				if (((enemy_pos == 1 || enemy_pos == 2 || enemy_pos == 5 || enemy_pos == 9) && (int)(transform.position.x * 2.0f) > matrix_x) ||

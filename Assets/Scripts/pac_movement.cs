@@ -27,6 +27,8 @@ public class pac_movement : MonoBehaviour {
 
 	public Animator anim;
 	public RawImage arrows_smooth;
+	public short getDirection { get { return pac_direction; } }
+	public bool setBehindEnemy { set { this.enemyBehind = value; } }
 
 	short req_direction;
 	short pac_direction;
@@ -46,6 +48,7 @@ public class pac_movement : MonoBehaviour {
 	int prev_pos_x;
 	int prev_pos_y;
 	bool nodeReached = true;
+	bool enemyBehind = false;
 
 	// Use this for initialization
 	void Start () {
@@ -108,23 +111,30 @@ public class pac_movement : MonoBehaviour {
 				{
 					// Get movement of the finger since last frame
 					Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-					Debug.Log("Touched");
-					if (touchDeltaPosition.x < -0.5) {
-						req_direction = 0;
-						arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 180);
-					}
-					else if (touchDeltaPosition.x > 0.5) {
-						req_direction = 1;
-						arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 0);
-					}
-					else if (touchDeltaPosition.y < -0.5) {
-						req_direction = 2;
-						arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 90);
 
+					if (Mathf.Abs(touchDeltaPosition.x) > 1.0 || Mathf.Abs(touchDeltaPosition.y) > 1.0) {
+						if (Mathf.Abs(touchDeltaPosition.x) > Mathf.Abs(touchDeltaPosition.y)) {
+							if (touchDeltaPosition.x < -1.0) {
+								req_direction = 0;
+								arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 180);
+							} else if (touchDeltaPosition.x > 1.0) {
+								req_direction = 1;
+								arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 0);
+							}
+						} else {
+							if (touchDeltaPosition.y < -1.0) {
+								req_direction = 3;
+								arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 270);
+							}
+							else if (touchDeltaPosition.y > 1.0) {
+								req_direction = 2;
+								arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 90);
+							}
+						}
+
+						if (Global.inv_time == 0)
+							fixReqDirection(touchDeltaPosition);
 					}
-					else if (touchDeltaPosition.y > 0.5)
-						req_direction = 3;
-						arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 270);
 				}
 			}
 
@@ -267,6 +277,9 @@ public class pac_movement : MonoBehaviour {
 				if (ghost_combo_countdown == 1)
 					ghost_combo_txt.gameObject.SetActive(false);		
 			}
+
+			if (Global.controll_type == 0)
+				enemyBehind = false;
 		}
 
 	}
@@ -452,6 +465,29 @@ public class pac_movement : MonoBehaviour {
 			camera.position = new Vector3(5.2f, transform.position.y, camera.position.z);
 		else
 			camera.position = new Vector3(transform.position.x, transform.position.y, camera.position.z);
+	}
+
+	void fixReqDirection(Vector2 touchDeltaPosition) {
+		if (enemyBehind)
+			if ((pac_direction == 0 && req_direction == 1) || (pac_direction == 1 && req_direction == 0)) {
+				if (touchDeltaPosition.y < -1.0) {
+					req_direction = 3;
+					arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 270);
+				}
+				else if (touchDeltaPosition.y > 1.0) {
+					req_direction = 2;
+					arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 90);
+				}
+			} else if ((pac_direction == 2 && req_direction == 3) || (pac_direction == 3 && req_direction == 2)) {
+				if (touchDeltaPosition.x < -1.0) {
+					req_direction = 0;
+					arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 180);
+				} else if (touchDeltaPosition.x > 1.0) {
+					req_direction = 1;
+					arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 0);
+				}
+			}
+
 	}
 
 }
