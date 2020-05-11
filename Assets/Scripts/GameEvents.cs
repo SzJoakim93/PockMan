@@ -34,6 +34,9 @@ public class GameEvents : MonoBehaviour {
 	public Text ready_to_go;
 	public GameObject game_over_panel;
 	public InGameTutorials Tutorials;
+	public Language_manager language_Manager;
+	string gainTitle;
+	string allPointsTitle;
 
 	// Use this for initialization
 	void Start () {
@@ -79,6 +82,9 @@ public class GameEvents : MonoBehaviour {
 			else if (Global.own_cards [Global.ac] == 13)
 				respawn_delay = 0.1f;
 		}
+
+		gainTitle = language_Manager.GetTextByValue("GainTitle");
+		allPointsTitle = language_Manager.GetTextByValue("AllPointsTitle");
 
 		if (Global.music_enabled)
         {
@@ -208,8 +214,8 @@ public class GameEvents : MonoBehaviour {
 
 		Global.global_points += Global.score / 10;
 
-		gain_points.text = "Points gained:\n" + (Global.score/10).ToString ();
-		global_points.text = "All points:\n" + Global.global_points.ToString();
+		gain_points.text = gainTitle +  "\n" + (Global.score/10).ToString ();
+		global_points.text = allPointsTitle + "\n" + Global.global_points.ToString();
 
 		int early_rate = 0;
 		if (Global.classic && PlayerPrefs.HasKey ("Classic_level_star" + Global.level))

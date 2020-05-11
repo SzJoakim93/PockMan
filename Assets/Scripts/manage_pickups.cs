@@ -23,6 +23,7 @@ public class manage_pickups : MonoBehaviour {
 
 	public Sound_manager sound_manager;
 	public InGameTutorials Tutorials;
+	public Language_manager language_Manager;
 		
 	int rate_count_down; //determine the rating text's appearance time
 
@@ -31,6 +32,11 @@ public class manage_pickups : MonoBehaviour {
 	int combo; //combo points that adding to the scores
 
 	float card_bonus = 1.0f;
+	string rateGood;
+	string rateNice;
+	string ratePerfect;
+	string rateWonderfull;
+	string rateMarvelous;
 
 	enemy_movement [] enemy_scripts;
 
@@ -59,6 +65,15 @@ public class manage_pickups : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (rateGood == null) {
+			rateGood = language_Manager.GetTextByValue("RateGood");
+			rateNice = language_Manager.GetTextByValue("RateNice");
+			ratePerfect = language_Manager.GetTextByValue("RatePerfect");
+			rateWonderfull = language_Manager.GetTextByValue("RateWonderfull");
+			rateMarvelous = language_Manager.GetTextByValue("RateMarvelous");
+		}
+
 		if (Global.magneton > 0) {
 			Global.magneton--;
 			if (Global.magneton < 10)
@@ -72,15 +87,15 @@ public class manage_pickups : MonoBehaviour {
 			if (score_count_down == 1) {
 
 				if (combo >= 250)
-					activate_rate_text("Marvelous combo\n" + combo);
+					activate_rate_text(rateMarvelous + "\n" + combo);
 				else if (combo >= 200)
-					activate_rate_text("Wonderful combo\n" + combo);
+					activate_rate_text(rateWonderfull + "\n" + combo);
 				else if (combo >= 150)
-					activate_rate_text("Perfect combo\n" + combo);
+					activate_rate_text(ratePerfect + "\n" + combo);
 				else if (combo >= 100)
-					activate_rate_text("Nice combo\n" + combo);
+					activate_rate_text(rateNice + "\n" + combo);
 				else if (combo >= 50)
-					activate_rate_text("Good combo\n" + combo);
+					activate_rate_text(rateGood + "\n" + combo);
 
 				Global.score += combo;
 				score_text.text = Global.score.ToString ();

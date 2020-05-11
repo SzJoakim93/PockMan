@@ -9,8 +9,8 @@ public class Manage_tutorials : MonoBehaviour {
     
     bool main_text_active = false;
 
-    public RawImage upgrade_btn;
-    public RawImage dropping_btn;
+    public Image upgrade_btn;
+    public Image dropping_btn;
 
     public Image drop_btn1;
     public Image drop_btn2;
@@ -20,6 +20,7 @@ public class Manage_tutorials : MonoBehaviour {
     public Text free_card_text;
 
     public GameObject back_btn;
+    public Language_manager language_Manager;
 
     int tutorial_frame = 0;
 
@@ -34,11 +35,13 @@ public class Manage_tutorials : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Global.global_stars > 7 && Global.level_pause == 1 && Global.level_thunder == 1)
+        if (Global.global_points > 2000 && Global.level_ammo == 1 &&
+            Global.level_thunder == 1 && Global.level_mines == 1 && Global.level_magneton == 1)
         {
             if (!main_text_active)
             {
                 main_text.gameObject.SetActive(true);
+                main_text.text = language_Manager.GetTextByValue("Tutorial11");
                 main_text_active = true;
                 upgrade_btn.color = red;
             }
@@ -52,56 +55,47 @@ public class Manage_tutorials : MonoBehaviour {
                 if (Global.own_cards[0] != -1 && tutorial_frame == 0)
                     tutorial_frame = 1;
 
-                if (tutorial_frame > 0 && tutorial_frame < 5100)
+                if (tutorial_frame > 0 && tutorial_frame < 3600)
                 {
                     tutorial_frame++;
 
-                    if (tutorial_frame == 250)
+                    if (tutorial_frame == 200)
                     {
                         drop_text.gameObject.SetActive(true);
                         drop_text.color = red;
                         own_place.color = red;
-                        drop_text.text = "You can find your own\ndropping cards here.";
+                        drop_text.text = language_Manager.GetTextByValue("Tutorial1");
                         back_btn.SetActive(false);
                     }
-                    else if (tutorial_frame == 600)
-                        drop_text.text = "Simply click a card you want to activate.";
-                    else if (tutorial_frame == 1000)
-                        drop_text.text = "This card will make effect while playing";
-                    else if (tutorial_frame == 1400)
-                        drop_text.text = "Basically all cards can be used by 5 times.";
-                    else if (tutorial_frame == 1800)
-                        drop_text.text = "This will be decreased after completing a level successfully";
-                    else if (tutorial_frame == 2200)
-                        drop_text.text = "You can always own 4 cards only";
-                    else if (tutorial_frame == 2600)
+                    else if (tutorial_frame == 500)
+                        drop_text.text = language_Manager.GetTextByValue("Tutorial2");
+                    else if (tutorial_frame == 800)
+                        drop_text.text = language_Manager.GetTextByValue("Tutorial3");
+                    else if (tutorial_frame == 1250)
+                        drop_text.text = language_Manager.GetTextByValue("Tutorial4");
+                    else if (tutorial_frame == 1700)
                     {
                         own_place.color = white;
                         drop_btn1.color = red;
                         drop_btn2.color = red;
                         drop_btn3.color = red;
-                        drop_text.text = "Getting more cards you can always drop for points here";
+                        drop_text.text = language_Manager.GetTextByValue("Tutorial5");
                     }
-                    else if (tutorial_frame == 3100)
+                    else if (tutorial_frame == 2150)
                     {
                         drop_btn1.color = white;
                         drop_btn2.color = white;
                         drop_btn3.color = white;
                         free_card_text.color = red;
-                        drop_text.text = "But it worth more to collect stars to get dropping cards for FREE.";
+                        drop_text.text = language_Manager.GetTextByValue("Tutorial6");
                     }
-                    else if (tutorial_frame == 3400)
-                        drop_text.text = "This title always shows the number of stars required for the next FREE dropping.";
-                    else if (tutorial_frame == 4000)
+                    else if (tutorial_frame == 2600)
+                        drop_text.text = language_Manager.GetTextByValue("Tutorial7");
+                    else if (tutorial_frame == 3050)
+                        drop_text.text = language_Manager.GetTextByValue("Tutorial8");
+                    else if (tutorial_frame == 3500)
                     {
-                        free_card_text.color = gold;
-                        drop_text.text = "There are 3 category of cards.";
-                    }
-                    else if (tutorial_frame == 4400)
-                        drop_text.text = "Those are basic, silver and gold cards containing more and more powerfull effects";
-                    else if (tutorial_frame == 4900)
-                    {
-                        drop_text.text = "Tap a card to activate";
+                        drop_text.text = language_Manager.GetTextByValue("Tutorial9");
                         drop_text.color = gold;
                         back_btn.SetActive(true);
 
@@ -114,7 +108,7 @@ public class Manage_tutorials : MonoBehaviour {
                 main_text.gameObject.SetActive(true);
                 main_text_active = true;
 
-                main_text.text = "You can always check your own dropping cards";
+                main_text.text = language_Manager.GetTextByValue("Tutorial10");
 
                 dropping_btn.color = red;
             }

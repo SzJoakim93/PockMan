@@ -8,13 +8,22 @@
 		<element name="/Canvas/comp_panel/comp_txt">Level completed!</element>
 		<element name="/Canvas/comp_panel/rating">Rating:</element>
 		<element name="/Canvas/comp_panel/Exit/Text">Exit</element>
-		<element name="/Canvas/game_over_panel/game_over_text">Game over!\nTry harder</element>
+		<element name="/Canvas/game_over_panel/game_over_txt">Game over!\nTry harder</element>
 		<element name="/Canvas/pause_panel/Text">Pause menu</element>
 		<element name="/Canvas/pause_panel/resume_btn/Text">Resume</element>
 		<element name="/Canvas/pause_panel/restart_btn/Text">Restart</element>
 		<element name="/Canvas/pause_panel/quit_btn/Text">Quit</element>
 		<element name="/Canvas/warn_panel/warn_message">The storage of dropping cards is full. We extended the time of usage at some cards.</element>
-		
+		<dynamic-text name="Tutorial1">To controlling, smooth screen to the requested direction.</dynamic-text>
+		<dynamic-text name="Tutorial2">Tap ammo button to shot enemies.</dynamic-text>
+		<dynamic-text name="Tutorial3">Tap mine button to place mines.</dynamic-text>
+		<dynamic-text name="GainTitle">Points gained:</dynamic-text>
+		<dynamic-text name="AllPointsTitle">All points:</dynamic-text>
+		<dynamic-text name="RateGood">Good combo</dynamic-text>
+		<dynamic-text name="RateNice">Nice combo</dynamic-text>
+		<dynamic-text name="RatePerfect">Perfect combo</dynamic-text>
+		<dynamic-text name="RateWonderfull">Wonderfull combo</dynamic-text>
+		<dynamic-text name="RateMarvelous">Marvelous combo</dynamic-text>
   </ENG>
 	<HUN>
 		<element name="/Canvas/ready_to_go">Készülj!</element>
@@ -24,11 +33,21 @@
 		<element name="/Canvas/comp_panel/comp_txt">Szint teljesítve!</element>
 		<element name="/Canvas/comp_panel/rating">Értékelésed:</element>
 		<element name="/Canvas/comp_panel/Exit/Text">Exit</element>
-		<element name="/Canvas/game_over_panel/game_over_text">Vesztettél!\nLegközelebb légy keményebb</element>
+		<element name="/Canvas/game_over_panel/game_over_txt">Vesztettél!\nKeményebbnek kell lenned!</element>
 		<element name="/Canvas/pause_panel/Text">Szünet menü</element>
 		<element name="/Canvas/pause_panel/resume_btn/Text">Folytatás</element>
 		<element name="/Canvas/pause_panel/restart_btn/Text">Újra</element>
 		<element name="/Canvas/pause_panel/quit_btn/Text">Kilép</element>
 		<element name="/Canvas/warn_panel/warn_message">Nem lehet ennél több kártyád. Meghosszabbítottuk a felshasználási időt néhány meglévő kártyánál!.</element>
+		<dynamic-text name="Tutorial1">Az irányításhoz simítsd a képernyőt a kívánt irányba.</dynamic-text>
+		<dynamic-text name="Tutorial2">Koppints a lövedék gombjára a tüzeléshez!</dynamic-text>
+		<dynamic-text name="Tutorial3">Koppints az akna gombjára az elhelyezéséhez!</dynamic-text>
+		<dynamic-text name="GainTitle">Gyűjtött pontok:</dynamic-text>
+		<dynamic-text name="AllPointsTitle">Összes pontod:</dynamic-text>
+		<dynamic-text name="RateGood">Jó kombó</dynamic-text>
+		<dynamic-text name="RateNice">Szép kombó</dynamic-text>
+		<dynamic-text name="RatePerfect">Vagány kombó</dynamic-text>
+		<dynamic-text name="RateWonderfull">Csodálatos kombó</dynamic-text>
+		<dynamic-text name="RateMarvelous">Bámulatos kombó</dynamic-text>
 	</HUN>
 </Languages>

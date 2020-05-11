@@ -55,8 +55,6 @@ public class Global : MonoBehaviour {
 
 	public static int level_menu = 0;
 
-    public static XmlNodeList element_list;
-
     public static string current_language = "HUN";
     public static bool music_enabled = true;
 	public static int controll_type = 0;
@@ -91,14 +89,6 @@ public class Global : MonoBehaviour {
             if (Global.own_cards[i] == -1)
                 return true;
         return false;
-    }
-
-    public static string GetTextByValue(string attribute, string value)
-    {
-        foreach (XmlNode element in Global.element_list)
-            if (element.Attributes["name"].Value == value)
-                return element.InnerText;
-        return null;
     }
 
 }

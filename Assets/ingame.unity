@@ -593,6 +593,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &14547176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1084,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &45592562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1707,6 +1709,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &98385550
 GameObject:
   m_ObjectHideFlags: 0
@@ -4004,6 +4007,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &238581690
 GameObject:
   m_ObjectHideFlags: 0
@@ -5229,6 +5233,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &290580144
 GameObject:
   m_ObjectHideFlags: 0
@@ -6101,6 +6106,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 340991400}
 --- !u!50 &325195867
 Rigidbody2D:
   serializedVersion: 2
@@ -7985,7 +7991,8 @@ MonoBehaviour:
   dropper: {fileID: 130060929}
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
-  Tutorials: {fileID: 0}
+  Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 340991400}
 --- !u!50 &384903018
 Rigidbody2D:
   serializedVersion: 2
@@ -8407,6 +8414,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!50 &414731859
 Rigidbody2D:
   serializedVersion: 2
@@ -8911,6 +8919,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &438859369
 GameObject:
   m_ObjectHideFlags: 0
@@ -8995,6 +9004,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &440637547
 GameObject:
   m_ObjectHideFlags: 0
@@ -9693,6 +9703,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!4 &475585348
 Transform:
   m_ObjectHideFlags: 0
@@ -10469,6 +10480,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &511061238
 GameObject:
   m_ObjectHideFlags: 0
@@ -10607,6 +10619,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &524045187
 GameObject:
   m_ObjectHideFlags: 0
@@ -10956,6 +10969,7 @@ MonoBehaviour:
   rate_text: {fileID: 0}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 0}
+  language_Manager: {fileID: 0}
 --- !u!4 &538378218
 Transform:
   m_ObjectHideFlags: 0
@@ -11860,6 +11874,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &606294683
 GameObject:
   m_ObjectHideFlags: 0
@@ -12640,6 +12655,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!4 &634914931
 Transform:
   m_ObjectHideFlags: 0
@@ -13309,6 +13325,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &671608685
 GameObject:
   m_ObjectHideFlags: 0
@@ -14057,6 +14074,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &725821054
 GameObject:
   m_ObjectHideFlags: 0
@@ -15031,6 +15049,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &772102151
 GameObject:
   m_ObjectHideFlags: 0
@@ -15297,6 +15316,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &803883888
 GameObject:
   m_ObjectHideFlags: 0
@@ -16674,6 +16694,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!61 &909885963
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17012,6 +17033,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!4 &926718206
 Transform:
   m_ObjectHideFlags: 0
@@ -18739,6 +18761,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1025900404
 GameObject:
   m_ObjectHideFlags: 0
@@ -19039,6 +19062,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1045982466
 GameObject:
   m_ObjectHideFlags: 0
@@ -19123,6 +19147,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1046358393
 GameObject:
   m_ObjectHideFlags: 0
@@ -19207,6 +19232,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1047769290
 GameObject:
   m_ObjectHideFlags: 0
@@ -19406,6 +19432,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1063963236
 GameObject:
   m_ObjectHideFlags: 0
@@ -19626,6 +19653,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!4 &1071651303
 Transform:
   m_ObjectHideFlags: 0
@@ -20333,6 +20361,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1102598918
 GameObject:
   m_ObjectHideFlags: 0
@@ -20978,6 +21007,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1145033287
 GameObject:
   m_ObjectHideFlags: 0
@@ -23404,6 +23434,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1258562060
 GameObject:
   m_ObjectHideFlags: 0
@@ -24125,6 +24156,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1299588885
 GameObject:
   m_ObjectHideFlags: 0
@@ -24648,6 +24680,7 @@ MonoBehaviour:
   - {fileID: 1725533374}
   - {fileID: 1328318329}
   - {fileID: 2071624937}
+  language_Manager: {fileID: 340991400}
 --- !u!114 &1324100027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24832,6 +24865,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1331573545
 GameObject:
   m_ObjectHideFlags: 0
@@ -25193,6 +25227,7 @@ MonoBehaviour:
   rate_text: {fileID: 0}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 0}
+  language_Manager: {fileID: 0}
 --- !u!1 &1344389753
 GameObject:
   m_ObjectHideFlags: 0
@@ -25988,6 +26023,7 @@ MonoBehaviour:
   ready_to_go: {fileID: 1640779002}
   game_over_panel: {fileID: 1240855172}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 340991400}
 --- !u!1 &1366186980
 GameObject:
   m_ObjectHideFlags: 0
@@ -26559,6 +26595,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!61 &1398646092
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27702,6 +27739,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!4 &1473401916
 Transform:
   m_ObjectHideFlags: 0
@@ -28090,6 +28128,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1509173921
 GameObject:
   m_ObjectHideFlags: 0
@@ -28270,6 +28309,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!4 &1515143461
 Transform:
   m_ObjectHideFlags: 0
@@ -29435,6 +29475,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!4 &1581830928
 Transform:
   m_ObjectHideFlags: 0
@@ -30536,6 +30577,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1633367744
 GameObject:
   m_ObjectHideFlags: 0
@@ -30741,6 +30783,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1634574819
 GameObject:
   m_ObjectHideFlags: 0
@@ -32081,6 +32124,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!61 &1699098903
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33395,6 +33439,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1767012663
 GameObject:
   m_ObjectHideFlags: 0
@@ -34587,6 +34632,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1836180461
 GameObject:
   m_ObjectHideFlags: 0
@@ -34896,6 +34942,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!4 &1857973020
 Transform:
   m_ObjectHideFlags: 0
@@ -35490,6 +35537,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!50 &1897668825
 Rigidbody2D:
   serializedVersion: 2
@@ -35914,6 +35962,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &1922485870
 GameObject:
   m_ObjectHideFlags: 0
@@ -38642,6 +38691,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &2050861021
 GameObject:
   m_ObjectHideFlags: 0
@@ -39172,6 +39222,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &2071624937
 GameObject:
   m_ObjectHideFlags: 0
@@ -39946,6 +39997,7 @@ MonoBehaviour:
   rate_text: {fileID: 192647943}
   sound_manager: {fileID: 340991401}
   Tutorials: {fileID: 1324100026}
+  language_Manager: {fileID: 0}
 --- !u!1 &2119460271
 GameObject:
   m_ObjectHideFlags: 0

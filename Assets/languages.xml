@@ -8,17 +8,33 @@
 		<element name="/Canvas/Main_menu/quit_btn/quit_btn">Quit</element>
 		<element name="/Canvas/back_btn">Back</element>
     <element name="/Canvas/Settings/lang_text">Lang:</element>
-    <element name="/Canvas/Settings/music_txt">Music</element>
+    <element name="/Canvas/Settings/music_text">Music</element>
+    <element name="/Canvas/Dropping_menu/tutorial_text">Tap a card to activate</element>
+    <element name="/Canvas/Panel/Text">Are you sure want to upgrade?</element>
+    <element name="/Canvas/Panel/No_btn/Text">No</element>
+    <element name="/Canvas/Panel/Yes_btn/Text">Yes</element>
+    <element name="/Canvas/Panel2/Text">Not enought points to upgrade!</element>
+    <drop-down name="/Canvas/Settings/music_option">
+      <option name="0">On</option>
+      <option name="1">Off</option>
+    </drop-down>
     <element name="/Canvas/Settings/controll_text">Controll</element>
-    <element name="SWITCH OFF">OFF</element>
-    <element name="SWITCH ON">ON</element>
-    <element name="/Canvas/ready_to_go">Get ready!</element>
-    <element name="/Canvas/game_over_text">Game over</element>
-    <element name="/Canvas/warn_panel/warn_text">The storage of dropping cards is full. We extended the time of usage at some cards.</element>
-    <element name="/Canvas/pause_panel/Text">Pause menu</element>
-    <element name="/Canvas/pause_panel/resume_btn/Text">Resume</element>
-    <element name="/Canvas/pause_panel/restart_btn/Text">Restart</element>
-    <element name="/Canvas/pause_panel/Quit_btn/Text">Exit</element>
+    <drop-down name="/Canvas/Settings/controll_option">
+      <option name="0">Smoothing</option>
+      <option name="1">Buttons</option>
+    </drop-down>
+    <element name="/Canvas/loading/Text">Please wait...</element>
+    <dynamic-text name="Tutorial1">You can find your own\ndropping cards here.</dynamic-text>
+    <dynamic-text name="Tutorial2">This cards will make some advantages while playing.</dynamic-text>
+    <dynamic-text name="Tutorial3">Basically all cards can be used by 5 times.</dynamic-text>
+    <dynamic-text name="Tutorial4">This will be decreased after completing a level successfully.</dynamic-text>
+    <dynamic-text name="Tutorial5">Getting more cards you can always drop for points here</dynamic-text>
+    <dynamic-text name="Tutorial6">But it worth more to collect stars to get dropping cards for FREE.</dynamic-text>
+    <dynamic-text name="Tutorial7">This title always shows the number of stars required for this.</dynamic-text>
+    <dynamic-text name="Tutorial8">There are basic, silver and gold cards containing more and more powerfull effects</dynamic-text>
+    <dynamic-text name="Tutorial9">Tap a card to activate</dynamic-text>
+    <dynamic-text name="Tutorial10">You can always check your own dropping cards</dynamic-text>
+    <dynamic-text name="Tutorial11">You gained enought points to upgrade items. Tap to the focused menu-point.</dynamic-text>
   </ENG>
 	<HUN>
 		<element name="/Canvas/Main_menu/rush_mode_btn/rush_mode_btn">Rush mód</element>
@@ -28,16 +44,32 @@
 		<element name="/Canvas/Main_menu/quit_btn/quit_btn">Kilépés</element>
 		<element name="/Canvas/back_btn">Vissza</element>
     <element name="/Canvas/Settings/lang_text">Nyelv:</element>
-    <element name="/Canvas/Settings/music_txt">Zene</element>
+    <element name="/Canvas/Settings/music_text">Zene</element>
+    <element name="/Canvas/Dropping_menu/tutorial_text">Koppints egy kártyára az aktíváláshoz!</element>
+    <element name="/Canvas/Panel/Text">Biztosan fejleszteni akarod?</element>
+    <element name="/Canvas/Panel/No_btn/Text">Nem</element>
+    <element name="/Canvas/Panel/Yes_btn/Text">Igen</element>
+    <element name="/Canvas/Panel2/Text">Nincs elég pontod a fejlesztéshez!</element>
+    <drop-down name="/Canvas/Settings/music_option">
+      <option name="0">Be</option>
+      <option name="1">Ki</option>
+    </drop-down>
     <element name="/Canvas/Settings/controll_text">Irányítás</element>
-    <element name="SWITCH OFF">KI</element>
-    <element name="SWITCH ON">BE</element>
-    <element name="/Canvas/ready_to_go">Felkészülés!</element>
-    <element name="/Canvas/game_over_text">Vesztettél</element>
-    <element name="/Canvas/warn_panel/warn_text">A kártyák helye megtelt. Kibővítettük néhány meglévő kártya felhasználhatóságát.</element>
-    <element name="/Canvas/pause_panel/Text">Szünet menü</element>
-    <element name="/Canvas/pause_panel/resume_btn/Text">Folytatás</element>
-    <element name="/Canvas/pause_panel/restart_btn/Text">Újra</element>
-    <element name="/Canvas/pause_panel/Quit_btn/Text">Kilép</element>
+    <drop-down name="/Canvas/Settings/controll_option">
+      <option name="0">Simítás</option>
+      <option name="1">Gombok</option>
+    </drop-down>
+    <element name="/Canvas/loading/Text">Kérlek várj...</element>
+    <dynamic-text name="Tutorial1">Itt találhatóak a kioldható kártyák.</dynamic-text>
+    <dynamic-text name="Tutorial2">Ezek a kártyák némi előnyt adnak játék közben.</dynamic-text>
+    <dynamic-text name="Tutorial3">Alap esetben minden kártya 5x használható fel.</dynamic-text>
+    <dynamic-text name="Tutorial4">Ez csak abban az esetben csökken, ha végig vittél egy pályát.</dynamic-text>
+    <dynamic-text name="Tutorial5">Újabb kártyákat itt pontokért is tudsz szerezni.</dynamic-text>
+    <dynamic-text name="Tutorial6">...de jobban megéri összegyűjteni annyi csillagot, hogy INGYEN kapj egyet!</dynamic-text>
+    <dynamic-text name="Tutorial7">Ez a felirat jelzi, hogy hány csillagot kell gyűjtened ehhez.</dynamic-text>
+    <dynamic-text name="Tutorial8">Egy kártya lehet alap, ezüst vagy arany, amelyek egyre több előnyt biztosítanak.</dynamic-text>
+    <dynamic-text name="Tutorial9">Koppints egy kártyára az aktíváláshoz.</dynamic-text>
+    <dynamic-text name="Tutorial10">Itt bármikor tudod kezelni a kioldható kártyáid.</dynamic-text>
+    <dynamic-text name="Tutorial11">Elegendő pontot szereztél az extrák fejlesztéséhez. Koppints a kijelölt menüpontra.</dynamic-text>
 	</HUN>
 </Languages>
