@@ -9,7 +9,7 @@ public class ButtonManagement : MonoBehaviour {
 	public GameObject [] classic_level_elements;*/
 	public GameObject MainMenu;
 	public GameObject LevelMenu;
-	public GameObject Classic_menu;
+	public GameObject ClassicMenu;
 	public GameObject Upgrade_menu;
 	public GameObject Dropping_menu;
     public GameObject Settings_Menu;
@@ -29,6 +29,8 @@ public class ButtonManagement : MonoBehaviour {
 
 	public Text remaining_text;
 	public Text point_txt;
+	Scroll_fixer levelMenuS;
+	Scroll_fixer classicMenuS;
 
 	int delay = 0;
 
@@ -48,11 +50,21 @@ public class ButtonManagement : MonoBehaviour {
 		card_images = own_card_pack.GetComponentsInChildren<Image> (true);
 
 
+		levelMenuS = LevelMenu.GetComponent<Scroll_fixer>();
+		classicMenuS = ClassicMenu.GetComponent<Scroll_fixer>();
+
         //switch to the specified level menu
-		if (Global.level_menu == 1)
+		if (Global.level_menu == 1) {
 			isStart ();
-		else if (Global.level_menu == 2)
+			if (Global.level % 30 == 0)
+				levelMenuS.rightClick();
+
+		}
+		else if (Global.level_menu == 2) {
 			isStart_classic ();
+			if (Global.level % 30 == 10)
+				classicMenuS.rightClick();
+		}
 		else if (Global.level_menu == 3 || Global.level_menu == 4) {
 
             isDropCard();
@@ -138,7 +150,7 @@ public class ButtonManagement : MonoBehaviour {
             Application.LoadLevel("ingame");
 		MainMenu.SetActive (true);
 		LevelMenu.SetActive (false);
-		Classic_menu.SetActive (false);
+		ClassicMenu.SetActive (false);
 		Upgrade_menu.SetActive (false);
 		Dropping_menu.SetActive (false);
         Settings_Menu.SetActive(false);
@@ -150,7 +162,7 @@ public class ButtonManagement : MonoBehaviour {
     //classic mode clicked
 	public void isStart_classic() {
 		MainMenu.SetActive (false);
-		Classic_menu.SetActive (true);
+		ClassicMenu.SetActive (true);
 		back_btn.SetActive (true);
 	}
 

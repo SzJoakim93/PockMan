@@ -27,18 +27,20 @@ public class in_game_buttons : MonoBehaviour {
         if (Global.classic) {
             Global.level += 101;
 
-            if (Global.level == Global.unlocked_levels-1 && Global.unlocked_levels % 5 == 0) {
-                Global.level_menu = 1;
+            if (Global.level-100 == Global.unlocked_clevels && Global.unlocked_clevels % 5 == 0) {
+                Global.level_menu = 2;
                 Application.LoadLevel("menu");
+                return;
             }
 
         }  
         else {
             Global.level++;
 
-            if (Global.level == Global.unlocked_clevels-1 && Global.unlocked_clevels % 5 == 0) {
-                Global.level_menu = 2;
+            if (Global.level == Global.unlocked_levels && Global.unlocked_levels % 5 == 0) {
+                Global.level_menu = 1;
                 Application.LoadLevel("menu");
+                return;
             }
         }
             
