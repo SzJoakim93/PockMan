@@ -45,6 +45,8 @@ public class pac_movement : MonoBehaviour {
 	public int front_x;
 	[HideInInspector]
 	public int front_y;
+	public RectTransform ammoButton;
+	public RectTransform mineButton;
 	int prev_pos_x;
 	int prev_pos_y;
 	bool nodeReached = true;
@@ -110,31 +112,36 @@ public class pac_movement : MonoBehaviour {
 				if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
 				{
 					// Get movement of the finger since last frame
-					Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+					if (Vector2.Distance(Input.GetTouch(0).rawPosition, new Vector2(ammoButton.position.x, ammoButton.position.y)) > 150 &&
+						Vector2.Distance(Input.GetTouch(0).rawPosition, new Vector2(mineButton.position.x, mineButton.position.y)) > 150) {
 
-					if (Mathf.Abs(touchDeltaPosition.x) > 1.0 || Mathf.Abs(touchDeltaPosition.y) > 1.0) {
-						if (Mathf.Abs(touchDeltaPosition.x) > Mathf.Abs(touchDeltaPosition.y)) {
-							if (touchDeltaPosition.x < -1.0) {
-								req_direction = 0;
-								arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 180);
-							} else if (touchDeltaPosition.x > 1.0) {
-								req_direction = 1;
-								arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 0);
+						Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+
+						if (Mathf.Abs(touchDeltaPosition.x) > 1.0 || Mathf.Abs(touchDeltaPosition.y) > 1.0) {
+							if (Mathf.Abs(touchDeltaPosition.x) > Mathf.Abs(touchDeltaPosition.y)) {
+								if (touchDeltaPosition.x < -1.0) {
+									req_direction = 0;
+									arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 180);
+								} else if (touchDeltaPosition.x > 1.0) {
+									req_direction = 1;
+									arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 0);
+								}
+							} else {
+								if (touchDeltaPosition.y < -1.0) {
+									req_direction = 3;
+									arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 270);
+								}
+								else if (touchDeltaPosition.y > 1.0) {
+									req_direction = 2;
+									arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 90);
+								}
 							}
-						} else {
-							if (touchDeltaPosition.y < -1.0) {
-								req_direction = 3;
-								arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 270);
-							}
-							else if (touchDeltaPosition.y > 1.0) {
-								req_direction = 2;
-								arrows_smooth.rectTransform.eulerAngles = new Vector3(0, 0, 90);
-							}
+
+							if (Global.inv_time == 0)
+								fixReqDirection(touchDeltaPosition);
 						}
-
-						if (Global.inv_time == 0)
-							fixReqDirection(touchDeltaPosition);
 					}
+					
 				}
 			}
 

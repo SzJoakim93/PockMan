@@ -34,9 +34,6 @@ public class Start_game : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		for (int i = 0; i < Global.own_cards.Length; i++)
-			Global.own_cards [i] = -1;
-
 		gold = new Color (1.0f, 0.82f, 0.22f, 1.0f);
 		string [] args = Environment.GetCommandLineArgs ();
 		
@@ -133,21 +130,15 @@ public class Start_game : MonoBehaviour {
 			if (PlayerPrefs.HasKey("Thunder_level"))
 				setUpgrade(PlayerPrefs.GetInt("Thunder_level"), ref Global.level_thunder, ref Global.max_thunder, false);
 
-			if (PlayerPrefs.HasKey("MusicEnabled"))
-				Global.music_enabled = PlayerPrefs.GetInt("MusicEnabled") == 0;
-			if (PlayerPrefs.HasKey("ControlType"))
-				Global.controll_type = PlayerPrefs.GetInt("ControlType");
-			if (PlayerPrefs.HasKey("Language"))
-				Global.current_language = PlayerPrefs.GetString("Language");
+			Global.music_enabled = PlayerPrefs.GetInt("MusicEnabled", 0) == 0;
+			Global.controll_type = PlayerPrefs.GetInt("ControlType", 0);
+			Global.current_language = PlayerPrefs.GetString("Language", "ENG");
 		}
 
 		Global.tutorial = PlayerPrefs.GetInt("Tutorial", 0);
 			
-        if (PlayerPrefs.HasKey("Unlocked_levels"))
-			Global.unlocked_levels = PlayerPrefs.GetInt("Unlocked_levels");
-
-        if (PlayerPrefs.HasKey("Unlocked_levels_classic"))
-			Global.unlocked_clevels = PlayerPrefs.GetInt("Unlocked_levels_classic");
+		Global.unlocked_levels = PlayerPrefs.GetInt("Unlocked_levels", 1);
+		Global.unlocked_clevels = PlayerPrefs.GetInt("Unlocked_levels_classic", 1);
 
 		upgrade_levels[0].text = Global.level_pause.ToString();
 		upgrade_levels[1].text = Global.level_magneton.ToString();
@@ -186,17 +177,13 @@ public class Start_game : MonoBehaviour {
 			locker_classic.rectTransform.position = classic_levels[Global.unlocked_clevels].GetComponent<RawImage>().rectTransform.position;
 		}
 
-		for (int i = 0; i < Global.own_cards.Length; i++)
-			if (PlayerPrefs.HasKey("Card_place" + i)) {
-				Global.own_cards[i] = PlayerPrefs.GetInt("Card_place" + i);
-				Global.card_remaining[i] = PlayerPrefs.GetInt("Card_remaining" + i);
-			}
+		for (int i = 0; i < Global.own_cards.Length; i++) {
+			Global.own_cards[i] = PlayerPrefs.GetInt("Card_place" + i, -1);
+			Global.card_remaining[i] = PlayerPrefs.GetInt("Card_remaining" + i, 0);
+		}
 
-        if (PlayerPrefs.HasKey("Next_card_stars"))
-		    Global.next_card_stars = PlayerPrefs.GetInt("Next_card_stars");
-
-        if (PlayerPrefs.HasKey("Card_active"))
-		Global.ac = PlayerPrefs.GetInt("Card_active");
+		Global.next_card_stars = PlayerPrefs.GetInt("Next_card_stars", 25);
+		Global.ac = PlayerPrefs.GetInt("Card_active", -1);
 
 	}
 
@@ -216,7 +203,7 @@ public class Start_game : MonoBehaviour {
 
 	public void unlock_level_classic() {
 		if (Global.global_points >= 100 * (Global.unlocked_clevels / 5)) {
-			levels [Global.unlocked_clevels].interactable = true;
+			classic_levels [Global.unlocked_clevels].interactable = true;
 			Global.global_points -= 100 * (Global.unlocked_clevels / 5);
 			point_txt.text = Global.global_points.ToString();
 			Global.unlocked_clevels++;

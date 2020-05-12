@@ -7,7 +7,7 @@
 		<element name="/Canvas/Main_menu/dropping_cards/dropping_cards">Dropping cards</element>
 		<element name="/Canvas/Main_menu/quit_btn/quit_btn">Quit</element>
 		<element name="/Canvas/back_btn">Back</element>
-    <element name="/Canvas/Settings/lang_text">Lang:</element>
+    <element name="/Canvas/Settings/lang_text">Lang</element>
     <element name="/Canvas/Settings/music_text">Music</element>
     <element name="/Canvas/Dropping_menu/tutorial_text">Tap a card to activate</element>
     <element name="/Canvas/Panel/Text">Are you sure want to upgrade?</element>
@@ -43,7 +43,7 @@
 		<element name="/Canvas/Main_menu/dropping_cards/dropping_cards">Kártyák</element>
 		<element name="/Canvas/Main_menu/quit_btn/quit_btn">Kilépés</element>
 		<element name="/Canvas/back_btn">Vissza</element>
-    <element name="/Canvas/Settings/lang_text">Nyelv:</element>
+    <element name="/Canvas/Settings/lang_text">Nyelv</element>
     <element name="/Canvas/Settings/music_text">Zene</element>
     <element name="/Canvas/Dropping_menu/tutorial_text">Koppints egy kártyára az aktíváláshoz!</element>
     <element name="/Canvas/Panel/Text">Biztosan fejleszteni akarod?</element>

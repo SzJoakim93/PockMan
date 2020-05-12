@@ -43,21 +43,21 @@ public class Global : MonoBehaviour {
 
 	public static int[] own_cards = new int[4] ;
 	public static int [] card_remaining = new int[4];
-	public static int ac = -1;
-	public static int next_card_stars = 25;
+	public static int ac;
+	public static int next_card_stars;
 
 	public static bool pause_game;
 
-	public static int unlocked_levels = 1;
-	public static int unlocked_clevels = 1;
+	public static int unlocked_levels;
+	public static int unlocked_clevels;
 
 	public static bool isPlayed = false;
 
 	public static int level_menu = 0;
 
-    public static string current_language = "HUN";
-    public static bool music_enabled = true;
-	public static int controll_type = 0;
+    public static string current_language;
+    public static bool music_enabled;
+	public static int controll_type;
 
 	public static bool followEnemyAlive;
 	public static bool blockenemyAlive;
