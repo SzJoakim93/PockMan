@@ -53,7 +53,10 @@ public class GameEvents : MonoBehaviour {
 		
 		Global.pause_game = false;
 
-		Global.enemy_rise = 3.5f;
+		if (Global.classic)
+			Global.enemy_rise = 6.0f;
+		else
+			Global.enemy_rise = 3.5f;
 
 		Global.followEnemyAlive = false;
 		Global.blockenemyAlive = false;
@@ -187,8 +190,14 @@ public class GameEvents : MonoBehaviour {
 			Global.ready_to_go--;
 			if (Global.ready_to_go == 1) {
 				ready_to_go.gameObject.SetActive(false);
-				if (Global.tutorial == 0)
-					Tutorials.invokeTutorial();
+				if (Global.tutorial == 0) {
+
+					if (Global.controll_type == 0)
+						Tutorials.invokeTutorial();
+					else
+						Global.controll_type++;
+				}
+					
 			}
 			else if (Global.ready_to_go == 102)
 				//Application.LoadLevel ("menu");
