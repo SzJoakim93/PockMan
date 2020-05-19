@@ -15,28 +15,16 @@ public class GameEvents : MonoBehaviour {
 	public Transform pac_man;
 	public GameObject comp_panel;
 	public Text comp_text;
-	public Text score_text;
 	public Button nextButton;
-
-	public Text gain_points;
-	public Text global_points;
-	public Image star1;
-	public Image star2;
-	public Image star3;
-	public Sprite active_star;
 
 	public GameObject [] enemy_pack;
 	GameObject [] enemy;
-	enemy_movement [] enemy_scripts = new enemy_movement[Global.max_enemy];
 
 	public GameObject double_score_signal;
 	public GameObject warn_panel;
 	public Text ready_to_go;
 	public GameObject game_over_panel;
 	public InGameTutorials Tutorials;
-	public Language_manager language_Manager;
-	string gainTitle;
-	string allPointsTitle;
 
 	// Use this for initialization
 	void Start () {
@@ -86,8 +74,7 @@ public class GameEvents : MonoBehaviour {
 				respawn_delay = 0.1f;
 		}
 
-		gainTitle = language_Manager.GetTextByValue("GainTitle");
-		allPointsTitle = language_Manager.GetTextByValue("AllPointsTitle");
+
 
 		if (Global.music_enabled)
         {
@@ -172,12 +159,24 @@ public class GameEvents : MonoBehaviour {
 			//decrease bonus time
 			if (Global.inv_time > 0)
 				Global.inv_time--;
-			if (Global.pause > 0)
+
+			if (Global.pause > 0) {
 				Global.pause--;
+				if (Global.pause == 1)
+					nextEnemyTime += 3.0f;
+			}
+				
+
 			if (Global.pause_enemy > 0)
 				Global.pause_enemy--;
-			if (Global.rewind > 0)
+
+			if (Global.rewind > 0) {
 				Global.rewind--;
+				if (Global.rewind == 1)
+					nextEnemyTime += 3.0f;
+			}
+				
+
 			if (Global.double_score > 0) {
 				if (Global.double_score == Global.max_double-1)
 					double_score_signal.SetActive(true);
@@ -223,9 +222,6 @@ public class GameEvents : MonoBehaviour {
 
 		Global.global_points += Global.score / 10;
 
-		gain_points.text = gainTitle +  "\n" + (Global.score/10).ToString ();
-		global_points.text = allPointsTitle + "\n" + Global.global_points.ToString();
-
 		int early_rate = 0;
 		if (Global.classic && PlayerPrefs.HasKey ("Classic_level_star" + Global.level))
 			early_rate = PlayerPrefs.GetInt ("Classic_level_star" + Global.level);
@@ -233,21 +229,15 @@ public class GameEvents : MonoBehaviour {
 			early_rate = PlayerPrefs.GetInt ("Level_star" + Global.level);
 
 		int rate = 0;
+
         if (!Global.classic && Global.score > Global.max_score - Global.max_score / 3 || Global.classic && Global.score > Global.max_score + Global.max_score * 2)
-        {
-			star1.sprite = active_star;
 			rate = 1;
-		}
+
         if (!Global.classic && Global.score > Global.max_score || Global.classic && Global.score > Global.max_score + Global.max_score * 4)
-        {
-			star2.sprite = active_star;
 			rate = 2;
-		}
+
         if (!Global.classic && Global.score > Global.max_score + Global.max_score / 3 || Global.classic && Global.score > Global.max_score + Global.max_score * 6)
-        {
-			star3.sprite = active_star;
 			rate = 3;
-		}
 
 
 		PlayerPrefs.SetInt ("Global_points", Global.global_points);
@@ -329,8 +319,15 @@ public class GameEvents : MonoBehaviour {
 
             warn_panel.SetActive(true);
         }
-        else
-            comp_panel.SetActive(true);
+        else {
+			if (!comp_panel.activeInHierarchy) {
+				comp_panel.SetActive(true);
+				comp_panel.GetComponent<PointAnimator>().StartAnimation(rate,
+				Global.max_score - Global.max_score / 3, Global.max_score, Global.max_score + Global.max_score / 3);
+			}
+			
+		}
+
 
 		if ((!Global.classic && Global.level == 39) || (!Global.classic && Global.level == 19))
 				nextButton.interactable = false;
