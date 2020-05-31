@@ -30,6 +30,11 @@ public class Start_game : MonoBehaviour {
 	public Text lock_cost_classic;
 
 	public GameObject not_enought;
+	public GameObject paying;
+	public GameObject payingClassic;
+
+	int deactiveLockers = 0;
+	int deactiveLockersClassic = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -101,6 +106,27 @@ public class Start_game : MonoBehaviour {
 		star_text.text = Global.global_stars.ToString ();
 
 		Global.isStarted = true;
+	}
+
+	void Update() {
+		if (deactiveLockers > 0) {
+			deactiveLockers++;
+			if (deactiveLockers > 150) {
+				deactiveLockers = 0;
+				locker.gameObject.SetActive(false);
+			}
+
+		}
+
+		if (deactiveLockersClassic > 0) {
+			deactiveLockersClassic++;
+			if (deactiveLockersClassic > 150) {
+				deactiveLockersClassic = 0;
+				locker_classic.gameObject.SetActive(false);
+			}
+
+		}
+
 	}
 	
 	void ReadUserData()
@@ -195,7 +221,9 @@ public class Start_game : MonoBehaviour {
 			Global.unlocked_levels++;
 			PlayerPrefs.SetInt ("Unlocked_levels", Global.unlocked_levels);
 			PlayerPrefs.SetInt("Global_points", Global.global_points);
-			locker.gameObject.SetActive(false);
+			paying.SetActive(true);
+			deactiveLockers = 1;
+			//locker.gameObject.SetActive(false);
 
 		} else
 			not_enought.SetActive (true);
@@ -209,7 +237,9 @@ public class Start_game : MonoBehaviour {
 			Global.unlocked_clevels++;
 			PlayerPrefs.SetInt ("Unlocked_levels_classic", Global.unlocked_clevels);
 			PlayerPrefs.SetInt("Global_points", Global.global_points);
-			locker_classic.gameObject.SetActive(false);
+			payingClassic.SetActive(true);
+			deactiveLockersClassic = 1;
+			//locker_classic.gameObject.SetActive(false);
 
 		} else
 			not_enought.SetActive (true);
