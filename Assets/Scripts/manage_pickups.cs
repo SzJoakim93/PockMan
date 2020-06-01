@@ -175,6 +175,10 @@ public class manage_pickups : MonoBehaviour {
 			add_point(10);
 			Global.inv_time = (int)(500.0f * card_bonus);
             sound_manager.PlaySound(1);
+			if ((Global.tutorial & 8) != 8) {
+				Tutorials.invokeTutorial(3);
+				Global.tutorial = Global.tutorial | 8;
+			}
 
 		} else if (coll.gameObject.tag == "bananna") {
 			Destroy (coll.gameObject);
@@ -233,8 +237,10 @@ public class manage_pickups : MonoBehaviour {
 			mine_text.text = "X " + Global.mines.ToString();
 			score_count_down = 40;
             sound_manager.PlaySound(4);
-			if (Global.tutorial == 2)
-				Tutorials.invokeTutorial();
+			if ((Global.tutorial & 4) != 4) {
+				Tutorials.invokeTutorial(2);
+				Global.tutorial = Global.tutorial | 4;
+			}
 
 		} else if (coll.gameObject.tag == "ammo") {
 			Destroy (coll.gameObject);
@@ -242,8 +248,10 @@ public class manage_pickups : MonoBehaviour {
 			ammo_text.text = "X " + Global.ammo.ToString();
 			score_count_down = 40;
             sound_manager.PlaySound(4);
-			if (Global.tutorial == 1)
-				Tutorials.invokeTutorial();
+			if ((Global.tutorial & 2) != 2) {
+				Tutorials.invokeTutorial(1);
+				Global.tutorial = Global.tutorial | 2;
+			}
 
 		} else if (coll.gameObject.tag == "convert_enemy") {
 			for (int i=0; i<Global.max_convert; i++) {

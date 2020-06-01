@@ -189,12 +189,12 @@ public class GameEvents : MonoBehaviour {
 			Global.ready_to_go--;
 			if (Global.ready_to_go == 1) {
 				ready_to_go.gameObject.SetActive(false);
-				if (Global.tutorial == 0) {
-
-					if (Global.controll_type == 0)
-						Tutorials.invokeTutorial();
-					else
-						Global.controll_type++;
+				if ((Global.tutorial & 1) != 1) {
+					if (Global.controll_type == 0) {
+						Tutorials.invokeTutorial(0);
+						Global.tutorial = Global.tutorial | 1;
+					}
+						
 				}
 					
 			}
