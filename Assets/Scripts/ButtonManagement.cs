@@ -13,6 +13,7 @@ public class ButtonManagement : MonoBehaviour {
 	public GameObject Upgrade_menu;
 	public GameObject Dropping_menu;
     public GameObject Settings_Menu;
+	public GameObject AboutMenu;
 	public GameObject back_btn;
 	public GameObject bonus_panel;
 	public GameObject loadingPanel;
@@ -154,6 +155,7 @@ public class ButtonManagement : MonoBehaviour {
 		Upgrade_menu.SetActive (false);
 		Dropping_menu.SetActive (false);
         Settings_Menu.SetActive(false);
+		AboutMenu.SetActive(false);
 		back_btn.SetActive (false);
 
         Global.level_menu = 0;
@@ -206,6 +208,12 @@ public class ButtonManagement : MonoBehaviour {
         Settings_Menu.SetActive(true);
         back_btn.SetActive(true);
     }
+
+	public void about() {
+		MainMenu.SetActive(false);
+		AboutMenu.SetActive(true);
+		back_btn.SetActive(true);
+	}
 
 	public void refresh_next_star_text() {
 
