@@ -17,6 +17,7 @@ public class ButtonManagement : MonoBehaviour {
 	public GameObject back_btn;
 	public GameObject bonus_panel;
 	public GameObject loadingPanel;
+	public GameObject quitPanel;
 
     Image[] card_images; //array of owned cards
 	Image[][] card_getables; //matrix of getable cards
@@ -56,19 +57,19 @@ public class ButtonManagement : MonoBehaviour {
 
         //switch to the specified level menu
 		if (Global.level_menu == 1) {
-			isStart ();
+			InvokeLevelsMenu();
 			if (Global.level % 30 == 0)
 				levelMenuS.rightClick();
 
 		}
 		else if (Global.level_menu == 2) {
-			isStart_classic ();
+			InvokeClassicMenu ();
 			if (Global.level % 30 == 10)
 				classicMenuS.rightClick();
 		}
 		else if (Global.level_menu == 3 || Global.level_menu == 4) {
 
-            isDropCard();
+            InvokeDropCard();
 
 			if (Global.next_card_stars % 400 == 0) //dropping gold card
 				card_pack[2].SetActive(true);
@@ -138,14 +139,14 @@ public class ButtonManagement : MonoBehaviour {
 	}
 
     //rush mode button clicked
-	public void isStart() {
+	public void InvokeLevelsMenu() {
 		MainMenu.SetActive (false);
 		LevelMenu.SetActive (true);
 		back_btn.SetActive (true);
 	}
 
     //back button clicked
-	public void isBack() {
+	public void Back() {
 
         if (Global.level_menu == 4)
             Application.LoadLevel("ingame");
@@ -162,14 +163,14 @@ public class ButtonManagement : MonoBehaviour {
 	}
 
     //classic mode clicked
-	public void isStart_classic() {
+	public void InvokeClassicMenu() {
 		MainMenu.SetActive (false);
 		ClassicMenu.SetActive (true);
 		back_btn.SetActive (true);
 	}
 
     //upgrade button clicked
-	public void isUpgrade() {
+	public void InvokeUpgrade() {
 		MainMenu.SetActive (false);
 		Upgrade_menu.SetActive (true);
 		//back_btn.SetActive (true);
@@ -177,7 +178,7 @@ public class ButtonManagement : MonoBehaviour {
 	}
 
     //dropping card clicked
-	public void isDropCard() {
+	public void InvokeDropCard() {
 		MainMenu.SetActive (false);
 		Dropping_menu.SetActive (true);
 		back_btn.SetActive (true);
@@ -202,14 +203,14 @@ public class ButtonManagement : MonoBehaviour {
 	}
 
     //cliclking setting menu
-    public void settings()
+    public void InvokeSettings()
     {
         MainMenu.SetActive(false);
         Settings_Menu.SetActive(true);
         back_btn.SetActive(true);
     }
 
-	public void about() {
+	public void InvokeAbout() {
 		MainMenu.SetActive(false);
 		AboutMenu.SetActive(true);
 		back_btn.SetActive(true);
@@ -325,12 +326,24 @@ public class ButtonManagement : MonoBehaviour {
 	}
 
 
-	public void isQuit() {
-			Application.Quit();
+	public void Quit() {
+		Application.Quit();
 	}
 
-	public void isOK() {
+	public void OK() {
 		not_enought.SetActive (false);
+	}
+
+	public void InvokeQuit() {
+		quitPanel.SetActive(true);
+	}
+
+	public void NoQuit() {
+		quitPanel.SetActive(false);
+	}
+
+	public void RateThisApp() {
+		Application.OpenURL ("market://details?id=com.oldgamer93.pockrunner");
 	}
 
 }

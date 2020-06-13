@@ -10,7 +10,7 @@ public class Scroll_fixer : MonoBehaviour {
 	public bool vertical;
 
 	float movement_range;
-	int levelState;
+	int stateValue;
     public float packages;
 
 	float movement_level;
@@ -33,13 +33,10 @@ public class Scroll_fixer : MonoBehaviour {
 			movement_range = rectTransform.position.x*2;
             movement_level = next_level = init_level = rectTransform.position.x;
             end_level = init_level - movement_range * packages;
-			if (key != "")
-				levelState = PlayerPrefs.GetInt(key, 0);
-			else
-				levelState = 0;
-			scrollPointers[-levelState].sprite = scrollPointerActive;
-			if (levelState != 0) {
-				movement_level = next_level += levelState * movement_range;
+			stateValue = PlayerPrefs.GetInt(key, 0);
+			scrollPointers[-stateValue].sprite = scrollPointerActive;
+			if (stateValue != 0) {
+				movement_level = next_level += stateValue * movement_range;
 				rectTransform.position = new Vector3(movement_level, rectTransform.position.y, rectTransform.position.z);
 			}
 
@@ -73,30 +70,30 @@ public class Scroll_fixer : MonoBehaviour {
 	public void leftClick() {
 		if (next_level < init_level) {
 			next_level += movement_range;
-			scrollPointers[-levelState].sprite = scrollPointerInActive;
-			levelState++;
-			scrollPointers[-levelState].sprite = scrollPointerActive;
+			scrollPointers[-stateValue].sprite = scrollPointerInActive;
+			stateValue++;
+			scrollPointers[-stateValue].sprite = scrollPointerActive;
 		}	
 	}
 
 	public void rightClick() {
 		if (next_level > end_level) {
 			next_level -= movement_range;
-			scrollPointers[-levelState].sprite = scrollPointerInActive;
-			levelState--;
-			scrollPointers[-levelState].sprite = scrollPointerActive;
+			scrollPointers[-stateValue].sprite = scrollPointerInActive;
+			stateValue--;
+			scrollPointers[-stateValue].sprite = scrollPointerActive;
 		}
 	}
 
 	public void pointClick(int x) {
-		scrollPointers[-levelState].sprite = scrollPointerInActive;
-		levelState = -x;
-		scrollPointers[-levelState].sprite = scrollPointerActive;
-		next_level = init_level + movement_range * levelState;
+		scrollPointers[-stateValue].sprite = scrollPointerInActive;
+		stateValue = -x;
+		scrollPointers[-stateValue].sprite = scrollPointerActive;
+		next_level = init_level + movement_range * stateValue;
 	}
 
 	public void saveState() {
 		if (key != "")
-			PlayerPrefs.SetInt(key, levelState);
+			PlayerPrefs.SetInt(key, stateValue);
 	}
 }
