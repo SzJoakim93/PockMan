@@ -47,7 +47,7 @@
 		<dynamic-text name="Tutorial1">Az irányításhoz simítsd a képernyőt a kívánt irányba.</dynamic-text>
 		<dynamic-text name="Tutorial2">Koppints a lövedék gombjára a tüzeléshez!</dynamic-text>
 		<dynamic-text name="Tutorial3">Koppints az akna gombjára az elhelyezéséhez!</dynamic-text>
-		<dynamic-text name="Tutorial4">Amíg az ellenfél kékre változik, te tudod megsemmisíteni őket.</dynamic-text>
+		<dynamic-text name="Tutorial4">Amíg az ellenfél kékre változik, meg tudod megsemmisíteni őket.</dynamic-text>
 		<dynamic-text name="GainTitle">Gyűjtött pontok:</dynamic-text>
 		<dynamic-text name="AllPointsTitle">Összes pontod:</dynamic-text>
 		<dynamic-text name="RateGood">Jó kombó</dynamic-text>

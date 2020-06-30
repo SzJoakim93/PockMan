@@ -19,7 +19,6 @@ public class Language_manager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Set_Language();
-        dynamicTexts = language_xml.DocumentElement.SelectNodes("/Languages/" + Global.current_language + "/dynamic-text");
 	}
 
     public void Set_Language()
@@ -67,6 +66,8 @@ public class Language_manager : MonoBehaviour {
                 }
             }
         }
+
+        dynamicTexts = language_xml.DocumentElement.SelectNodes("/Languages/" + Global.current_language + "/dynamic-text");
 
 
         foreach (var x in inactiveObjects)

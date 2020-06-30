@@ -61,6 +61,7 @@ public class Global : MonoBehaviour {
 
 	public static bool followEnemyAlive;
 	public static bool blockenemyAlive;
+	public static int selectedCharacter;
 
 	#if UNITY_EDITOR
 	public static string default_path = Application.dataPath;

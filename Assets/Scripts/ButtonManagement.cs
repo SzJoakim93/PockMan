@@ -14,10 +14,15 @@ public class ButtonManagement : MonoBehaviour {
 	public GameObject Dropping_menu;
     public GameObject Settings_Menu;
 	public GameObject AboutMenu;
+	public GameObject CharacterMenu;
 	public GameObject back_btn;
 	public GameObject bonus_panel;
 	public GameObject loadingPanel;
 	public GameObject quitPanel;
+	public Image [] CharacterImgs;
+	public Text ApplyBtn;
+	public GameObject BuyBtn;
+	public Language_manager language_Manager;
 
     Image[] card_images; //array of owned cards
 	Image[][] card_getables; //matrix of getable cards
@@ -33,6 +38,8 @@ public class ButtonManagement : MonoBehaviour {
 	public Text point_txt;
 	Scroll_fixer levelMenuS;
 	Scroll_fixer classicMenuS;
+	Color white = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+	Color green = new Color(0.38f, 1.0f, 0.62f, 1.0f);
 
 	int delay = 0;
 
@@ -41,6 +48,7 @@ public class ButtonManagement : MonoBehaviour {
 	int [] card_costs = new int[] {3000, 10000, 15000};
 
 	bool first_running_drop = true;
+	int selectedCharacter = 0;
 
 	// Use this for initialization
 	void Start(){
@@ -50,7 +58,6 @@ public class ButtonManagement : MonoBehaviour {
 		for (int i = 0; i < 3; i ++)
 			card_getables[i] = card_pack[i].GetComponentsInChildren<Image> (true);
 		card_images = own_card_pack.GetComponentsInChildren<Image> (true);
-
 
 		levelMenuS = LevelMenu.GetComponent<Scroll_fixer>();
 		classicMenuS = ClassicMenu.GetComponent<Scroll_fixer>();
@@ -157,6 +164,7 @@ public class ButtonManagement : MonoBehaviour {
 		Dropping_menu.SetActive (false);
         Settings_Menu.SetActive(false);
 		AboutMenu.SetActive(false);
+		CharacterMenu.SetActive(false);
 		back_btn.SetActive (false);
 
         Global.level_menu = 0;
@@ -214,6 +222,49 @@ public class ButtonManagement : MonoBehaviour {
 		MainMenu.SetActive(false);
 		AboutMenu.SetActive(true);
 		back_btn.SetActive(true);
+	}
+
+	public void InvokeCharacter() {
+		MainMenu.SetActive(false);
+		CharacterMenu.SetActive(true);
+		back_btn.SetActive(true);
+
+		SelectCharacter(Global.selectedCharacter);
+
+	}
+
+	public void ApplySelectedCharacter() {
+		Global.selectedCharacter = selectedCharacter;
+		PlayerPrefs.SetInt("Character", selectedCharacter);
+
+		Back();
+	}
+
+	public void SelectCharacter(int x) {
+
+		CharacterImgs[selectedCharacter].color = white;
+		CharacterImgs[x].color = green;
+		selectedCharacter = x;
+
+		int characterState = -1;
+
+		if (x > 0)
+			characterState = PlayerPrefs.GetInt("Character" + x.ToString(), 5);
+
+		if (characterState  == -1) {
+			ApplyBtn.gameObject.SetActive(true);
+			BuyBtn.SetActive(false);
+			ApplyBtn.text = language_Manager.GetTextByValue("SelectTxt");
+		}
+		else if (characterState > 0) {
+			ApplyBtn.gameObject.SetActive(true);
+			ApplyBtn.text =  language_Manager.GetTextByValue("TrialTxt");
+			BuyBtn.SetActive(true);
+		}
+		else {
+			ApplyBtn.gameObject.SetActive(false);
+			BuyBtn.SetActive(true);
+		}
 	}
 
 	public void refresh_next_star_text() {

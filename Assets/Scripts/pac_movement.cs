@@ -8,6 +8,10 @@ public class pac_movement : MonoBehaviour {
 
 	public float speed;
 
+	public GameObject [] Characters;
+	public Sprite [] CharacterIcons;
+	public Image CurrentCharacterIcon;
+
 	public Transform camera;
 	public GameObject fire;
 	public Transform mine;
@@ -54,6 +58,9 @@ public class pac_movement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		Characters[Global.selectedCharacter].SetActive(true);
+		CurrentCharacterIcon.sprite = CharacterIcons[Global.selectedCharacter];
 
 		req_direction = -1;
 		pac_direction = 1;

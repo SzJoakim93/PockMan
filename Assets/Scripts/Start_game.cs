@@ -159,6 +159,8 @@ public class Start_game : MonoBehaviour {
 			Global.music_enabled = PlayerPrefs.GetInt("MusicEnabled", 0) == 0;
 			Global.controll_type = PlayerPrefs.GetInt("ControlType", 0);
 			Global.current_language = PlayerPrefs.GetString("Language", "ENG");
+			
+			Global.selectedCharacter = PlayerPrefs.GetInt("Character", 0);
 		}
 
 		Global.tutorial = PlayerPrefs.GetInt("Tutorial", 0);

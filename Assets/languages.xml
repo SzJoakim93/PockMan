@@ -5,7 +5,7 @@
 		<element name="/Canvas/Main_menu/Frame/classic_btn">Classic mode</element>
 		<element name="/Canvas/Main_menu/Frame/upgrade_extras">Upgrade extras</element>
 		<element name="/Canvas/Main_menu/Frame/dropping_cards">Dropping cards</element>
-		<element name="/Canvas/Main_menu/Frame/quit_btn">Quit</element>
+		<element name="/Canvas/Main_menu/Frame/CharacterBtn">Characters</element>
 		<element name="/Canvas/back_btn">Back</element>
     <element name="/Canvas/Settings/lang_text">Lang</element>
     <element name="/Canvas/Settings/music_text">Music</element>
@@ -22,6 +22,8 @@
     <element name="/Canvas/Quit_menu/No_btn/Text">No</element>
     <element name="/Canvas/Quit_menu/Yes_btn/Text">Yes</element>
     <element name="/Canvas/Quit_menu/Rate_btn/Text">Rate this app!</element>
+    <element name="/Canvas/CharacterMenu/BuyBtn/Text">Buy now</element>
+    <element name="/Canvas/CharacterMenu/BuyBtn/Title">*Buying a character It will remove ads too.</element>
     <element name="/Canvas/About/Slider/About/MainTitle">About</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/MainTitle">Game modes</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/RushModeTitle">Rush mode:</element>
@@ -60,13 +62,15 @@ Thirly look at the combo points. Picking up points as more time as you can do un
     <dynamic-text name="Tutorial9">Tap a card to activate</dynamic-text>
     <dynamic-text name="Tutorial10">You can always check your own dropping cards</dynamic-text>
     <dynamic-text name="Tutorial11">You gained enought points to upgrade items. Tap to the focused menu-point.</dynamic-text>
+    <dynamic-text name="SelectTxt">Select</dynamic-text>
+    <dynamic-text name="TrialTxt">Try for free</dynamic-text>
   </ENG>
 	<HUN>
 		<element name="/Canvas/Main_menu/Frame/rush_mode_btn">Rush mód</element>
 		<element name="/Canvas/Main_menu/Frame/classic_btn">Classic mód</element>
 		<element name="/Canvas/Main_menu/Frame/upgrade_extras">Fejlesztések</element>
 		<element name="/Canvas/Main_menu/Frame/dropping_cards">Kártyák</element>
-		<element name="/Canvas/Main_menu/Frame/quit_btn">Kilépés</element>
+		<element name="/Canvas/Main_menu/Frame/CharacterBtn">Karakterek</element>
 		<element name="/Canvas/back_btn">Vissza</element>
     <element name="/Canvas/Settings/lang_text">Nyelv</element>
     <element name="/Canvas/Settings/music_text">Zene</element>
@@ -83,6 +87,8 @@ Thirly look at the combo points. Picking up points as more time as you can do un
     <element name="/Canvas/Quit_menu/No_btn/Text">Nem</element>
     <element name="/Canvas/Quit_menu/Yes_btn/Text">Igen</element>
     <element name="/Canvas/Quit_menu/Rate_btn/Text">Értékeld az appot!</element>
+    <element name="/Canvas/CharacterMenu/BuyBtn/Text">Megveszem</element>
+    <element name="/Canvas/CharacterMenu/BuyBtn/Title">*Vásárlás esetén eltávolítjuk a hirdetéseket is.</element>
     <element name="/Canvas/About/Slider/About/MainTitle">Névjegy</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/MainTitle">Játékmódok</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/RushModeTitle">Rush mód:</element>
@@ -121,5 +127,7 @@ Harmadik lépésként figyelj a kombóra. Minél több pontot veszel el egyszerr
     <dynamic-text name="Tutorial9">Koppints egy kártyára az aktíváláshoz.</dynamic-text>
     <dynamic-text name="Tutorial10">Itt bármikor tudod kezelni a kioldható kártyáid.</dynamic-text>
     <dynamic-text name="Tutorial11">Elegendő pontot szereztél az extrák fejlesztéséhez. Koppints a kijelölt menüpontra.</dynamic-text>
+    <dynamic-text name="SelectTxt">Kiválaszt</dynamic-text>
+    <dynamic-text name="TrialTxt">Próbáld ki</dynamic-text>
 	</HUN>
 </Languages>
