@@ -78,6 +78,7 @@ public class in_game_buttons : MonoBehaviour {
 
         if (characterStete == 0) {
             Global.selectedCharacter = 0;
+            PlayerPrefs.SetInt("Character", characterStete);
             return false;
         }
 
