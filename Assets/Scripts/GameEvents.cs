@@ -79,27 +79,27 @@ public class GameEvents : MonoBehaviour {
 		if (Global.music_enabled)
         {
 			bg_music = pac_man.GetComponent<AudioSource>();
-			if (Global.level % 25 == 0 || Global.level % 50 == 12 || Global.level % 50 == 30 || Global.level % 50 == 39 || Global.level % 50 == 43)
+			
+			float x = Random.Range(0.0f, 10.0f);
+			if (x >= 0.0f && x < 1.0f)
 				bg_music.clip = Resources.Load<AudioClip>("Loops/Sunset on the Bay (Electronic, Synthwave)");
-			else if (Global.level % 25 == 1 || Global.level % 50 == 5 || Global.level % 50 == 11 || Global.level % 50 == 34 || Global.level % 50 == 41 || Global.level % 50 == 46)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Action-Reaction (8bit, Action)");
-			else if (Global.level % 25 == 2 || Global.level % 50 == 16 || Global.level % 50 == 37 || Global.level % 50 == 45)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/At the Castle Gate (8bit, RPG)");
-			else if (Global.level % 25 == 3 || Global.level % 50 == 9 ||  Global.level % 50 == 22 || Global.level % 50 == 38 || Global.level % 50 == 47)
+			else if (x >= 1.0f && x < 2.0f)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/Another World");
+			else if (x >= 2.0f && x < 3.0f)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/Cant Stop Me");
+			else if (x >= 3.0f && x < 4.0f)
 				bg_music.clip = Resources.Load<AudioClip>("Loops/Zen Puzzle (World, Puzzle)");
-			else if (Global.level % 25 == 4 || Global.level % 50 == 8 ||  Global.level % 50 == 21 || Global.level % 50 == 36)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Hopeful Horizon (Electronic)");
-			else if (Global.level % 50 == 6 || Global.level % 50 == 13 || Global.level % 50 == 19 || Global.level % 50 == 24 || Global.level % 50 == 33 || Global.level % 50 == 42)
+			else if (x >= 4.0f && x < 5.0f)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/Fatality Racer");
+			else if (x >= 5.0f && x < 6.0f)
 				bg_music.clip = Resources.Load<AudioClip>("Loops/Solar Eclipse (Electronic, Space)");
-			else if (Global.level % 50 == 7 || Global.level % 50 == 20 || Global.level % 50 == 35 || Global.level % 50 == 48)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/New Toy in Town (Pop, Kids)");
-			else if (Global.level % 50 == 10 || Global.level % 50 == 14 || Global.level % 50 == 23)
+			else if (x >= 6.0f && x < 7.0f)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/Hard Rock");
+			else if (x >= 7.0f && x < 8.0f)
 				bg_music.clip = Resources.Load<AudioClip>("Loops/In a Rush (Rock, Action)");
-			else if (Global.level % 50 == 15)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Ghost");
-			else if (Global.level % 50 == 17 || Global.level % 50 == 32 || Global.level % 50 == 44)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/This Can't be the End (Orchestral, Horror)");
-			else if (Global.level % 50 == 18 || Global.level % 50 == 31 || Global.level % 50 == 40 || Global.level % 50 == 49)
+			else if (x >= 8.0f && x < 9.0f)
+				bg_music.clip = Resources.Load<AudioClip>("Loops/Let's Rock (ver.1)");
+			else
 				bg_music.clip = Resources.Load<AudioClip>("Loops/Underwater (Electronic, Action)");
 
 
