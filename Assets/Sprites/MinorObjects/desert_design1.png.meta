@@ -1,11 +1,13 @@
 fileFormatVersion: 2
-guid: a77e6d9945a5ffc498ca17a4362057f7
-timeCreated: 1555946692
+guid: 1c333107a2ff0ee45b7707002b7460d6
+timeCreated: 1536828628
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: pickup_garden1_0
-    21300002: pickup_garden1_1
+    21300000: desert_design1_0
+    21300002: desert_design1_1
+    21300004: desert_design1_2
+    21300006: desert_design1_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -52,23 +54,43 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: pickup_garden1_0
+    - name: desert_design1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 20.5
-        height: 25
+        width: 63.5
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickup_garden1_1
+    - name: desert_design1_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 63
         y: 0
-        width: 20.5
-        height: 25
+        width: 63.5
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: desert_design1_2
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 0
+        width: 63.5
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: desert_design1_3
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 0
+        width: 63.5
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -1,34 +1,25 @@
 fileFormatVersion: 2
-guid: 9104d90274a6fe64fa4e317f31ccef43
-timeCreated: 1591016077
+guid: ec62bc0e5334034458dae2afca29cec5
+timeCreated: 1591858639
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: pickups_0
-    21300002: pickups_1
-    21300004: pickups_2
-    21300006: pickups_3
-    21300008: pickups_4
-    21300010: pickups_5
-    21300012: pickups_6
-    21300014: pickups_7
-    21300016: pickups_8
-    21300018: pickups_9
-    21300020: pickups_10
-    21300022: pickups_11
-    21300024: pickups_12
-    21300026: pickups_13
-    21300028: pickups_14
-    21300030: pickups_15
-    21300032: pickups_16
-    21300034: pickups_17
-    21300036: pickups_18
-    21300038: pickups_19
-    21300040: pickups_20
-    21300042: pickups_21
-    21300044: pickups_22
-    21300046: pickups_23
-    21300048: pickups_24
+    21300000: classic11_0
+    21300002: classic11_1
+    21300004: classic11_2
+    21300006: classic11_3
+    21300008: classic11_4
+    21300010: classic11_5
+    21300012: classic11_6
+    21300014: classic11_7
+    21300016: classic11_8
+    21300018: classic11_9
+    21300020: classic11_10
+    21300022: classic11_11
+    21300024: classic11_12
+    21300026: classic11_13
+    21300028: classic11_14
+    21300030: classic11_15
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -75,7 +66,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: pickups_0
+    - name: classic11_0
       rect:
         serializedVersion: 2
         x: 0
@@ -85,7 +76,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_1
+    - name: classic11_1
       rect:
         serializedVersion: 2
         x: 32
@@ -95,7 +86,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_2
+    - name: classic11_2
       rect:
         serializedVersion: 2
         x: 64
@@ -105,7 +96,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_3
+    - name: classic11_3
       rect:
         serializedVersion: 2
         x: 96
@@ -115,47 +106,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_8
+    - name: classic11_4
       rect:
         serializedVersion: 2
         x: 0
@@ -165,7 +116,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_9
+    - name: classic11_5
       rect:
         serializedVersion: 2
         x: 32
@@ -175,7 +126,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_10
+    - name: classic11_6
       rect:
         serializedVersion: 2
         x: 64
@@ -185,7 +136,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_11
+    - name: classic11_7
       rect:
         serializedVersion: 2
         x: 96
@@ -195,47 +146,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_12
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_13
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_14
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_15
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_16
+    - name: classic11_8
       rect:
         serializedVersion: 2
         x: 0
@@ -245,7 +156,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_17
+    - name: classic11_9
       rect:
         serializedVersion: 2
         x: 32
@@ -255,7 +166,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_18
+    - name: classic11_10
       rect:
         serializedVersion: 2
         x: 64
@@ -265,7 +176,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_19
+    - name: classic11_11
       rect:
         serializedVersion: 2
         x: 96
@@ -275,37 +186,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_20
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_21
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_22
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_23
+    - name: classic11_12
       rect:
         serializedVersion: 2
         x: 0
@@ -315,10 +196,30 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_24
+    - name: classic11_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: classic11_14
       rect:
         serializedVersion: 2
         x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: classic11_15
+      rect:
+        serializedVersion: 2
+        x: 96
         y: 0
         width: 32
         height: 32

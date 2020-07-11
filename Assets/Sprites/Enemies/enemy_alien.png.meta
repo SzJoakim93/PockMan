@@ -1,13 +1,17 @@
 fileFormatVersion: 2
-guid: c8067a2c2c721ae4db4d628ffd1c5c99
-timeCreated: 1540038813
+guid: b67afb1afa814564ba5e3a1bf76f0d70
+timeCreated: 1581797650
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: thunder2_0
-    21300002: thunder2_1
-    21300004: thunder2_2
-    21300006: thunder2_3
+    21300000: enemy_alien_0
+    21300002: enemy_alien_1
+    21300004: enemy_alien_2
+    21300006: enemy_alien_3
+    21300008: enemy_alien_4
+    21300010: enemy_alien_5
+    21300012: enemy_alien_6
+    21300014: enemy_alien_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,40 +58,80 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: thunder2_0
+    - name: enemy_alien_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 224
         width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: thunder2_1
+    - name: enemy_alien_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 0
+        y: 192
         width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: thunder2_2
+    - name: enemy_alien_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 0
+        y: 160
         width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: thunder2_3
+    - name: enemy_alien_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: enemy_alien_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: enemy_alien_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: enemy_alien_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: enemy_alien_7
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 32
         height: 32

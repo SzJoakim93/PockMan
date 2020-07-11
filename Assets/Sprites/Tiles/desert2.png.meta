@@ -1,34 +1,25 @@
 fileFormatVersion: 2
-guid: 9104d90274a6fe64fa4e317f31ccef43
-timeCreated: 1591016077
+guid: 643523a1691f1194dac1a97af2814fb4
+timeCreated: 1591860703
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: pickups_0
-    21300002: pickups_1
-    21300004: pickups_2
-    21300006: pickups_3
-    21300008: pickups_4
-    21300010: pickups_5
-    21300012: pickups_6
-    21300014: pickups_7
-    21300016: pickups_8
-    21300018: pickups_9
-    21300020: pickups_10
-    21300022: pickups_11
-    21300024: pickups_12
-    21300026: pickups_13
-    21300028: pickups_14
-    21300030: pickups_15
-    21300032: pickups_16
-    21300034: pickups_17
-    21300036: pickups_18
-    21300038: pickups_19
-    21300040: pickups_20
-    21300042: pickups_21
-    21300044: pickups_22
-    21300046: pickups_23
-    21300048: pickups_24
+    21300000: desert2_0
+    21300002: desert2_1
+    21300004: desert2_2
+    21300006: desert2_3
+    21300008: desert2_4
+    21300010: desert2_5
+    21300012: desert2_6
+    21300014: desert2_7
+    21300016: desert2_8
+    21300018: desert2_9
+    21300020: desert2_10
+    21300022: desert2_11
+    21300024: desert2_12
+    21300026: desert2_13
+    21300028: desert2_14
+    21300030: desert2_15
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -75,7 +66,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: pickups_0
+    - name: desert2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -85,7 +76,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_1
+    - name: desert2_1
       rect:
         serializedVersion: 2
         x: 32
@@ -95,7 +86,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_2
+    - name: desert2_2
       rect:
         serializedVersion: 2
         x: 64
@@ -105,7 +96,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_3
+    - name: desert2_3
       rect:
         serializedVersion: 2
         x: 96
@@ -115,47 +106,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_8
+    - name: desert2_4
       rect:
         serializedVersion: 2
         x: 0
@@ -165,7 +116,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_9
+    - name: desert2_5
       rect:
         serializedVersion: 2
         x: 32
@@ -175,7 +126,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_10
+    - name: desert2_6
       rect:
         serializedVersion: 2
         x: 64
@@ -185,7 +136,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_11
+    - name: desert2_7
       rect:
         serializedVersion: 2
         x: 96
@@ -195,47 +146,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_12
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_13
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_14
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_15
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_16
+    - name: desert2_8
       rect:
         serializedVersion: 2
         x: 0
@@ -245,7 +156,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_17
+    - name: desert2_9
       rect:
         serializedVersion: 2
         x: 32
@@ -255,7 +166,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_18
+    - name: desert2_10
       rect:
         serializedVersion: 2
         x: 64
@@ -265,7 +176,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_19
+    - name: desert2_11
       rect:
         serializedVersion: 2
         x: 96
@@ -275,37 +186,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_20
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_21
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_22
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_23
+    - name: desert2_12
       rect:
         serializedVersion: 2
         x: 0
@@ -315,10 +196,30 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: pickups_24
+    - name: desert2_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: desert2_14
       rect:
         serializedVersion: 2
         x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: desert2_15
+      rect:
+        serializedVersion: 2
+        x: 96
         y: 0
         width: 32
         height: 32
