@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: 86c176e1956946548b76736e77d73fc9
-timeCreated: 1536688816
+guid: 7a4ed29e20183a04d8d6f0544be18e50
+timeCreated: 1594450424
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: snow2_0
-    21300002: snow2_1
-    21300004: snow2_2
-    21300006: snow2_3
-    21300008: snow2_4
-    21300010: snow2_5
-    21300012: snow2_6
-    21300014: snow2_7
-    21300016: snow2_8
-    21300018: snow2_9
-    21300020: snow2_10
-    21300022: snow2_11
+    21300000: grave2_0
+    21300002: grave2_1
+    21300004: grave2_2
+    21300006: grave2_3
+    21300008: grave2_4
+    21300010: grave2_5
+    21300012: grave2_6
+    21300014: grave2_7
+    21300016: grave2_8
+    21300018: grave2_9
+    21300020: grave2_10
+    21300022: grave2_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -38,10 +38,10 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -2
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -62,123 +62,123 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: snow2_0
+    - name: grave2_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 72
-        width: 36
-        height: 36
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: snow2_1
+    - name: grave2_1
       rect:
         serializedVersion: 2
-        x: 36
-        y: 72
-        width: 36
-        height: 36
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: snow2_2
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 72
-        width: 36
-        height: 36
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: snow2_3
+    - name: grave2_2
       rect:
         serializedVersion: 2
-        x: 108
-        y: 72
-        width: 36
-        height: 36
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: snow2_4
+    - name: grave2_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: grave2_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 36
-        width: 36
-        height: 36
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: snow2_5
+    - name: grave2_5
       rect:
         serializedVersion: 2
-        x: 36
-        y: 36
-        width: 36
-        height: 36
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: snow2_6
+    - name: grave2_6
       rect:
         serializedVersion: 2
-        x: 72
-        y: 36
-        width: 36
-        height: 36
+        x: 64
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: snow2_7
+    - name: grave2_7
       rect:
         serializedVersion: 2
-        x: 108
-        y: 36
-        width: 36
-        height: 36
+        x: 96
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: snow2_8
+    - name: grave2_8
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 36
-        height: 36
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: snow2_9
+    - name: grave2_9
       rect:
         serializedVersion: 2
-        x: 36
-        y: 0
-        width: 36
-        height: 36
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: snow2_10
+    - name: grave2_10
       rect:
         serializedVersion: 2
-        x: 72
-        y: 0
-        width: 36
-        height: 36
+        x: 64
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: snow2_11
+    - name: grave2_11
       rect:
         serializedVersion: 2
-        x: 108
-        y: 0
-        width: 36
-        height: 36
+        x: 96
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

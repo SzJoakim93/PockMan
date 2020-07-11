@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: 9d4af23a05e04ac40bb50fb83b7a2d01
-timeCreated: 1537724638
+guid: ad1fe485e1aa97848b852b6bee5c9338
+timeCreated: 1594372843
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: garden3_0
-    21300002: garden3_1
-    21300004: garden3_2
-    21300006: garden3_3
-    21300008: garden3_4
-    21300010: garden3_5
-    21300012: garden3_6
-    21300014: garden3_7
-    21300016: garden3_8
-    21300018: garden3_9
-    21300020: garden3_10
-    21300022: garden3_11
+    21300000: desert1_0
+    21300002: desert1_1
+    21300004: desert1_2
+    21300006: desert1_3
+    21300008: desert1_4
+    21300010: desert1_5
+    21300012: desert1_6
+    21300014: desert1_7
+    21300016: desert1_8
+    21300018: desert1_9
+    21300020: desert1_10
+    21300022: desert1_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -38,10 +38,10 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -2
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -62,123 +62,123 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: garden3_0
+    - name: desert1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 72
-        width: 36
-        height: 36
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: garden3_1
+    - name: desert1_1
       rect:
         serializedVersion: 2
-        x: 36
-        y: 72
-        width: 36
-        height: 36
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: garden3_2
+    - name: desert1_2
       rect:
         serializedVersion: 2
-        x: 72
-        y: 72
-        width: 36
-        height: 36
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: garden3_3
+    - name: desert1_3
       rect:
         serializedVersion: 2
-        x: 108
-        y: 72
-        width: 36
-        height: 36
+        x: 96
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: garden3_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 36
-        width: 36
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: garden3_5
-      rect:
-        serializedVersion: 2
-        x: 36
-        y: 36
-        width: 36
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: garden3_6
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 36
-        width: 36
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: garden3_7
-      rect:
-        serializedVersion: 2
-        x: 108
-        y: 36
-        width: 36
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: garden3_8
+    - name: desert1_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 36
-        height: 36
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: garden3_9
+    - name: desert1_5
       rect:
         serializedVersion: 2
-        x: 36
-        y: 0
-        width: 36
-        height: 36
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: garden3_10
+    - name: desert1_6
       rect:
         serializedVersion: 2
-        x: 72
-        y: 0
-        width: 36
-        height: 36
+        x: 64
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: garden3_11
+    - name: desert1_7
       rect:
         serializedVersion: 2
-        x: 108
-        y: 0
-        width: 36
-        height: 36
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: desert1_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: desert1_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: desert1_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: desert1_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
