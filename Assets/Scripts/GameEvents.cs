@@ -223,25 +223,24 @@ public class GameEvents : MonoBehaviour {
 		Global.global_points += Global.score / 10;
 
 		int early_rate = 0;
-		if (Global.classic && PlayerPrefs.HasKey ("Classic_level_star" + Global.level))
-			early_rate = PlayerPrefs.GetInt ("Classic_level_star" + Global.level);
-		else if (!Global.classic && PlayerPrefs.HasKey ("Level_star" + Global.level))
-			early_rate = PlayerPrefs.GetInt ("Level_star" + Global.level);
+		if (Global.classic)
+			early_rate = PlayerPrefs.GetInt ("Classic_level_star" + Global.level, 0);
+		else if (!Global.classic)
+			early_rate = PlayerPrefs.GetInt ("Level_star" + Global.level, 0);
 
 		int rate = 0;
-
-        if (!Global.classic && Global.score > Global.max_score - Global.max_score / 3 || Global.classic && Global.score > Global.max_score + Global.max_score * 2)
+		int treshold1 = (Global.classic ? Global.max_score + Global.max_score * 2 : Global.max_score - Global.max_score / 3);
+		int treshold2 = (Global.classic ? Global.max_score + Global.max_score * 4 : Global.max_score);
+		int treshold3 = (Global.classic ? Global.max_score + Global.max_score * 6 : Global.max_score + Global.max_score / 3);
+        
+		if (Global.score > treshold1)
 			rate = 1;
-
-        if (!Global.classic && Global.score > Global.max_score || Global.classic && Global.score > Global.max_score + Global.max_score * 4)
+        if (Global.score > treshold2)
 			rate = 2;
-
-        if (!Global.classic && Global.score > Global.max_score + Global.max_score / 3 || Global.classic && Global.score > Global.max_score + Global.max_score * 6)
+        if (Global.score > treshold3)
 			rate = 3;
 
-
 		PlayerPrefs.SetInt ("Global_points", Global.global_points);
-
 
         //decrease usage number of dropping card
 		if (!Global.classic || (Global.ac != 0 && Global.ac != 5 && Global.ac != 10 &&
@@ -259,7 +258,6 @@ public class GameEvents : MonoBehaviour {
 				}
 			}
 		}
-		
 
 		if (rate > early_rate) {
 			Global.global_stars += rate - early_rate;
@@ -322,8 +320,7 @@ public class GameEvents : MonoBehaviour {
         else {
 			if (!comp_panel.activeInHierarchy) {
 				comp_panel.SetActive(true);
-				comp_panel.GetComponent<PointAnimator>().StartAnimation(rate,
-				Global.max_score - Global.max_score / 3, Global.max_score, Global.max_score + Global.max_score / 3);
+				comp_panel.GetComponent<PointAnimator>().StartAnimation(rate, treshold1, treshold2, treshold3);
 			}
 			
 		}

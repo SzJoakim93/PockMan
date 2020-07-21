@@ -36,8 +36,8 @@ public class ButtonManagement : MonoBehaviour {
 
 	public Text remaining_text;
 	public Text point_txt;
-	Scroll_fixer levelMenuS;
-	Scroll_fixer classicMenuS;
+	public Scroll_fixer levelMenuS;
+	public Scroll_fixer classicMenuS;
 	Color white = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 	Color green = new Color(0.38f, 1.0f, 0.62f, 1.0f);
 
@@ -58,9 +58,6 @@ public class ButtonManagement : MonoBehaviour {
 		for (int i = 0; i < 3; i ++)
 			card_getables[i] = card_pack[i].GetComponentsInChildren<Image> (true);
 		card_images = own_card_pack.GetComponentsInChildren<Image> (true);
-
-		levelMenuS = LevelMenu.GetComponent<Scroll_fixer>();
-		classicMenuS = ClassicMenu.GetComponent<Scroll_fixer>();
 
         //switch to the specified level menu
 		if (Global.level_menu == 1) {

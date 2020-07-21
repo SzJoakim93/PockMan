@@ -29404,6 +29404,8 @@ MonoBehaviour:
   own_card_pack: {fileID: 1747042654}
   remaining_text: {fileID: 724710927}
   point_txt: {fileID: 877909320}
+  levelMenuS: {fileID: 1161898942}
+  classicMenuS: {fileID: 512732084}
 --- !u!4 &1426638278
 Transform:
   m_ObjectHideFlags: 0
