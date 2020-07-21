@@ -32,10 +32,10 @@
 The goal is that you must reach the exit at the end of level and collect  as many points as you can do.
     </element>
     <element name="/Canvas/About/Slider/TutorialGameMode/ClassicMode">
-In this mode you must collect all points on each level. Keep in mind that fruits can be eat by enemies too.
+In this mode you must collect all points on each level. Keep in mind that diamonds can be pick by enemies too.
     </element>
     <element name="/Canvas/About/Slider/TutorialTricks/MainTitle">Tips and tricks</element>
-    <element name="/Canvas/About/Slider/TutorialTricks/Tricks">To gain more points and get higher rating try to collect as many fruits as you can do.
+    <element name="/Canvas/About/Slider/TutorialTricks/Tricks">To gain more points and get higher rating try to collect as many diamonds as you can do.
 
 Secondly try to eliminate many enemies in case of invertibility. The gained pointsd rise after each eleminated enemy.
 
@@ -97,10 +97,10 @@ Thirly look at the combo points. Picking up points as more time as you can do un
 A fő cél, hogy épségben felérj a pálya tetején lévő kijárathoz és közben minél több pontot összegyűjts.
     </element>
     <element name="/Canvas/About/Slider/TutorialGameMode/ClassicMode">
-Ebben a módban össze kell gyűjtened a pályán található összes pontot. Ne feledd, hogy ebben a módban az ellenfél is szereti a gyümölcsöket.
+Ebben a módban össze kell gyűjtened a pályán található összes pontot. Ne feledd, hogy ebben a módban az ellenfél is szereti a gyémántokat.
     </element>
     <element name="/Canvas/About/Slider/TutorialTricks/MainTitle">Tippek és trükkök</element>
-    <element name="/Canvas/About/Slider/TutorialTricks/Tricks">Ahhoz, hogy több pontot gyűjts és magasabb értékelést kapj, próbálj meg minél több gyümölcsöt összeszedni egy pályán.
+    <element name="/Canvas/About/Slider/TutorialTricks/Tricks">Ahhoz, hogy több pontot gyűjts és magasabb értékelést kapj, próbálj meg minél több gyémántot összeszedni egy pályán.
 
 Egy második módszer, hogy hallhatatlanság esetén próbálj meg minél több ellenfelet elkapni. Egy periódus alatt minden ellenfél után egyre több pont jár!
 
