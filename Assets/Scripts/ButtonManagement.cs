@@ -394,4 +394,8 @@ public class ButtonManagement : MonoBehaviour {
 		Application.OpenURL ("market://details?id=com.oldgamer93.pockrunner");
 	}
 
+	public void GainForAdd() {
+		
+	}
+
 }
