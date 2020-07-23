@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9c83331e3ddfa304589909c289c74237
-timeCreated: 1581797291
+timeCreated: 1595525026
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -86,39 +86,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 224
-        width: 32
-        height: 32
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 224
-        width: 32
-        height: 32
+        x: 64
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 224
-        width: 32
-        height: 32
+        x: 128
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 224
-        width: 32
-        height: 32
+        x: 192
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,39 +126,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
-        width: 32
-        height: 32
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_5
       rect:
         serializedVersion: 2
-        x: 32
-        y: 192
-        width: 32
-        height: 32
+        x: 64
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_6
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
-        width: 32
-        height: 32
+        x: 128
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_7
       rect:
         serializedVersion: 2
-        x: 96
-        y: 192
-        width: 32
-        height: 32
+        x: 192
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,39 +166,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
-        width: 32
-        height: 32
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_9
       rect:
         serializedVersion: 2
-        x: 32
-        y: 160
-        width: 32
-        height: 32
+        x: 64
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_10
       rect:
         serializedVersion: 2
-        x: 64
-        y: 160
-        width: 32
-        height: 32
+        x: 128
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_11
       rect:
         serializedVersion: 2
-        x: 96
-        y: 160
-        width: 32
-        height: 32
+        x: 192
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,39 +206,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 32
-        height: 32
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_13
       rect:
         serializedVersion: 2
-        x: 32
-        y: 128
-        width: 32
-        height: 32
+        x: 64
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_14
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
-        width: 32
-        height: 32
+        x: 128
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_15
       rect:
         serializedVersion: 2
-        x: 96
-        y: 128
-        width: 32
-        height: 32
+        x: 192
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,39 +246,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 32
-        height: 32
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_17
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
+        x: 64
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_18
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
+        x: 128
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_19
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
-        width: 32
-        height: 32
+        x: 192
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,39 +286,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 32
-        height: 32
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_21
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
+        x: 64
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_22
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
+        x: 128
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_23
       rect:
         serializedVersion: 2
-        x: 96
-        y: 64
-        width: 32
-        height: 32
+        x: 192
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -326,39 +326,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
-        width: 32
-        height: 32
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_25
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
+        x: 64
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_26
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
+        x: 128
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_27
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
+        x: 192
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -367,38 +367,38 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_29
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_30
       rect:
         serializedVersion: 2
-        x: 64
+        x: 128
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: enemy_ghost_31
       rect:
         serializedVersion: 2
-        x: 96
+        x: 192
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 007ac2343b998cc469eff03054b5bdd6
-timeCreated: 1537733102
+timeCreated: 1595520794
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -39,7 +39,7 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -2
-  maxTextureSize: 2048
+  maxTextureSize: 8192
   textureSettings:
     filterMode: 0
     aniso: 16
@@ -66,39 +66,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 64
-        height: 64
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: grave_design1_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
-        width: 64
-        height: 64
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: grave_design1_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
-        width: 64
-        height: 64
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: grave_design1_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 128
-        width: 64
-        height: 64
+        x: 384
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -106,39 +106,39 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 64
-        height: 64
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: grave_design1_5
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: grave_design1_6
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
-        width: 64
-        height: 64
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: grave_design1_7
       rect:
         serializedVersion: 2
-        x: 192
-        y: 64
-        width: 64
-        height: 64
+        x: 384
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,38 +147,38 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: grave_design1_9
       rect:
         serializedVersion: 2
-        x: 64
+        x: 128
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: grave_design1_10
       rect:
         serializedVersion: 2
-        x: 128
+        x: 256
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: grave_design1_11
       rect:
         serializedVersion: 2
-        x: 192
+        x: 384
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

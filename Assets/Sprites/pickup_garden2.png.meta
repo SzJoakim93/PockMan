@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8f38709cc346ab146aff92befbd72357
-timeCreated: 1555946718
+timeCreated: 1595524927
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -57,18 +57,18 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 20.5
-        height: 25
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: pickup_garden2_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 64
         y: 0
-        width: 20.5
-        height: 25
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

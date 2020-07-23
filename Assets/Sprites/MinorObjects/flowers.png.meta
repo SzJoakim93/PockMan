@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 39f0f6099ae9c914ebfecc38541955ae
-timeCreated: 1539429420
+guid: 4959331d65705754caf2e6e9b0d41eed
+timeCreated: 1595506364
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -44,7 +44,7 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -2
+  textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -72,29 +72,29 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 320
-        width: 64
-        height: 64
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flowers_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 320
-        width: 64
-        height: 64
+        x: 128
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flowers_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 320
-        width: 64
-        height: 64
+        x: 256
+        y: 640
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,29 +102,29 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 64
-        height: 64
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flowers_4
       rect:
         serializedVersion: 2
-        x: 64
-        y: 256
-        width: 64
-        height: 64
+        x: 128
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flowers_5
       rect:
         serializedVersion: 2
-        x: 128
-        y: 256
-        width: 64
-        height: 64
+        x: 256
+        y: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,29 +132,29 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
-        width: 64
-        height: 64
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flowers_7
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
-        width: 64
-        height: 64
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flowers_8
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
-        width: 64
-        height: 64
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,29 +162,29 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 64
-        height: 64
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flowers_10
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
-        width: 64
-        height: 64
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flowers_11
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
-        width: 64
-        height: 64
+        x: 256
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,29 +192,29 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 64
-        height: 64
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flowers_13
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flowers_14
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
-        width: 64
-        height: 64
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,28 +223,28 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flowers_16
       rect:
         serializedVersion: 2
-        x: 64
+        x: 128
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flowers_17
       rect:
         serializedVersion: 2
-        x: 128
+        x: 256
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

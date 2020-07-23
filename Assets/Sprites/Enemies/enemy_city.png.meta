@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7855f860a4761f64ea805af6cbaf73e0
-timeCreated: 1581797688
+timeCreated: 1595525001
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -62,9 +62,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 224
-        width: 32
-        height: 32
+        y: 448
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -72,9 +72,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
-        width: 32
-        height: 32
+        y: 384
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -82,9 +82,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
-        width: 32
-        height: 32
+        y: 320
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -92,9 +92,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 32
-        height: 32
+        y: 256
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,9 +102,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 32
-        height: 32
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,9 +112,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 32
-        height: 32
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,9 +122,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
-        width: 32
-        height: 32
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,8 +133,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

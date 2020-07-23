@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 886e79f6c79043a4d9469bfb40deaaad
-timeCreated: 1555945453
+timeCreated: 1595524938
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -57,18 +57,18 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 20.5
-        height: 25
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: pickup_snow_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 64
         y: 0
-        width: 20.5
-        height: 25
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

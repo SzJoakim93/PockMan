@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1c333107a2ff0ee45b7707002b7460d6
-timeCreated: 1536828628
+timeCreated: 1595520770
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -59,38 +59,38 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 63.5
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: desert_design1_1
       rect:
         serializedVersion: 2
-        x: 63
+        x: 128
         y: 0
-        width: 63.5
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: desert_design1_2
       rect:
         serializedVersion: 2
-        x: 126
+        x: 256
         y: 0
-        width: 63.5
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: desert_design1_3
       rect:
         serializedVersion: 2
-        x: 189
+        x: 384
         y: 0
-        width: 63.5
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
