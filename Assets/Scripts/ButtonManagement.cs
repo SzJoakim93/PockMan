@@ -38,6 +38,7 @@ public class ButtonManagement : MonoBehaviour {
 	public Text point_txt;
 	public Scroll_fixer levelMenuS;
 	public Scroll_fixer classicMenuS;
+	public Text Description;
 	Color white = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 	Color green = new Color(0.38f, 1.0f, 0.62f, 1.0f);
 
@@ -126,6 +127,8 @@ public class ButtonManagement : MonoBehaviour {
 					card_pack[i].SetActive(false);
 				}
 
+				Description.gameObject.SetActive(false);
+
                 back_btn.SetActive(true);
 			}
 		}
@@ -197,6 +200,7 @@ public class ButtonManagement : MonoBehaviour {
 					card_images[i+1].sprite = card_sprites[Global.own_cards[i]]; //set the sprite of cards to type of owned cards
 					Text [] card_text = card_images [i+1].GetComponentsInChildren<Text>(true); //get text components of owned cards
                     card_text[0].text = "" + Global.card_remaining[i]; //set the number of usage rounds
+					card_text[2].text = language_Manager.GetTextByValue("CardTitle" + Global.own_cards[i]);
 					if (i == Global.ac) //set the activated card's text
 						card_text[1].gameObject.SetActive(true);
 				}
@@ -304,8 +308,16 @@ public class ButtonManagement : MonoBehaviour {
 
 				card_images [i+1].gameObject.SetActive (true);
 				card_images [i+1].sprite = card_sprites [x];
+				card_images [i+1].GetComponentsInChildren<Text>(true)[0].text =
+					language_Manager.GetTextByValue("CardTitle" + Global.own_cards[i]);
 
 				card_getables [row] [column + 1].sprite = card_sprites [x];
+				Description.gameObject.SetActive(true);
+				Description.text = language_Manager.GetTextByValue("CardTitle" + x);
+				Description.rectTransform.position =
+					new Vector3(card_getables [row] [column + 1].rectTransform.position.x + 2,
+						card_getables [row] [column + 1].rectTransform.position.y - 102,
+						0);
 
 				delay = 200;
 

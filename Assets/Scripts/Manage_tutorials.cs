@@ -9,8 +9,8 @@ public class Manage_tutorials : MonoBehaviour {
     
     bool main_text_active = false;
 
-    public Image upgrade_btn;
-    public Image dropping_btn;
+    public Text upgrade_btn;
+    public Text dropping_btn;
 
     public Image drop_btn1;
     public Image drop_btn2;

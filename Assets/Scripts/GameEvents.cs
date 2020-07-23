@@ -25,6 +25,9 @@ public class GameEvents : MonoBehaviour {
 	public Text ready_to_go;
 	public GameObject game_over_panel;
 	public InGameTutorials Tutorials;
+	public Sprite [] Sprites;
+	public Image ExtraCardSignal;
+	static LinkedList<int> soundTracks = new LinkedList<int>();
 
 	// Use this for initialization
 	void Start () {
@@ -72,36 +75,58 @@ public class GameEvents : MonoBehaviour {
 				respawn_delay = 0.3f;
 			else if (Global.own_cards [Global.ac] == 13)
 				respawn_delay = 0.1f;
+
+			//invoke card signal
+			ExtraCardSignal.gameObject.SetActive(true);
+			ExtraCardSignal.sprite = Sprites[Global.own_cards [Global.ac]];
 		}
 
 
 
 		if (Global.music_enabled)
         {
+			if (soundTracks.Count == 0) {
+				for (int i = 0; i < 10; i++)
+					soundTracks.AddFirst(i);
+			}
 			bg_music = pac_man.GetComponent<AudioSource>();
 			
-			float x = Random.Range(0.0f, 10.0f);
-			if (x >= 0.0f && x < 1.0f)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Sunset on the Bay (Electronic, Synthwave)");
-			else if (x >= 1.0f && x < 2.0f)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Another World");
-			else if (x >= 2.0f && x < 3.0f)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Cant Stop Me");
-			else if (x >= 3.0f && x < 4.0f)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Zen Puzzle (World, Puzzle)");
-			else if (x >= 4.0f && x < 5.0f)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Fatality Racer");
-			else if (x >= 5.0f && x < 6.0f)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Solar Eclipse (Electronic, Space)");
-			else if (x >= 6.0f && x < 7.0f)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Hard Rock");
-			else if (x >= 7.0f && x < 8.0f)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/In a Rush (Rock, Action)");
-			else if (x >= 8.0f && x < 9.0f)
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Let's Rock (ver.1)");
-			else
-				bg_music.clip = Resources.Load<AudioClip>("Loops/Underwater (Electronic, Action)");
-
+			float x = Random.Range(0.0f, soundTracks.Count);
+			int soundTrack = getTrackByIndex((int)x);
+			soundTracks.Remove(soundTrack);
+			switch (soundTrack)
+			{
+				case 0:
+					bg_music.clip = Resources.Load<AudioClip>("Loops/Sunset on the Bay (Electronic, Synthwave)");
+					break;
+				case 1:
+					bg_music.clip = Resources.Load<AudioClip>("Loops/Another World");
+					break;
+				case 2:
+					bg_music.clip = Resources.Load<AudioClip>("Loops/Cant Stop Me");
+					break;
+				case 3:
+					bg_music.clip = Resources.Load<AudioClip>("Loops/Zen Puzzle (World, Puzzle)");
+					break;
+				case 4:
+					bg_music.clip = Resources.Load<AudioClip>("Loops/Fatality Racer");
+					break;
+				case 5:
+					bg_music.clip = Resources.Load<AudioClip>("Loops/Solar Eclipse (Electronic, Space)");
+					break;
+				case 6:
+					bg_music.clip = Resources.Load<AudioClip>("Loops/Hard Rock");
+					break;
+				case 7:
+					bg_music.clip = Resources.Load<AudioClip>("Loops/In a Rush (Rock, Action)");
+					break;
+				case 8:
+					bg_music.clip = Resources.Load<AudioClip>("Loops/Let's Rock (ver.1)");
+					break;
+				case 9:
+					bg_music.clip = Resources.Load<AudioClip>("Loops/Underwater (Electronic, Action)");
+					break;
+			}
 
 			bg_music.Play();
         }
@@ -136,10 +161,10 @@ public class GameEvents : MonoBehaviour {
 
 				GameObject new_enemy;
 
-				if (Global.classic && !Global.followEnemyAlive) {
+				if (Global.classic && !Global.followEnemyAlive && Global.enemies.Count > 2) {
 					Global.followEnemyAlive = true;
 					new_enemy = (GameObject)Instantiate(enemy[0], spawn_enemy(), Quaternion.identity);
-				} else if (Global.classic && !Global.blockenemyAlive) {
+				} else if (Global.classic && !Global.blockenemyAlive && Global.enemies.Count > 4) {
 					Global.blockenemyAlive = true;
 					new_enemy = (GameObject)Instantiate(enemy[1], spawn_enemy(), Quaternion.identity);
 				} else
@@ -378,5 +403,16 @@ public class GameEvents : MonoBehaviour {
 		
 		
 		
+	}
+
+	int getTrackByIndex(int x) {
+		int i = 0;
+		foreach (var s in soundTracks) {
+			if (i == x)
+				return s;
+			i++;
+		}
+
+		return -1;
 	}
 }
