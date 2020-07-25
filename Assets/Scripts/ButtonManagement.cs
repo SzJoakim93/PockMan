@@ -297,10 +297,10 @@ public class ButtonManagement : MonoBehaviour {
 			int x = (int)Random.Range (row * 5 + 0.0f, row * 5 + 4.9f);
 
 			int i;
-			for (i = 0; i < 10 && Global.own_cards[i] != -1; i++)
+			for (i = 0; i < Global.own_cards.Length && Global.own_cards[i] != -1; i++)
 				;
 
-			if (i < 10) {
+			if (i < Global.own_cards.Length) {
 				Global.own_cards [i] = x;
                 Global.card_remaining[i] = 5;
 				PlayerPrefs.SetInt("Card_place" + i, x);
@@ -308,7 +308,7 @@ public class ButtonManagement : MonoBehaviour {
 
 				card_images [i+1].gameObject.SetActive (true);
 				card_images [i+1].sprite = card_sprites [x];
-				card_images [i+1].GetComponentsInChildren<Text>(true)[0].text =
+				card_images [i+1].GetComponentsInChildren<Text>(true)[2].text =
 					language_Manager.GetTextByValue("CardTitle" + Global.own_cards[i]);
 
 				card_getables [row] [column + 1].sprite = card_sprites [x];

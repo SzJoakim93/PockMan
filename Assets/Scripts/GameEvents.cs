@@ -254,16 +254,18 @@ public class GameEvents : MonoBehaviour {
 			early_rate = PlayerPrefs.GetInt ("Level_star" + Global.level, 0);
 
 		int rate = 0;
-		int treshold1 = (Global.classic ? Global.max_score + Global.max_score * 2 : Global.max_score - Global.max_score / 3);
-		int treshold2 = (Global.classic ? Global.max_score + Global.max_score * 4 : Global.max_score);
-		int treshold3 = (Global.classic ? Global.max_score + Global.max_score * 6 : Global.max_score + Global.max_score / 3);
+		int treshold1 = (Global.classic ? Global.max_score : Global.max_score - Global.max_score / 3);
+		int treshold2 = (Global.classic ? Global.max_score + Global.max_score * 2 : Global.max_score);
+		bool noDead = pac_man.GetComponent<pac_movement>().NoDead();
         
 		if (Global.score > treshold1)
 			rate = 1;
         if (Global.score > treshold2)
 			rate = 2;
-        if (Global.score > treshold3)
-			rate = 3;
+        if (noDead) {
+			rate++;
+			Global.global_points += 200;
+		}
 
 		PlayerPrefs.SetInt ("Global_points", Global.global_points);
 
@@ -345,28 +347,10 @@ public class GameEvents : MonoBehaviour {
         else {
 			if (!comp_panel.activeInHierarchy) {
 				comp_panel.SetActive(true);
-				comp_panel.GetComponent<PointAnimator>().StartAnimation(rate, treshold1, treshold2, treshold3);
+				comp_panel.GetComponent<PointAnimator>().StartAnimation(rate, treshold1, treshold2, noDead);
 			}
 			
 		}
-
-
-		if ((!Global.classic && Global.level == 39) || (!Global.classic && Global.level == 19))
-				nextButton.interactable = false;
-
-        //end of in-game actions
-		if (Global.ready_to_go > 0 && (Global.ready_to_go < 50 || Global.ready_to_go % 100 != 1)) {
-			Global.ready_to_go--;
-			if (Global.ready_to_go == 1)
-				ready_to_go.gameObject.SetActive(false);
-			else if (Global.ready_to_go == 102)
-				//Application.LoadLevel ("menu");
-				end_level();
-			else if (Global.ready_to_go == 202)
-				//Application.LoadLevel ("menu");
-				game_over_panel.SetActive(true);
-		}
-
 	}
 
 	public Vector2 spawn_enemy() {

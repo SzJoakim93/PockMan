@@ -2045,7 +2045,7 @@ RectTransform:
   m_Children:
   - {fileID: 2094631515}
   m_Father: {fileID: 732384340}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: -49.999939}
@@ -2114,7 +2114,7 @@ RectTransform:
   m_Children:
   - {fileID: 1427254655}
   m_Father: {fileID: 732384340}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 320, y: -1019}
@@ -14830,6 +14830,7 @@ RectTransform:
   - {fileID: 1387345453}
   - {fileID: 831792425}
   - {fileID: 1470532429}
+  - {fileID: 1569472648}
   - {fileID: 117869562}
   - {fileID: 1531984225}
   - {fileID: 116015758}
@@ -14887,6 +14888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gain_points: {fileID: 635870794}
   global_points: {fileID: 831792426}
+  NoDeadText: {fileID: 1569472651}
   stars:
   - {fileID: 1531984226}
   - {fileID: 116015759}
@@ -29342,7 +29344,7 @@ RectTransform:
   m_Children:
   - {fileID: 351571898}
   m_Father: {fileID: 732384340}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -277.500122, y: -50}
@@ -30111,6 +30113,92 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: 3725e391296b6634ba6bb46e491c2beb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &1569472647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1569472648}
+  - 222: {fileID: 1569472650}
+  - 114: {fileID: 1569472649}
+  - 114: {fileID: 1569472651}
+  m_Layer: 5
+  m_Name: NoDeadTxt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1569472648
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569472647}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2.5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 732384340}
+  m_RootOrder: 5
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 1, y: -1678}
+  m_SizeDelta: {x: 640, y: 142}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &1569472649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569472647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: .741582215, b: .279411793, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 1e65d014a91c03141995d350735a9356, type: 3}
+    m_FontSize: 72
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 1
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'No dead
+
+    +200'
+--- !u!222 &1569472650
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569472647}
+--- !u!114 &1569472651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569472647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375cfa5cb342e1347a0ba63ec0387412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1569633234
 GameObject:
   m_ObjectHideFlags: 0
@@ -34323,7 +34411,7 @@ RectTransform:
   m_Children:
   - {fileID: 1168384636}
   m_Father: {fileID: 732384340}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 271, y: -50}

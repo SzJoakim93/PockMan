@@ -8,6 +8,8 @@
 		<element name="/Canvas/comp_panel/comp_txt">Level completed!</element>
 		<element name="/Canvas/comp_panel/rating">Rating:</element>
 		<element name="/Canvas/comp_panel/Exit/Text">Exit</element>
+		<element name="/Canvas/comp_panel/NoDeadTxt">No dead
++200</element>
 		<element name="/Canvas/game_over_panel/game_over_txt">Game over! Try harder</element>
 		<element name="/Canvas/game_over_panel/retry/Text">Retry</element>
 		<element name="/Canvas/game_over_panel/exit/Text">Exit</element>
@@ -16,7 +18,7 @@
 		<element name="/Canvas/pause_panel/restart_btn/Text">Restart</element>
 		<element name="/Canvas/pause_panel/quit_btn/Text">Quit</element>
 		<element name="/Canvas/warn_panel/warn_message">The storage of dropping cards is full. We extended the time of usage at some cards.</element>
-		<dynamic-text name="Tutorial1">To controlling, smooth screen to the requested direction.</dynamic-text>
+		<dynamic-text name="Tutorial1">To controll, swap screen to the requested direction.</dynamic-text>
 		<dynamic-text name="Tutorial2">Tap ammo button to shot enemies.</dynamic-text>
 		<dynamic-text name="Tutorial3">Tap mine button to place mines.</dynamic-text>
 		<dynamic-text name="Tutorial4">While enemies become blue, you can eliminate them.</dynamic-text>
@@ -36,6 +38,8 @@
 		<element name="/Canvas/comp_panel/comp_txt">Szint teljesítve!</element>
 		<element name="/Canvas/comp_panel/rating">Értékelésed:</element>
 		<element name="/Canvas/comp_panel/Exit/Text">Exit</element>
+		<element name="/Canvas/comp_panel/NoDeadTxt">Nem haltál meg
++200</element>
 		<element name="/Canvas/game_over_panel/game_over_txt">Vesztettél! Légy keményebb!</element>
 		<element name="/Canvas/game_over_panel/retry/Text">Újra</element>
 		<element name="/Canvas/game_over_panel/exit/Text">Kilépés</element>

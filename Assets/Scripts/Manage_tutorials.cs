@@ -6,6 +6,7 @@ public class Manage_tutorials : MonoBehaviour {
 
     public Text main_text;
     public Text drop_text;
+    public GameObject GameTitle;
     
     bool main_text_active = false;
 
@@ -40,9 +41,8 @@ public class Manage_tutorials : MonoBehaviour {
         {
             if (!main_text_active)
             {
-                main_text.gameObject.SetActive(true);
+                setActiveTutorialText(true);
                 main_text.text = language_Manager.GetTextByValue("Tutorial11");
-                main_text_active = true;
                 upgrade_btn.color = red;
             }
             
@@ -105,20 +105,22 @@ public class Manage_tutorials : MonoBehaviour {
             }
             else if ((Global.level_menu == 1 || Global.level_menu == 2) && !main_text_active)
             {
-                main_text.gameObject.SetActive(true);
-                main_text_active = true;
-
+                setActiveTutorialText(true);
                 main_text.text = language_Manager.GetTextByValue("Tutorial10");
-
                 dropping_btn.color = red;
             }
             
         }
         else if (main_text_active)
         {
-            main_text.gameObject.SetActive(false);
-            main_text_active = false;
+            setActiveTutorialText(false);
             upgrade_btn.color = white;
         }
 	}
+
+    void setActiveTutorialText(bool x) {
+        GameTitle.SetActive(!x);
+        main_text_active = x;
+        main_text.gameObject.SetActive(x);
+    }
 }

@@ -36,7 +36,7 @@ public class pac_movement : MonoBehaviour {
 
 	short req_direction;
 	short pac_direction;
-	short life=2;
+	short life = 3;
 
 	short fire_shield = 0;
 	short max_fire_shield = 0;
@@ -312,6 +312,10 @@ public class pac_movement : MonoBehaviour {
 
 	public void tap_down() {
 		req_direction = 3;
+	}
+
+	public bool NoDead() {
+		return (Global.classic && life == 3) || (!Global.classic && life == 2);
 	}
 
 	void respawn_player(float x, float y)
