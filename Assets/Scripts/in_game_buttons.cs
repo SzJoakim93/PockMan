@@ -88,6 +88,13 @@ public class in_game_buttons : MonoBehaviour {
 
     void nextLevel() {
         if (Global.classic) {
+
+            if (Global.level == 29 && PlayerPrefs.GetInt("OutroRush", 0) == 0) {
+                Application.LoadLevel("outro");
+                PlayerPrefs.SetInt("OutroRush", 1);
+                return;
+            }
+
             Global.level += 101;
 
             if (Global.level-100 == Global.unlocked_clevels && Global.unlocked_clevels % 5 == 0) {
@@ -98,6 +105,12 @@ public class in_game_buttons : MonoBehaviour {
 
         }  
         else {
+            if (Global.level == 29 && PlayerPrefs.GetInt("OutroClassic", 0) == 0) {
+                Application.LoadLevel("outro");
+                PlayerPrefs.SetInt("OutroClassic", 1);
+                return;
+            }
+
             Global.level++;
 
             if (Global.level == Global.unlocked_levels && Global.unlocked_levels % 5 == 0) {
