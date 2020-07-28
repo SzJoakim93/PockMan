@@ -129,11 +129,9 @@ public class load_level : MonoBehaviour {
 								}
 								else if (line[j] >= 'A' && line[j] <= 'L') {
 									float offset = 0.25f;
-									/*if (minor_objects[line[j] - 'A'+1].localScale.x == 0.75f)
-										offset = -0.05f;
-									else*/ if (minor_objects[line[j] - 'A'+1].localScale.x == 2.25f)
+									if (minor_objects[line[j] - 'A'+1].tag == "large")
 										offset = 0.375f;
-									else if (minor_objects[line[j] - 'A'+1].localScale.x == 3.0f)
+									else if (minor_objects[line[j] - 'A'+1].tag == "very_large")
 										offset = 0.6f;
 									Instantiate(minor_objects[line[j] - 'A'+1], new Vector3((j - k) * 0.5f + offset , (i - 4) * 0.5f - offset), Quaternion.identity);
 								}

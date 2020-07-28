@@ -46,7 +46,7 @@ public class ButtonManagement : MonoBehaviour {
 
 	int card_level=0;
 
-	int [] card_costs = new int[] {3000, 10000, 15000};
+	int [] card_costs = new int[] {1000, 3000, 5000};
 
 	bool first_running_drop = true;
 	int selectedCharacter = 0;

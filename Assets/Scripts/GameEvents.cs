@@ -128,6 +128,7 @@ public class GameEvents : MonoBehaviour {
 					break;
 			}
 
+			bg_music.volume = PlayerPrefs.GetFloat("Volume", 0.5f);
 			bg_music.Play();
         }
 	}

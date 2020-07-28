@@ -158,7 +158,15 @@ public class Start_game : MonoBehaviour {
 
 			Global.music_enabled = PlayerPrefs.GetInt("MusicEnabled", 0) == 0;
 			Global.controll_type = PlayerPrefs.GetInt("ControlType", 0);
-			Global.current_language = PlayerPrefs.GetString("Language", "ENG");
+
+			if (PlayerPrefs.HasKey("Language"))
+				Global.current_language = PlayerPrefs.GetString("Language", "ENG");
+			else {
+				if (Application.systemLanguage == SystemLanguage.Hungarian)
+					Global.current_language = "HUN";
+				else
+					Global.current_language = "ENG";
+			}
 			
 			Global.selectedCharacter = PlayerPrefs.GetInt("Character", 0);
 		}

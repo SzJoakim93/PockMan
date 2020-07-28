@@ -245,7 +245,7 @@ public class pac_movement : MonoBehaviour {
 
 
                 //horizontal moving of camera
-				if (transform.position.x > 2.8f && transform.position.x < 5.4f)
+				if (transform.position.x > 2.8f && transform.position.x < 6.0f)
 				{
 					if (pac_direction == 1)
 						camera.Translate(speed*Time.deltaTime, 0, 0);
@@ -315,7 +315,7 @@ public class pac_movement : MonoBehaviour {
 	}
 
 	public bool NoDead() {
-		return (Global.classic && life == 3) || (!Global.classic && life == 2);
+		return life == 3;
 	}
 
 	void respawn_player(float x, float y)

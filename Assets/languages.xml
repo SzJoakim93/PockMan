@@ -9,6 +9,7 @@
 		<element name="/Canvas/back_btn">Back</element>
     <element name="/Canvas/Settings/lang_text">Lang</element>
     <element name="/Canvas/Settings/music_text">Music</element>
+    <element name="/Canvas/Settings/VolumeTitle">Music volume:</element>
     <element name="/Canvas/Dropping_menu/tutorial_text">Tap a card to activate</element>
     <element name="/Canvas/Dropping_menu/are_you_sure/Text">Are you sure?</element>
     <element name="/Canvas/Dropping_menu/are_you_sure/No_btn/Text">No</element>
@@ -25,6 +26,10 @@
     <element name="/Canvas/CharacterMenu/BuyBtn/Text">Buy now</element>
     <element name="/Canvas/CharacterMenu/BuyBtn/Title">*Buying a character It will remove ads too.</element>
     <element name="/Canvas/About/Slider/About/MainTitle">About</element>
+    <element name="/Canvas/About/Slider/About/3rdPartyTitle">Thanks for 3rdParty assets:</element>
+    <element name="/Canvas/About/Slider/About/MucicTitle">Music</element>
+    <element name="/Canvas/About2/Slider/About2/SoundTitle">Sound effects</element>
+    <element name="/Canvas/About2/Slider/About2/GermanTitle">German translation</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/MainTitle">Game modes</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/RushModeTitle">Rush mode:</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/ClassicModeTitle">Classic mode:</element>
@@ -89,6 +94,7 @@ Thirly look at the combo points. Picking up points as more time as you can do un
 		<element name="/Canvas/back_btn">Vissza</element>
     <element name="/Canvas/Settings/lang_text">Nyelv</element>
     <element name="/Canvas/Settings/music_text">Zene</element>
+    <element name="/Canvas/Settings/VolumeTitle">Zene hangereje:</element>
     <element name="/Canvas/Dropping_menu/tutorial_text">Koppints egy kártyára az aktíváláshoz!</element>
     <element name="/Canvas/Dropping_menu/are_you_sure/Text">Biztos vagy benne?</element>
     <element name="/Canvas/Dropping_menu/are_you_sure/No_btn/Text">Nem</element>
@@ -105,6 +111,10 @@ Thirly look at the combo points. Picking up points as more time as you can do un
     <element name="/Canvas/CharacterMenu/BuyBtn/Text">Megveszem</element>
     <element name="/Canvas/CharacterMenu/BuyBtn/Title">*Vásárlás esetén eltávolítjuk a hirdetéseket is.</element>
     <element name="/Canvas/About/Slider/About/MainTitle">Névjegy</element>
+    <element name="/Canvas/About/Slider/About/3rdPartyTitle">Köszönet a harmadik féltől származó csomagokért:</element>
+    <element name="/Canvas/About/Slider/About/MusicTitle">Zene</element>
+    <element name="/Canvas/About/Slider/About2/SoundTitle">Hang effektek</element>
+    <element name="/Canvas/About/Slider/About2/GermanTitle">Német fordítás</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/MainTitle">Játékmódok</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/RushModeTitle">Rush mód:</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/ClassicModeTitle">Classic mód:</element>
