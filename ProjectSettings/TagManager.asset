@@ -30,6 +30,8 @@ TagManager:
   - enemy_ammo
   - speed_zone
   - slow_zone
+  - large
+  - very_large
   layers:
   - Default
   - TransparentFX

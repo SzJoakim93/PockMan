@@ -23,7 +23,7 @@ public class Turret_shoting : MonoBehaviour {
 		activate = 0;
 		isActive = false;
 
-		ammo = transform.FindChild ("ammo");
+		ammo = transform.Find ("ammo");
 
 		int matrix_x = (int)(transform.position.x * 2);
 		int matrix_y = (int)(transform.position.y * 2);

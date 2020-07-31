@@ -62,18 +62,6 @@ public class Global : MonoBehaviour {
 	public static bool followEnemyAlive;
 	public static bool blockenemyAlive;
 	public static int selectedCharacter;
-
-	#if UNITY_EDITOR
-	public static string default_path = Application.dataPath;
-	#elif UNITY_ANDROID
-	public static string default_path =  "jar:file://" + Application.dataPath + "!/assets/";
-	#elif UNITY_IPHONE
-		public static string default_path = Application.dataPath + "/Raw";
-	#else
-	public static string default_path = Application.dataPath + "/";
-	#endif
-	
-	//public static string [] levels = new string[] {"level1.txt", "level2.txt", "level3.txt", "level4.txt", "level5.txt"};
 	public static int level = 30;
 	public static float enemy_rise;
 	public static bool isStarted = false;

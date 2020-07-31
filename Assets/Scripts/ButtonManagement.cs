@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ButtonManagement : MonoBehaviour {
 
@@ -23,6 +24,7 @@ public class ButtonManagement : MonoBehaviour {
 	public Text ApplyBtn;
 	public GameObject BuyBtn;
 	public Language_manager language_Manager;
+	public AdManager adManager;
 
     Image[] card_images; //array of owned cards
 	Image[][] card_getables; //matrix of getable cards
@@ -156,7 +158,7 @@ public class ButtonManagement : MonoBehaviour {
 	public void Back() {
 
         if (Global.level_menu == 4)
-            Application.LoadLevel("ingame");
+			SceneManager.LoadScene("ingame");
 		MainMenu.SetActive (true);
 		LevelMenu.SetActive (false);
 		ClassicMenu.SetActive (false);
@@ -286,7 +288,7 @@ public class ButtonManagement : MonoBehaviour {
 	public void load(int level) {
 		loadingPanel.SetActive(true);
 		Global.level = level;
-		Application.LoadLevel("ingame");
+		SceneManager.LoadScene("ingame");
 	}
 
 	public void card_click(int y) {
@@ -403,11 +405,16 @@ public class ButtonManagement : MonoBehaviour {
 	}
 
 	public void RateThisApp() {
-		Application.OpenURL ("market://details?id=com.oldgamer93.pockrunner");
+		Application.OpenURL ("market://details?id=com.JokrGames.PockRunner");
 	}
 
-	public void GainForAdd() {
-		
+	public void ClickGainForAd() {
+		adManager.UserChoseToWatchAd();
+	}
+
+	public void GainForAd() {
+		Global.global_points += 200;
+		point_txt.text = Global.global_points.ToString();
 	}
 
 }

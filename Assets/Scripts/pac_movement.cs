@@ -372,7 +372,7 @@ public class pac_movement : MonoBehaviour {
                 pac_direction = 1;
 				anim.SetInteger("direction", pac_direction);
 
-                int i, j = ((int)camera.transform.position.y) * 2, k;
+                int j = ((int)camera.transform.position.y) * 2, k;
                 if (j < 0)
                     j = 0;
 

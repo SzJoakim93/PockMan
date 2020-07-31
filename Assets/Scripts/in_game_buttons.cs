@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class in_game_buttons : MonoBehaviour {
 
@@ -10,7 +11,15 @@ public class in_game_buttons : MonoBehaviour {
     public GameObject arrows;
     public GameObject arrows_smooth;
     public GameObject CharacterPanel;
-    int selectedButton = 0;
+    public AdManager adManager;
+    enum SelectedButton
+    {
+        QuitToMenu,
+        NextLevel,
+        RestartLevel
+    }
+    SelectedButton selectedButton;
+    static bool secondLevel = false;
 
     void Start() {
         if (Global.controll_type == 0) {
@@ -19,27 +28,51 @@ public class in_game_buttons : MonoBehaviour {
         }
     }
 
-	public void restart() {
-        if (Global.classic)
-            Global.level += 100;
-		Application.LoadLevel("ingame");
+	public void RestartBtn() {
+        selectedButton = SelectedButton.RestartLevel;
+
+        if (!isCharacterPlayable()) {
+            CharacterPanel.SetActive(true);
+            return;
+        }
+
+        if (adManager.ShowInterstitialAd())
+            return;
+
+        restart();
+
 	}
 
 	public void next_level() {
+        selectedButton = SelectedButton.NextLevel;
+
         if (!isCharacterPlayable()) {
             CharacterPanel.SetActive(true);
-            selectedButton = 1;
-        } else
-            nextLevel();
+            return;
+        }
+ 
+        if (secondLevel && adManager.ShowInterstitialAd()) {
+            secondLevel = false;
+            return;
+        }
+        else
+            secondLevel = true;
+
+        nextLevel();
 	}
 
 	public void return_to_menu() {
+        selectedButton = SelectedButton.QuitToMenu;
 
         if (!isCharacterPlayable()) {
             CharacterPanel.SetActive(true);
-            selectedButton = 0;
-        } else
-            returnToMenu();
+            return;
+        }            
+
+        if (adManager.ShowInterstitialAd())
+            return;
+
+        returnToMenu();
 	}
 
 	public void pause_game() {
@@ -59,10 +92,19 @@ public class in_game_buttons : MonoBehaviour {
     }
 
     public void CharacterWarnOk() {
-        if (selectedButton == 0)
-            returnToMenu();
-        else
-            nextLevel();
+        if (adManager.ShowInterstitialAd())
+            return;
+
+        invokeSelectedEvent();
+    }
+
+    public void OnAdClosedEvent() {
+        if (!isCharacterPlayable()) {
+            CharacterPanel.SetActive(true);
+            return;
+        }
+        
+        invokeSelectedEvent();
     }
 
     bool isCharacterPlayable() {
@@ -90,7 +132,7 @@ public class in_game_buttons : MonoBehaviour {
         if (Global.classic) {
 
             if (Global.level == 29 && PlayerPrefs.GetInt("OutroRush", 0) == 0) {
-                Application.LoadLevel("outro");
+                SceneManager.LoadScene("outro");
                 PlayerPrefs.SetInt("OutroRush", 1);
                 return;
             }
@@ -99,14 +141,14 @@ public class in_game_buttons : MonoBehaviour {
 
             if (Global.level-100 == Global.unlocked_clevels && Global.unlocked_clevels % 5 == 0) {
                 Global.level_menu = 2;
-                Application.LoadLevel("menu");
+                SceneManager.LoadScene("menu");
                 return;
             }
 
         }  
         else {
             if (Global.level == 29 && PlayerPrefs.GetInt("OutroClassic", 0) == 0) {
-                Application.LoadLevel("outro");
+                SceneManager.LoadScene("outro");
                 PlayerPrefs.SetInt("OutroClassic", 1);
                 return;
             }
@@ -115,7 +157,7 @@ public class in_game_buttons : MonoBehaviour {
 
             if (Global.level == Global.unlocked_levels && Global.unlocked_levels % 5 == 0) {
                 Global.level_menu = 1;
-                Application.LoadLevel("menu");
+                SceneManager.LoadScene("menu");
                 return;
             }
         }
@@ -124,10 +166,10 @@ public class in_game_buttons : MonoBehaviour {
         if (Global.global_stars >= Global.next_card_stars && Global.Free_slot_exist())
         {
             Global.level_menu = 4;
-            Application.LoadLevel("menu");
+            SceneManager.LoadScene("menu");
         }
         else
-		    Application.LoadLevel ("ingame");
+		    SceneManager.LoadScene("ingame");
     }
 
     void returnToMenu() {
@@ -137,6 +179,27 @@ public class in_game_buttons : MonoBehaviour {
             Global.level_menu = 2;
         else
             Global.level_menu = 1;
-		Application.LoadLevel ("menu");
+		SceneManager.LoadScene("menu");
+    }
+
+    void restart() {
+        if (Global.classic)
+            Global.level += 100;
+		SceneManager.LoadScene("ingame");
+    }
+
+    void invokeSelectedEvent() {
+        switch (selectedButton)
+        {
+            case SelectedButton.QuitToMenu:
+                returnToMenu();
+                break;
+            case SelectedButton.NextLevel:
+                nextLevel();
+                break;
+            case SelectedButton.RestartLevel:
+                restart();
+                break;
+        }
     }
 }

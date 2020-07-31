@@ -20,7 +20,7 @@ public class enemy_movement : MonoBehaviour {
 
 	SpriteRenderer current_sprite; //the enym's current sprite
 
-	GameObject collider; //the collider object that using for ally mode
+	GameObject Collider; //the collider object that using for ally mode
 
 	public short isAlly = 0;
 	short ally_sprite = 0; //offset to ally sprite in sprites array
@@ -44,8 +44,8 @@ public class enemy_movement : MonoBehaviour {
 
 		current_sprite = this.GetComponent<SpriteRenderer> ();
 		Transform [] temp = this.GetComponentsInChildren<Transform> (true);
-		collider = temp [1].gameObject;
-		collider.SetActive (false);
+		Collider = temp [1].gameObject;
+		Collider.SetActive (false);
 
 		bc = this.GetComponent<BoxCollider2D> ();
 
@@ -485,14 +485,14 @@ public class enemy_movement : MonoBehaviour {
 		isAlly = 1000;
 		setAllySprite(true);
 		enemy_type = 5;
-		collider.SetActive (true);
+		Collider.SetActive (true);
 		bc.enabled = false;
 	}
 
 	public void deconvertFromAlly() {
 		setAllySprite(false);
 		bc.enabled = true;
-		collider.SetActive(false);
+		Collider.SetActive(false);
 		enemy_type = 0;
 	}
 

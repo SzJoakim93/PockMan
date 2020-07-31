@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Outro : MonoBehaviour {
 	public PopupText MainTitle;
@@ -29,7 +30,7 @@ public class Outro : MonoBehaviour {
 			if (clip >= 6) {
 
 				Global.level_menu = 1;
-				Application.LoadLevel("Menu");
+				SceneManager.LoadScene("Menu");
 			}
 		}
 	}
