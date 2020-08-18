@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
@@ -25,6 +25,7 @@ public class ButtonManagement : MonoBehaviour {
 	public GameObject BuyBtn;
 	public Language_manager language_Manager;
 	public AdManager adManager;
+	public Purchaser purchaseManager;
 
     Image[] card_images; //array of owned cards
 	Image[][] card_getables; //matrix of getable cards
@@ -41,6 +42,7 @@ public class ButtonManagement : MonoBehaviour {
 	public Scroll_fixer levelMenuS;
 	public Scroll_fixer classicMenuS;
 	public Text Description;
+	public DialogOk dialogOk;
 	Color white = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 	Color green = new Color(0.38f, 1.0f, 0.62f, 1.0f);
 
@@ -377,8 +379,9 @@ public class ButtonManagement : MonoBehaviour {
 
 			PlayerPrefs.SetInt("Global_points", Global.global_points);
             back_btn.SetActive(false);
-		} else
-			not_enought.SetActive (true);
+		} else {
+			dialogOk.InvokeDialog(language_Manager.GetTextByValue("NotEnought"));
+		}
 		pop_up_dialog.SetActive (false);
 
 	}
@@ -415,6 +418,17 @@ public class ButtonManagement : MonoBehaviour {
 	public void GainForAd() {
 		Global.global_points += 200;
 		point_txt.text = Global.global_points.ToString();
+	}
+
+	public void Purchase() {
+		purchaseManager.BuyCharacter(selectedCharacter-1);
+
+		if (PlayerPrefs.GetInt("Character" + selectedCharacter.ToString(), 0) == -1) {
+			ApplyBtn.gameObject.SetActive(true);
+			BuyBtn.SetActive(false);
+			ApplyBtn.text = language_Manager.GetTextByValue("SelectTxt");
+			dialogOk.InvokeDialog(language_Manager.GetTextByValue("ThanksForPurchase"));
+		}
 	}
 
 }
