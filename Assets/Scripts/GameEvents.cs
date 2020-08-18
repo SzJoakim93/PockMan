@@ -14,11 +14,11 @@ public class GameEvents : MonoBehaviour {
 
 	public Transform pac_man;
 	public GameObject comp_panel;
-	public Text comp_text;
+	public PopupText CompleteTxt;
 	public Button nextButton;
 
 	public GameObject [] enemy_pack;
-	GameObject [] enemy;
+	enemy_movement [] enemy;
 
 	public GameObject double_score_signal;
 	public GameObject warn_panel;
@@ -32,20 +32,19 @@ public class GameEvents : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Global.enemies = new List<GameObject>();
+		Global.enemies = new List<enemy_movement>();
 
 		camera_speed_decreaser = 1.0f;
 		camera_speed = base_camera_speed;
-		Global.ready_to_go = 100;
 		Global.enemy_active = 0;
 		
 		Global.score = 0;
 
 		
-		Global.pause_game = false;
+		Global.pause_game = true;
 
 		if (Global.classic)
-			Global.enemy_rise = 6.0f;
+			Global.enemy_rise = 6.0f - Global.level * 0.1f;
 		else
 			Global.enemy_rise = 3.5f;
 
@@ -54,12 +53,7 @@ public class GameEvents : MonoBehaviour {
 
 		nextEnemyTime = 3.25f;
 
-		enemy_movement [] enemy_temp;
-		enemy_temp = enemy_pack[Global.enemy_animation_offset].GetComponentsInChildren<enemy_movement> (true);
-
-		enemy = new GameObject[enemy_temp.Length];
-		for (int i = 0; i < enemy_temp.Length; i++)
-			enemy[i] = enemy_temp[i].gameObject;
+		enemy = enemy_pack[Global.enemy_animation_offset].GetComponentsInChildren<enemy_movement> (true);
 
 		if (Global.ac > -1) {
 			if (Global.own_cards [Global.ac] == 1)
@@ -81,7 +75,13 @@ public class GameEvents : MonoBehaviour {
 			ExtraCardSignal.sprite = Sprites[Global.own_cards [Global.ac]];
 		}
 
-
+		Global.Invertibility.Reset();
+		Global.PauseEnemy.Reset();
+		Global.Magneton.Reset();
+		Global.DoubleScore.Reset();
+		Global.ClonePlayer.Reset();
+		Global.LevelPause.Reset();
+		Global.LevelRewind.Reset();
 
 		if (Global.music_enabled)
         {
@@ -121,7 +121,7 @@ public class GameEvents : MonoBehaviour {
 					bg_music.clip = Resources.Load<AudioClip>("Loops/In a Rush (Rock, Action)");
 					break;
 				case 8:
-					bg_music.clip = Resources.Load<AudioClip>("Loops/Let's Rock (ver.1)");
+					bg_music.clip = Resources.Load<AudioClip>("Loops/Let's Rock");
 					break;
 				case 9:
 					bg_music.clip = Resources.Load<AudioClip>("Loops/Underwater (Electronic, Action)");
@@ -135,11 +135,11 @@ public class GameEvents : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Global.ready_to_go == 0 && !Global.pause_game) {
+		if (!Global.pause_game) {
 			//level completed
 			if ( !Global.classic && (int)(pac_man.position.x * 2) == Global.endcoord_x && (int)(pac_man.position.y * 2) == Global.endcoord_y || Global.classic && Global.remaining < 1 ) {
-				Global.ready_to_go = 200;
-				comp_text.gameObject.SetActive(true);
+				Global.pause_game = true;
+				CompleteTxt.Activate(2.0f);
 			}
 
 			
@@ -148,9 +148,9 @@ public class GameEvents : MonoBehaviour {
 			{
 				float relative_pos = (pac_man.position.y - transform.position.y) / 10.0f;
 				camera_speed = (base_camera_speed + relative_pos)*camera_speed_decreaser;
-				if (Global.rewind == 0 && Global.pause == 0)
+				if (!Global.LevelRewind.IsActive() && !Global.LevelPause.IsActive())
 					transform.Translate(0, camera_speed * Time.deltaTime, 0);
-				else if (Global.rewind != 0)
+				else if (Global.LevelRewind.IsActive())
 					transform.Translate(0, -1.0f * Time.deltaTime, 0);
 			}
 
@@ -160,18 +160,18 @@ public class GameEvents : MonoBehaviour {
 			if ((Global.classic && Global.enemies.Count < Global.max_enemy && Time.timeSinceLevelLoad > nextEnemyTime) ||
 				((transform.position.y+10.0f)*2.0f < Global.level_height && Time.timeSinceLevelLoad > nextEnemyTime))  {
 
-				GameObject new_enemy;
+				enemy_movement new_enemy;
 
 				if (Global.classic && !Global.followEnemyAlive && Global.enemies.Count > 2) {
 					Global.followEnemyAlive = true;
-					new_enemy = (GameObject)Instantiate(enemy[0], spawn_enemy(), Quaternion.identity);
+					new_enemy = (enemy_movement)Instantiate(enemy[0], spawn_enemy(), Quaternion.identity);
 				} else if (Global.classic && !Global.blockenemyAlive && Global.enemies.Count > 4) {
 					Global.blockenemyAlive = true;
-					new_enemy = (GameObject)Instantiate(enemy[1], spawn_enemy(), Quaternion.identity);
+					new_enemy = (enemy_movement)Instantiate(enemy[1], spawn_enemy(), Quaternion.identity);
 				} else
-					new_enemy = (GameObject)Instantiate(enemy[(int)Random.Range(2.0f, 4.9f)], spawn_enemy(), Quaternion.identity);
+					new_enemy = (enemy_movement)Instantiate(enemy[(int)Random.Range(2.0f, 4.9f)], spawn_enemy(), Quaternion.identity);
 
-				new_enemy.SetActive(true);
+				new_enemy.gameObject.SetActive(true);
 				Global.enemies.Add(new_enemy);
 
 				nextEnemyTime += Global.enemy_rise;
@@ -181,65 +181,40 @@ public class GameEvents : MonoBehaviour {
 					
 			}
 
+			if (Global.LevelRewind.IsEnd() || Global.LevelPause.IsEnd())
+				nextEnemyTime += 3.0f;
 
-			//decrease bonus time
-			if (Global.inv_time > 0)
-				Global.inv_time--;
-
-			if (Global.pause > 0) {
-				Global.pause--;
-				if (Global.pause == 1)
-					nextEnemyTime += 3.0f;
+			if (!double_score_signal.activeInHierarchy && Global.DoubleScore.IsActive() )
+				double_score_signal.SetActive(true);
+			else if (Global.DoubleScore.IsEnd()) {
+				double_score_signal.SetActive(false);
 			}
-				
 
-			if (Global.pause_enemy > 0)
-				Global.pause_enemy--;
-
-			if (Global.rewind > 0) {
-				Global.rewind--;
-				if (Global.rewind == 1)
-					nextEnemyTime += 3.0f;
-			}
-				
-
-			if (Global.double_score > 0) {
-				if (Global.double_score == Global.max_double-1)
-					double_score_signal.SetActive(true);
-				if (Global.double_score == 1)
-					double_score_signal.SetActive(false);
-
-				Global.double_score--;
-			}
-		} else if (Global.ready_to_go > 0 && (Global.ready_to_go < 50 || Global.ready_to_go % 100 != 1)) {
-			Global.ready_to_go--;
-			if (Global.ready_to_go == 1) {
-				ready_to_go.gameObject.SetActive(false);
-				if ((Global.tutorial & 1) != 1) {
-					if (Global.controll_type == 0) {
-						Tutorials.invokeTutorial(0);
-						Global.tutorial = Global.tutorial | 1;
-					}
-						
-				}
-					
-			}
-			else if (Global.ready_to_go == 102)
-				//Application.LoadLevel ("menu");
-				end_level();
-			else if (Global.ready_to_go == 202)
-				//Application.LoadLevel ("menu");
-				game_over_panel.SetActive(true);
 		}
 
 		if (Global.pause_game && Time.timeSinceLevelLoad > nextEnemyTime)
 			nextEnemyTime += Global.enemy_rise;
 	}
 
-	void end_level() {
+	public void OnStartGame() {
+		if ((Global.tutorial & 1) != 1) {
+			if (Global.controll_type == 0) {
+				Tutorials.invokeTutorial(0);
+				Global.tutorial = Global.tutorial | 1;
+			}
+				
+		} else
+			Global.pause_game = false;
+	}
+
+	public void OnGameOver() {
+		game_over_panel.SetActive(true);
+	}
+
+	public void OnCompleteLevel() {
 
 		foreach (var enemy in Global.enemies)
-			Destroy(enemy);
+			Destroy(enemy.gameObject);
 		Global.enemies.Clear();
 		if (Global.classic) {
 			Global.followEnemyAlive = false;
@@ -271,8 +246,8 @@ public class GameEvents : MonoBehaviour {
 		PlayerPrefs.SetInt ("Global_points", Global.global_points);
 
         //decrease usage number of dropping card
-		if (!Global.classic || (Global.ac != 0 && Global.ac != 5 && Global.ac != 10 &&
-			Global.ac != 1 && Global.ac != 6 && Global.ac != 11))
+		if (!Global.classic || (Global.ac != -1 && Global.own_cards[Global.ac] != 0 && Global.own_cards[Global.ac] != 5 && Global.own_cards[Global.ac] != 10 &&
+			Global.own_cards[Global.ac] != 1 && Global.own_cards[Global.ac] != 6 && Global.own_cards[Global.ac] != 11))
 		{
 			if (Global.ac > -1) {
 				Global.card_remaining [Global.ac]--;

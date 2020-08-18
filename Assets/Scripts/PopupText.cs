@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using System.Collections;
 
 public class PopupText : MonoBehaviour {
 	float startTime = 0;
 	float interval = 0;
+	public UnityEvent DisableEvent;
+	Text text = null;
 
 	// Use this for initialization
 	void Start () {
@@ -14,6 +17,7 @@ public class PopupText : MonoBehaviour {
 	void Update () {
 		if (Time.timeSinceLevelLoad - startTime > interval) {
 			gameObject.SetActive(false);
+			DisableEvent.Invoke();
 		}
 	}
 
@@ -30,5 +34,11 @@ public class PopupText : MonoBehaviour {
 
 	public bool isActive() {
 		return gameObject.activeInHierarchy;
+	}
+
+	public void SetText(string title) {
+		if (text == null)
+			text = GetComponent<Text>();
+		text.text = title;
 	}
 }

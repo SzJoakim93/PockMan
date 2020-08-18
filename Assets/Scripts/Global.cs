@@ -7,7 +7,6 @@ using System.Xml;
 public class Global : MonoBehaviour {
 
 	public static string level_graphics;
-	//public static string level_path="level2.txt";
 	public static int [,] levelmatrix = new int[500, 20];
 	public static int level_height;
 	public static float view_range_top = 5.0f;
@@ -17,18 +16,23 @@ public class Global : MonoBehaviour {
 	public static int max_enemy = 7;
 	public static float enemy_speed;
 	public static int enemy_animation_offset = 0;
-
-	public static int inv_time=0;
-	public static int ready_to_go;
 	public static int enemy_active;
-	public static int pause_enemy=0, rewind=0, pause=0, double_score=0, magneton=0, ammo=0, mines=0;
-	public static int max_thunder=2;
 	public static int safe_counter=0;
 	public static int clone_reamining=0;
-
-	public static int max_pause = 300, max_double = 500, max_magneton = 1000, max_ammo = 3, max_mines = 3, max_safe = 50, max_clone = 1500, max_fruits = 10, max_convert = 1;
-	public static int level_pause = 1, level_double = 1, level_magneton = 1, level_ammo = 1, level_mines = 1, level_safe = 1, level_clone = 1, level_fruits = 1, level_convert = 1, level_thunder = 1;
-
+	public static PowerUpPieceBased Ammo;
+	public static PowerUpPieceBased Mine;
+	public static PowerUpPieceBased Thunder;
+	public static PowerUpPieceBased ConvertEnemy;
+	public static PowerUpPieceBased SafeZone;
+	public static PowerUpPieceBased DiamondRush;
+	public static PowerUpTimeBased Invertibility;
+	public static PowerUpTimeBased PauseEnemy;
+	public static PowerUpTimeBased ClonePlayer;
+	public static PowerUpTimeBased Magneton;
+	public static PowerUpTimeBased DoubleScore;
+	public static PowerUpTimeBased LevelPause;
+	public static PowerUpTimeBased LevelRewind;
+	
 
 	public static int dropping_mode=0;
 
@@ -38,8 +42,6 @@ public class Global : MonoBehaviour {
 
 	public static int global_points=0;
 	public static int global_stars = 0;
-
-	public static int selected_upgrade = -1;
 
 	public static int[] own_cards = new int[4] ;
 	public static int [] card_remaining = new int[4];
@@ -63,14 +65,19 @@ public class Global : MonoBehaviour {
 	public static bool blockenemyAlive;
 	public static int selectedCharacter;
 	public static int level = 30;
+	public static int max_level = 30;
 	public static float enemy_rise;
 	public static bool isStarted = false;
 
 	public static List<Vector4> speed_zones;
 	public static List<Vector4> slow_zones;
     public static List<Vector2> safety_coords;
-	public static List<GameObject> enemies;
+	public static List<enemy_movement> enemies;
 	public static int tutorial;
+
+	/*public static bool LevelCompletedEvent;
+	public static bool GameOverEvent;
+	public static bool ReadyToGoEvent;*/
 
     public static bool Free_slot_exist()
     {

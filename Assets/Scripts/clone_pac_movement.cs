@@ -16,7 +16,7 @@ public class clone_pac_movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Global.ready_to_go == 0) {
+		if (!Global.pause_game) {
 
 			float distance = 0;
 			for (short i = 0; i < 5; i++) {

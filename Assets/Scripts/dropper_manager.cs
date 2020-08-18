@@ -50,7 +50,7 @@ public class dropper_manager : MonoBehaviour {
 					}
 				} else if (Global.dropping_mode == 1) {
 					counter++;
-					if (counter == Global.max_fruits) {
+					if (counter == Global.DiamondRush.MaxQuantity) {
 						int i = Random.Range (0, 3);
 						Instantiate (fruits [i], transform.position, Quaternion.identity);
 						counter = 0;

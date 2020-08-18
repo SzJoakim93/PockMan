@@ -15,14 +15,18 @@ public class enemy_movement : MonoBehaviour {
 	public Transform camera; //camera position
 	public Transform pock_man; //players's position
 	public Transform enemy_dead; //a sample object to clne to the enemy psition in case of dead
-	public Text ghost_combo_txt;
+	public PopupText GhostComboPopup;
 	public Sprite [] sprites; //an arry containing all enym sprites
 
 	SpriteRenderer current_sprite; //the enym's current sprite
 
 	GameObject Collider; //the collider object that using for ally mode
 
-	public short isAlly = 0;
+	bool isAlly = false;
+	float allyTime = -10.0f;
+	int allyAnim;
+	bool invertibility = false;
+	short invTime = 0;
 	short ally_sprite = 0; //offset to ally sprite in sprites array
 
 	BoxCollider2D bc; //the collider that disabled in allymode to not kill the player
@@ -33,7 +37,12 @@ public class enemy_movement : MonoBehaviour {
 	BalancedSearch searchAI;
 	int matrix_x;
 	int matrix_y;
-	short eat_time;
+	float roundedPosX;
+	float roundedPosY;
+	float eatTime = -10.0f;
+	bool eating = false;
+	bool isSpawned = false;
+	float spawnTime;
 
 	//bool selectable=true;
 
@@ -64,12 +73,12 @@ public class enemy_movement : MonoBehaviour {
 			direction = 0;
 		setRotation();
 
-		matrix_x = (int)(transform.position.x * 2);
-		matrix_y = (int)(transform.position.y * 2);
-		enemy_pos = Global.levelmatrix [matrix_y, matrix_x];
+		matrix_x = -1;
+		matrix_y = -1;
+		//enemy_pos = Global.levelmatrix [matrix_y, matrix_x];
 
-		count_down = 50;
-		eat_time = 0;
+		count_down = 200;
+		spawnTime = Time.timeSinceLevelLoad;
 
 		searchAI = new BalancedSearch();
 	}
@@ -77,16 +86,36 @@ public class enemy_movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Global.ready_to_go == 0 && Global.pause_enemy == 0 && !Global.pause_game && eat_time == 0) {
-			if (count_down == 0) {
+		if (!Global.PauseEnemy.IsActive() && !Global.pause_game && !eating) {
+			if (isSpawned) {
 
-                //get level matrix coordinates
-				if ((int)(transform.position.x * 40) % 20 == 0 && (int)(transform.position.y * 40) % 20 == 0) {
-					matrix_x = (int)(transform.position.x * 2);
-					matrix_y = (int)(transform.position.y * 2);
+				roundedPosX = Mathf.Round(transform.position.x * 2.0f) / 2.0f;
+				roundedPosY = Mathf.Round(transform.position.y * 2.0f) / 2.0f;
+
+				if ((roundedPosX * 2 != matrix_x || roundedPosY * 2 != matrix_y) &&
+						((direction == 0 && transform.position.x < roundedPosX) ||
+						(direction == 1 && transform.position.x > roundedPosX) ||
+						(direction == 2 && transform.position.y > roundedPosY) ||
+						(direction == 3 && transform.position.y < roundedPosY))) {
+
+					//get level matrix coordinates
+					matrix_x = Mathf.RoundToInt(roundedPosX * 2.0f);
+					matrix_y = Mathf.RoundToInt(roundedPosY * 2.0f);
 
                     //get enemy pos from coordinates
 					enemy_pos = Global.levelmatrix [matrix_y, matrix_x];
+
+					//fix enemy position when go out of playground
+					/*if (((enemy_pos == 2 || enemy_pos == 5 || enemy_pos == 9) && transform.position.x > roundedPosX) ||
+						((enemy_pos == 3 || enemy_pos == 4 || enemy_pos == 8) && transform.position.x < roundedPosX) ||
+						((enemy_pos == 4 || enemy_pos == 5 || enemy_pos == 6) && transform.position.y > roundedPosY) ||
+						((enemy_pos == 2 || enemy_pos == 3 || enemy_pos == 7) && transform.position.y < roundedPosY)) {
+							Debug.Log("" + transform.position.x + " " + roundedPosX + " " + transform.position.y + " " + roundedPosY);
+							transform.position = new Vector3(roundedPosX, roundedPosY, 0);
+					}*/
+
+					if (enemy_pos > 1)
+						transform.position = new Vector3(roundedPosX, roundedPosY, 0);
 
                     //fix enemy position when go out of playground
 					if (enemy_pos == -1)
@@ -110,7 +139,7 @@ public class enemy_movement : MonoBehaviour {
 						if (animation_type == 1)
 							transform.localEulerAngles = new Vector3 (0, 0, 180);
 					}
-					else if (isAlly > 0 && transform.position.y < camera.transform.position.y + Global.view_range_bottom + 1.0f && enemy_pos != 0 && enemy_pos != 6 && enemy_pos != 4 && enemy_pos != 5 && enemy_pos != 11) {
+					else if (isAlly && transform.position.y < camera.transform.position.y + Global.view_range_bottom + 1.0f && enemy_pos != 0 && enemy_pos != 6 && enemy_pos != 4 && enemy_pos != 5 && enemy_pos != 11) {
 						direction = 2;
 						if (animation_type == 1)
 							transform.localEulerAngles = new Vector3 (0, 0, 0);
@@ -180,20 +209,19 @@ public class enemy_movement : MonoBehaviour {
 					}
 
                     //change enemy's sprite
-					if (Global.inv_time == 0) {
+					if (!Global.Invertibility.IsActive()) {
 						if (animation_type == 0)
 							current_sprite.sprite = sprites [direction+ally_sprite];
 					}
 
 					//deactivate enemy at top of level
 					if (!Global.classic && matrix_y > Global.level_height - 8) {
-						Global.enemies.Remove(gameObject);
+						Global.enemies.Remove(this);
 						Destroy(gameObject);
                     }
 				}
 
-
-				if (Global.controll_type == 0 && Global.inv_time == 0 && isAlly == 0 &&
+				if (Global.controll_type == 0 && !isAlly && !Global.Invertibility.IsActive() &&
 					Vector3.Distance(transform.position, pock_man.position) < 2.0f)
 					if (matrix_y == (int)(pock_man.position.y * 2.0f)) {
 						if ((pac_script.getDirection == 0 && transform.position.x > pock_man.position.x) ||
@@ -210,61 +238,60 @@ public class enemy_movement : MonoBehaviour {
 					}
 
 
-				//fix enemy position when go out of playground
-				if (((enemy_pos == 1 || enemy_pos == 2 || enemy_pos == 5 || enemy_pos == 9) && (int)(transform.position.x * 2.0f) > matrix_x) ||
-					((enemy_pos == 1 || enemy_pos == 3 || enemy_pos == 4 || enemy_pos == 8) && (int)(transform.position.x * 2.0f) < matrix_x) ||
-					((enemy_pos == 0 || enemy_pos == 4 || enemy_pos == 5 || enemy_pos == 6) && (int)(transform.position.y * 2.0f) > matrix_y) ||
-					((enemy_pos == 0 || enemy_pos == 2 || enemy_pos == 3 || enemy_pos == 7) && (int)(transform.position.y * 2.0f) < matrix_y)) {
-						transform.position = new Vector3(matrix_x/2.0f, matrix_y/2.0f, 0);
-						determine_direction();
+                //invertibility time section
+				if (Global.Invertibility.IsActive()) {
+					if (!invertibility) {
+						invertibility = true;
+						invTime = 100;
 					}
 
-				
-                //invertibility time section
-				if (Global.inv_time > 0) {
                     //enemy sprite will be blue if invertibility is active and change lower speed
-					if (Global.inv_time > 200) {
+					if (Global.Invertibility.TimeRemaining > 2.0f) {
 						if (animation_type == 0)
 							current_sprite.sprite = sprites [direction+4];
 						else
 							current_sprite.sprite = sprites [1];
 						speed = 0.8f;
-					} else if (Global.inv_time < 100 && Global.inv_time / 20 % 2 == 0) {
-						if (animation_type == 0)
-							current_sprite.sprite = sprites [direction+4];
-						else
-							current_sprite.sprite = sprites [1];
+					} else {
+						if (invTime / 20 % 2 == 0) {
+							if (animation_type == 0)
+								current_sprite.sprite = sprites [direction+4];
+							else
+								current_sprite.sprite = sprites [1];
+							
+						} else {
+							if (animation_type == 0)
+								current_sprite.sprite = sprites [direction+8];
+							else
+								current_sprite.sprite = sprites [2];
+						}
+
+						invTime--;
 					}
-					else if (Global.inv_time < 100 && Global.inv_time / 20 % 2 == 1)
-						if (animation_type == 0)
-							current_sprite.sprite = sprites [direction+8];
-						else
-							current_sprite.sprite = sprites [2];
-					if (Global.inv_time < 5) {
-						speed = (Global.classic ? Global.enemy_speed : Global.enemy_speed * 0.8f);
-						if (animation_type < 5)
-							current_sprite.sprite = sprites [ally_sprite];
-					}
+				} else if (invertibility) {
+					speed = (Global.classic ? Global.enemy_speed : Global.enemy_speed * 0.8f);
+					if (animation_type < 5)
+						current_sprite.sprite = sprites [ally_sprite];
+					invertibility = false;
 				}
 
                 //ally activation section
-				if (isAlly > 0) {
-					if (isAlly > 1 && isAlly < 100) {
-						if (isAlly / 20 % 2 == 0)
+				if (isAlly) {
+					if (Time.timeSinceLevelLoad - allyTime > 10.0f) { //end of ally
+						deconvertFromAlly();
+					} else if (Time.timeSinceLevelLoad - allyTime > 7.0f) {
+						if (allyAnim / 20 % 2 == 0)
 							setAllySprite(true);
 						else
 							setAllySprite(false);
+						allyAnim--;
 
-					} else if (isAlly == 1) { //end of ally
-						deconvertFromAlly();
 					}
-
-					isAlly--;
 				}
 
 				//die enemy in case of going out of camera view (in rush mode only)
 				if (!Global.classic && transform.position.y < camera.transform.position.y + Global.view_range_bottom) {
-					Global.enemies.Remove(gameObject);			
+					Global.enemies.Remove(this);			
 					Destroy(gameObject);
 				}
 
@@ -283,10 +310,10 @@ public class enemy_movement : MonoBehaviour {
 					transform.Translate (0, speed*Time.deltaTime, 0);
 
 				//collision of enemy
-				if (isAlly == 0 && Global.pause_enemy == 0 && !pac_script.dead && count_down == 0 && Vector2.Distance(transform.position, pock_man.position) < 0.25f) {
+				if (!isAlly && !Global.PauseEnemy.IsActive() && !pac_script.dead && isSpawned && Vector2.Distance(transform.position, pock_man.position) < 0.25f) {
 						
 						//enemy kills the player
-						if (Global.inv_time == 0) {
+						if (!Global.Invertibility.IsActive()) {
 							pac_script.anim.SetBool ("dead", true);
 							pac_script.dead = true;
 							Global.pause_game = true;
@@ -302,9 +329,8 @@ public class enemy_movement : MonoBehaviour {
 						}
 						
 						//set and show ghost combo title
-						pac_script.ghost_combo_countdown = 100;
-						ghost_combo_txt.gameObject.SetActive(true);
-						ghost_combo_txt.text = "+" + pac_script.ghost_combo.ToString();
+						GhostComboPopup.Activate(3.0f);
+						GhostComboPopup.SetText("+" + pac_script.ghost_combo.ToString());
 
 						Transform new_dead = (Transform)Instantiate(enemy_dead, transform.position, Quaternion.identity);
 						new_dead.position = transform.position;
@@ -312,14 +338,17 @@ public class enemy_movement : MonoBehaviour {
 
 						pac_script.ghost_combo += 50;
 
-						Global.enemies.Remove(gameObject);					
+						Global.enemies.Remove(this);					
 						Destroy(gameObject);
 						if (Global.classic)
 							killSpecialEnemy();
 					}
 				}
 
-			} else if (count_down != 0) {  
+			} else {
+				if (Time.timeSinceLevelLoad - spawnTime > 2.0f)
+					isSpawned = true;
+
 				count_down--;
 
 				//animatoin of enemy respawning
@@ -329,13 +358,13 @@ public class enemy_movement : MonoBehaviour {
 					current_sprite.sprite = sprites[3 + (count_down / 5 % 4)];
 
 				//deactivation at end of level
-				if (count_down < -8) {
+				/*if (count_down < -8) {
 					count_down = 0;
 					Global.enemies.Remove(gameObject);
 					Destroy(gameObject);
-				}
+				}*/
 
-				if (count_down == 0) {
+				if (isSpawned) {
 					if (animation_type == 0)
 						current_sprite.sprite = sprites[direction];
 					else
@@ -346,8 +375,8 @@ public class enemy_movement : MonoBehaviour {
 			}
 		}
 
-		if (eat_time > 0)
-			eat_time--;
+		if (eating && Time.timeSinceLevelLoad - eatTime > 1.5f)
+			eating = false;
 	}
 
 	void determine_direction() {
@@ -482,7 +511,9 @@ public class enemy_movement : MonoBehaviour {
 	}
 
 	public void convertToAlly() {
-		isAlly = 1000;
+		isAlly = true;
+		allyTime = Time.timeSinceLevelLoad;
+		allyAnim = 1000;
 		setAllySprite(true);
 		enemy_type = 5;
 		Collider.SetActive (true);
@@ -494,11 +525,13 @@ public class enemy_movement : MonoBehaviour {
 		bc.enabled = true;
 		Collider.SetActive(false);
 		enemy_type = 0;
+		isAlly = false;
 	}
 
 	public void respawn_enemy() {
 
-		count_down = 50;
+		count_down = 200;
+		isSpawned = true;
 		speed = Global.enemy_speed;
 
 		if (Global.classic) //respaw enemy to the pre-defined position in classic mode
@@ -576,6 +609,12 @@ public class enemy_movement : MonoBehaviour {
 		
 	}
 
+	public bool IsAlly {
+		get {
+			return isAlly;
+		}
+	}
+
 	void OnTriggerEnter2D(Collider2D coll)
 	{
         //if enemy bump into a trap or ammo
@@ -593,7 +632,7 @@ public class enemy_movement : MonoBehaviour {
 
             Global.score += 100;
 
-			Global.enemies.Remove(gameObject);
+			Global.enemies.Remove(this);
 			Destroy(gameObject);
 			if (Global.classic)
 				killSpecialEnemy();
@@ -614,7 +653,8 @@ public class enemy_movement : MonoBehaviour {
 		 (coll.gameObject.tag == "apple" || coll.gameObject.tag == "pineapple" ||
 		 coll.gameObject.tag == "melone" || coll.gameObject.tag == "bananna")) {
 			Destroy(coll.gameObject);
-			eat_time = 50;
+			eatTime = Time.timeSinceLevelLoad;
+			eating = true;
 		}
 	}
 

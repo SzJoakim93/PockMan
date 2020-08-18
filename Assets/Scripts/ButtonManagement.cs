@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
@@ -50,7 +50,7 @@ public class ButtonManagement : MonoBehaviour {
 
 	int card_level=0;
 
-	int [] card_costs = new int[] {1000, 3000, 5000};
+	int [] card_costs = new int[] {500, 1000, 2000};
 
 	bool first_running_drop = true;
 	int selectedCharacter = 0;
@@ -91,28 +91,43 @@ public class ButtonManagement : MonoBehaviour {
 		Button [] upgrade_buttons = Upgrade_menu.GetComponentsInChildren<Button>(true);
 
 
-        //unlock upgradable items depending on game completion
-		if (Global.unlocked_levels < 6 && Global.unlocked_clevels < 6) {
-			upgrade_buttons [2].interactable = false;
-			upgrade_buttons [3].interactable = false;
-		}
+        //lock upgradable items depending on game completion and in case of maxed out
+		if (Global.Ammo.MaxedOut())
+			upgrade_buttons[0].interactable = false;
 
-		if (Global.unlocked_levels < 11 && Global.unlocked_clevels < 11)
+		if (Global.Thunder.MaxedOut())
+			upgrade_buttons[1].interactable = false;			
+		
+		if ((Global.unlocked_levels < 6 && Global.unlocked_clevels < 6) ||
+			Global.Magneton.MaxedOut())
+			upgrade_buttons [2].interactable = false;
+
+		if ((Global.unlocked_levels < 6 && Global.unlocked_clevels < 6) ||
+			Global.Mine.MaxedOut())
+			upgrade_buttons [3].interactable = false;
+
+		if ((Global.unlocked_levels < 11 && Global.unlocked_clevels < 11) ||
+			Global.ConvertEnemy.MaxedOut())
 			upgrade_buttons [4].interactable = false;
 
-		if (Global.unlocked_levels < 21 && Global.unlocked_clevels < 21)
+		if ((Global.unlocked_levels < 21 && Global.unlocked_clevels < 21) ||
+			Global.DoubleScore.MaxedOut())
 			upgrade_buttons [5].interactable = false;
 
-		if (Global.unlocked_levels < 31 && Global.unlocked_clevels < 31)
+		if ((Global.unlocked_levels < 31 && Global.unlocked_clevels < 31) ||
+			Global.PauseEnemy.MaxedOut())
 			upgrade_buttons [6].interactable = false;
 
-		if (Global.unlocked_levels < 41 && Global.unlocked_clevels < 41)
+		if ((Global.unlocked_levels < 41 && Global.unlocked_clevels < 41) ||
+			Global.DiamondRush.MaxedOut())
 			upgrade_buttons [7].interactable = false;
 
-		if (Global.unlocked_levels < 61 && Global.unlocked_clevels < 61)
+		if ((Global.unlocked_levels < 61 && Global.unlocked_clevels < 61) ||
+			Global.SafeZone.MaxedOut())
 			upgrade_buttons [8].interactable = false;
 
-		if (Global.unlocked_levels < 71 && Global.unlocked_clevels < 71)
+		if ((Global.unlocked_levels < 71 && Global.unlocked_clevels < 71) ||
+			Global.ClonePlayer.MaxedOut())
 			upgrade_buttons [9].interactable = false;
 
 	}

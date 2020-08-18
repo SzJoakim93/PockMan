@@ -19,9 +19,10 @@ public class pac_movement : MonoBehaviour {
 	GameObject ammo_obj;
 
 	public Text life_text;
-	public Text ready_to_go;
+	public PopupText ReadyToGo;
+	public PopupText CompleteTxt;
+	public PopupText GameOverTxt;
 	public GameObject game_over_panel;
-	public Text ghost_combo_txt;
 	public Text mine_text;
 	public Text ammo_text;
 
@@ -91,8 +92,12 @@ public class pac_movement : MonoBehaviour {
 				speed *= 1.2f;
 		}
 
-		mine_text.text = "X " + Global.mines.ToString();
-		ammo_text.text = "X " + Global.ammo.ToString();
+		Global.Ammo.Quantity = 0;
+		Global.Mine.Quantity = 0;
+		mine_text.text = "X " + Global.Mine.Quantity.ToString();
+		ammo_text.text = "X " + Global.Ammo.Quantity.ToString();
+
+		ReadyToGo.Activate(2.0f);
 
 		prev_pos_x = -1;
 		prev_pos_y = -1;
@@ -103,7 +108,7 @@ public class pac_movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Global.ready_to_go == 0 && !Global.pause_game) {
+		if (!Global.pause_game) {
 
 			if (Input.GetKey (KeyCode.LeftArrow))
 				req_direction = 0;
@@ -144,7 +149,7 @@ public class pac_movement : MonoBehaviour {
 								}
 							}
 
-							if (Global.inv_time == 0)
+							if (!Global.Invertibility.IsActive())
 								fixReqDirection(touchDeltaPosition);
 						}
 					}
@@ -280,17 +285,8 @@ public class pac_movement : MonoBehaviour {
 				fire_shield++;
 
             //reset ghost combo at the end of invertibility
-			if (Global.inv_time == 1)
+			if (ghost_combo != 50 && !Global.Invertibility.IsActive())
 				ghost_combo = 50;
-			
-
-            //delay appearance of ghost combo title
-			if (ghost_combo_countdown > 0) {
-				ghost_combo_countdown--;
-				
-				if (ghost_combo_countdown == 1)
-					ghost_combo_txt.gameObject.SetActive(false);		
-			}
 
 			if (Global.controll_type == 0)
 				enemyBehind = false;
@@ -324,13 +320,6 @@ public class pac_movement : MonoBehaviour {
 
 		setCamera();
 		
-		/*if (x>100 && x<550)
-			camera_offset.x = 20-(x-100)/2;
-		else if (x<101)
-			camera_offset.x=20;
-		else
-			camera_offset.x=-205;*/
-		
 		int pos = Global.levelmatrix[(int)transform.position.y*2,(int)transform.position.x*2];
 		if (pos == 0 || pos == 3 || pos == 7 || pos == 11)
 			pac_direction = 1;
@@ -339,15 +328,6 @@ public class pac_movement : MonoBehaviour {
 		else if (pos == 2)
 			pac_direction = 0;
 		anim.SetInteger("direction", pac_direction);
-
-		/*if (pac_direction == 0)
-			transform.localEulerAngles = new Vector3(0,180,0);
-		else if (pac_direction == 1)
-			transform.localEulerAngles = new Vector3(0,0,0);
-		else if (pac_direction == 2)
-			transform.localEulerAngles = new Vector3(0,0,90);
-		else if (pac_direction == 3)
-			transform.localEulerAngles = new Vector3(0,180,270);*/
 	}
 
 	void new_life()
@@ -356,49 +336,48 @@ public class pac_movement : MonoBehaviour {
 			life--;
 			life_text.text = "X " + life.ToString ();
 
-			Global.pause_game = false;
+			Global.pause_game = true;
 			Global.enemy_rise = 3.5f;
 
 			if (life == 0) {
-				Global.ready_to_go = 300;
+				GameOverTxt.Activate(2.0f);
+				return;
+
             }
-            else if (!Global.classic && transform.position.y * 2 > Global.level_height - 10)
-            {
-
-                Global.ready_to_go = 103;
+			
+			if (!Global.classic && transform.position.y * 2 > Global.level_height - 10) {
+                CompleteTxt.Activate(2.0f);
+				return;
             }
-            else
-            {
-                pac_direction = 1;
-				anim.SetInteger("direction", pac_direction);
 
-                int j = ((int)camera.transform.position.y) * 2, k;
-                if (j < 0)
-                    j = 0;
+			pac_direction = 1;
+			anim.SetInteger("direction", pac_direction);
 
-                if (Global.classic)
-                    respawn_player(Global.startcoord_x / 2.0f, Global.startcoord_y / 2.0f);
-                else
-                {
-                    for (k = 0; k < 17 && Global.levelmatrix[j, k] == -1; k++)
-                        ;
-                    respawn_player(k / 2.0f, j / 2.0f);
-                }
+			int j = ((int)camera.transform.position.y) * 2, k;
+			if (j < 0)
+				j = 0;
 
-                ready_to_go.gameObject.SetActive(true);
-                Global.ready_to_go = 100;
+			if (Global.classic)
+				respawn_player(Global.startcoord_x / 2.0f, Global.startcoord_y / 2.0f);
+			else
+			{
+				for (k = 0; k < 17 && Global.levelmatrix[j, k] == -1; k++)
+					;
+				respawn_player(k / 2.0f, j / 2.0f);
+			}
 
-                dead = false;
-                anim.SetBool("dead", false);
+			ReadyToGo.Activate(2.0f);
 
-				foreach (var enemy in Global.enemies)
-					Destroy(enemy);
-				Global.enemies.Clear();
-				if (Global.classic) {
-					Global.followEnemyAlive = false;
-					Global.blockenemyAlive = false;
-				}
-            }
+			dead = false;
+			anim.SetBool("dead", false);
+
+			foreach (var enemy in Global.enemies)
+				Destroy(enemy.gameObject);
+			Global.enemies.Clear();
+			if (Global.classic) {
+				Global.followEnemyAlive = false;
+				Global.blockenemyAlive = false;
+			}
 		}
 	}
 
@@ -444,17 +423,17 @@ public class pac_movement : MonoBehaviour {
 
 	public void drop_mine() {
 		//drop mines
-		if (Global.mines > 0) {
-			Global.mines--;
-			mine_text.text = "X " + Global.mines.ToString();
+		if (Global.Mine.Quantity > 0) {
+			Global.Mine.Quantity--;
+			mine_text.text = "X " + Global.Mine.Quantity.ToString();
 			Instantiate(mine, transform.position, Quaternion.identity);
 		}
 	}
 
 	public void shot_ammo() {
-		if (Global.ammo > 0 && !ammo_obj.activeInHierarchy) {
-			Global.ammo--;
-			ammo_text.text = "X " + Global.ammo.ToString();
+		if (Global.Ammo.Quantity > 0 && !ammo_obj.activeInHierarchy) {
+			Global.Ammo.Quantity--;
+			ammo_text.text = "X " + Global.Ammo.Quantity.ToString();
 			ammo.position = transform.position;
 
 			switch(pac_direction) {

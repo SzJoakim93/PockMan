@@ -40,12 +40,7 @@ public class Start_game : MonoBehaviour {
 	void Start () {
 
 		gold = new Color (1.0f, 0.82f, 0.22f, 1.0f);
-		string [] args = Environment.GetCommandLineArgs ();
 		
-		/*if (args.Length > 1) {
-			Global.level_path = args[1];
-			Application.LoadLevel ("ingame");
-		}*/
 
 		day_text = bonus_panel.GetComponentsInChildren<Text> (true);
 
@@ -135,26 +130,19 @@ public class Start_game : MonoBehaviour {
 		Global.global_stars = PlayerPrefs.GetInt("Global_stars");
 
 		if (!Global.isStarted) {
-			if (PlayerPrefs.HasKey("Ammo_level"))
-				setUpgrade(PlayerPrefs.GetInt("Ammo_level"), ref Global.level_ammo, ref Global.max_ammo, false);
-			if (PlayerPrefs.HasKey("Clone_level"))
-				setUpgrade(PlayerPrefs.GetInt("Clone_level"), ref Global.level_clone, ref Global.max_clone, false);
-			if (PlayerPrefs.HasKey("Convert_level"))
-				setUpgrade(PlayerPrefs.GetInt("Convert_level"), ref Global.level_convert, ref Global.max_convert, false);
-			if (PlayerPrefs.HasKey("Double_level"))
-				setUpgrade(PlayerPrefs.GetInt("Double_level"), ref Global.level_double, ref Global.max_double, true);
-			if (PlayerPrefs.HasKey("Fruits_level"))
-				setUpgrade(PlayerPrefs.GetInt("Fruits_level"), ref Global.level_fruits, ref Global.max_fruits, true);
-			if (PlayerPrefs.HasKey("Magneton_level"))
-				setUpgrade(PlayerPrefs.GetInt("Magneton_level"), ref Global.level_magneton, ref Global.max_magneton, true);
-			if (PlayerPrefs.HasKey("Mine_level"))
-				setUpgrade(PlayerPrefs.GetInt("Mine_level"), ref Global.level_mines, ref Global.max_mines, false);
-			if (PlayerPrefs.HasKey("Pause_level"))
-				setUpgrade(PlayerPrefs.GetInt("Pause_level"), ref Global.level_pause, ref Global.max_pause, true);
-			if (PlayerPrefs.HasKey("Safe_level"))
-				setUpgrade(PlayerPrefs.GetInt("Safe_level"), ref Global.level_safe, ref Global.max_safe, true);
-			if (PlayerPrefs.HasKey("Thunder_level"))
-				setUpgrade(PlayerPrefs.GetInt("Thunder_level"), ref Global.level_thunder, ref Global.max_thunder, false);
+			Global.Ammo = new PowerUpPieceBased("Ammo", 1500, 3);
+			Global.Mine = new PowerUpPieceBased("Mine", 1500, 3);
+			Global.Thunder = new PowerUpPieceBased("Thunder", 1000, 2);
+			Global.DiamondRush = new PowerUpPieceBased("DiamondRush", 500, 10);
+			Global.ConvertEnemy = new PowerUpPieceBased("ConvertEnemy", 1000, 1);
+			Global.SafeZone = new PowerUpPieceBased("SafeZone", 500, 50);
+			Global.ClonePlayer = new PowerUpTimeBased("ClonePlayer", 500, 20.0f);
+			Global.DoubleScore = new PowerUpTimeBased("DoubleScore", 500, 10.0f);
+			Global.Magneton = new PowerUpTimeBased("Magneton", 500, 20.0f);
+			Global.PauseEnemy = new PowerUpTimeBased("PauseEnemy", 500, 5.0f);
+			Global.Invertibility = new PowerUpTimeBased("Invertibility", 0, 7.0f);
+			Global.LevelPause = new PowerUpTimeBased("LevelPause", 0, 7.0f);
+			Global.LevelRewind = new PowerUpTimeBased("LevelRewind", 0, 3.0f);
 
 			Global.music_enabled = PlayerPrefs.GetInt("MusicEnabled", 0) == 0;
 			Global.controll_type = PlayerPrefs.GetInt("ControlType", 0);
@@ -176,16 +164,16 @@ public class Start_game : MonoBehaviour {
 		Global.unlocked_levels = PlayerPrefs.GetInt("Unlocked_levels", 1);
 		Global.unlocked_clevels = PlayerPrefs.GetInt("Unlocked_levels_classic", 1);
 
-		upgrade_levels[0].text = Global.level_pause.ToString();
-		upgrade_levels[1].text = Global.level_magneton.ToString();
-		upgrade_levels[2].text = Global.level_thunder.ToString();
-		upgrade_levels[3].text = Global.level_mines.ToString();
-		upgrade_levels[4].text = Global.level_convert.ToString();
-		upgrade_levels[5].text = Global.level_double.ToString();
-		upgrade_levels[6].text = Global.level_safe.ToString();
-		upgrade_levels[7].text = Global.level_fruits.ToString();
-		upgrade_levels[8].text = Global.level_ammo.ToString();
-		upgrade_levels[9].text = Global.level_clone.ToString();
+		upgrade_levels[0].text = Global.PauseEnemy.Level.ToString();
+		upgrade_levels[1].text = Global.Magneton.Level.ToString();
+		upgrade_levels[2].text = Global.Thunder.Level.ToString();
+		upgrade_levels[3].text = Global.Mine.Level.ToString();
+		upgrade_levels[4].text = Global.ConvertEnemy.Level.ToString();
+		upgrade_levels[5].text = Global.DoubleScore.Level.ToString();
+		upgrade_levels[6].text = Global.SafeZone.Level.ToString();
+		upgrade_levels[7].text = Global.DiamondRush.Level.ToString();
+		upgrade_levels[8].text = Global.Ammo.Level.ToString();
+		upgrade_levels[9].text = Global.ClonePlayer.Level.ToString();
 
         if (PlayerPrefs.HasKey("Last_played"))
 			 last_played = DateTime.ParseExact(PlayerPrefs.GetString("Last_played") , "yyyy-MM-dd HH:mm:ss,fff",
@@ -203,14 +191,16 @@ public class Start_game : MonoBehaviour {
 		for (int i = 1; i < Global.unlocked_clevels && i < classic_levels.Length; i++)
 			classic_levels[i].interactable = true;	
 
-		if (Global.unlocked_levels % 5 == 0) {
+		if (Global.unlocked_levels % 5 == 0 && Global.unlocked_levels != Global.max_level) {
 			locker.gameObject.SetActive(true);
 			locker.rectTransform.position = levels[Global.unlocked_levels].GetComponent<RawImage>().rectTransform.position;
+			lock_cost.text = calcCostToUncock(Global.unlocked_levels).ToString();
 		}
 
-		if (Global.unlocked_clevels % 5 == 0) {
+		if (Global.unlocked_clevels % 5 == 0 && Global.unlocked_clevels != Global.max_level) {
 			locker_classic.gameObject.SetActive(true);
 			locker_classic.rectTransform.position = classic_levels[Global.unlocked_clevels].GetComponent<RawImage>().rectTransform.position;
+			lock_cost_classic.text = calcCostToUncock(Global.unlocked_clevels).ToString();
 		}
 
 		for (int i = 0; i < Global.own_cards.Length; i++) {
@@ -224,45 +214,38 @@ public class Start_game : MonoBehaviour {
 	}
 
 	public void unlock_level() {
-		if (Global.global_points >= 100 * (Global.unlocked_levels / 5)) {
+		int costToUnclok = calcCostToUncock(Global.unlocked_levels);
+		if (Global.global_points >= costToUnclok) {
 			levels [Global.unlocked_levels].interactable = true;
-			Global.global_points -= 100 * (Global.unlocked_levels / 5);
+			Global.global_points -= costToUnclok;
 			point_txt.text = Global.global_points.ToString();
 			Global.unlocked_levels++;
 			PlayerPrefs.SetInt ("Unlocked_levels", Global.unlocked_levels);
 			PlayerPrefs.SetInt("Global_points", Global.global_points);
 			paying.SetActive(true);
 			deactiveLockers = 1;
-			//locker.gameObject.SetActive(false);
 
 		} else
 			not_enought.SetActive (true);
 	}
 
 	public void unlock_level_classic() {
-		if (Global.global_points >= 100 * (Global.unlocked_clevels / 5)) {
+		int costToUnclok = calcCostToUncock(Global.unlocked_clevels);
+		if (Global.global_points >= costToUnclok) {
 			classic_levels [Global.unlocked_clevels].interactable = true;
-			Global.global_points -= 100 * (Global.unlocked_clevels / 5);
+			Global.global_points -= costToUnclok;
 			point_txt.text = Global.global_points.ToString();
 			Global.unlocked_clevels++;
 			PlayerPrefs.SetInt ("Unlocked_levels_classic", Global.unlocked_clevels);
 			PlayerPrefs.SetInt("Global_points", Global.global_points);
 			payingClassic.SetActive(true);
 			deactiveLockersClassic = 1;
-			//locker_classic.gameObject.SetActive(false);
 
 		} else
 			not_enought.SetActive (true);
 	}
 
-	void setUpgrade(int pref_value, ref int level, ref int extra_value, bool isPercent) {
-		level = pref_value;
-
-		for (int i = 1; i < level; i++)
-			if (isPercent)
-					extra_value += (int)(extra_value*0.2f);
-				else
-					extra_value++;
-
+	int calcCostToUncock(int unlockedLevels) {
+		return 500 * (unlockedLevels / 5);
 	}
 }

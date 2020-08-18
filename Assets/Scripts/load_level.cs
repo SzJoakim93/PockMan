@@ -249,9 +249,11 @@ public class load_level : MonoBehaviour {
 			main_camera.backgroundColor = new Color(0.125f, 0.25f, 0.5f);
 		else if (level_graphics_int == 8)
 			main_camera.backgroundColor = new Color(0.625f, 0, 0);
-		else if (level_graphics_int == 7 || level_graphics_int == 9 || level_graphics_int == 11 || level_graphics_int == 12)
+		else if (level_graphics_int == 7 || level_graphics_int == 11 || level_graphics_int == 12)
 			main_camera.backgroundColor = new Color(0.125f, 0.75f, 0.25f);
-		else if (level_graphics_int == 11 || level_graphics_int == 14 || level_graphics_int == 21)
+		else if (level_graphics_int == 9)
+			main_camera.backgroundColor = new Color(0.0f, 0.64f, 0.51f);
+		else if (level_graphics_int == 14 || level_graphics_int == 21)
 			main_camera.backgroundColor = new Color(0, 0.25f, 0);
 		else if (level_graphics_int == 10 || level_graphics_int == 13 || level_graphics_int == 15)
 			main_camera.backgroundColor = new Color(0, 0.5f, 0);
