@@ -10,7 +10,7 @@
     <element name="/Canvas/Settings/lang_text">Lang</element>
     <element name="/Canvas/Settings/music_text">Music</element>
     <element name="/Canvas/Settings/VolumeTitle">Music volume:</element>
-    <element name="/Canvas/Dropping_menu/tutorial_text">Tap a card to activate</element>
+    <element name="/Canvas/Dropping_menu/dropping_text">Tap a card to activate</element>
     <element name="/Canvas/Dropping_menu/are_you_sure/Text">Are you sure?</element>
     <element name="/Canvas/Dropping_menu/are_you_sure/No_btn/Text">No</element>
     <element name="/Canvas/Dropping_menu/are_you_sure/Yes_btn/Text">Yes</element>
@@ -52,7 +52,7 @@ Thirly look at the combo points. Picking up points as more time as you can do un
     </drop-down>
     <element name="/Canvas/Settings/controll_text">Controll</element>
     <drop-down name="/Canvas/Settings/controll_option">
-      <option name="0">Smoothing</option>
+      <option name="0">Swapping</option>
       <option name="1">Buttons</option>
     </drop-down>
     <element name="/Canvas/loading/Text">Please wait...</element>
@@ -84,6 +84,8 @@ Thirly look at the combo points. Picking up points as more time as you can do un
     <dynamic-text name="CardTitle4">Increase your speed by 10%</dynamic-text>
     <dynamic-text name="CardTitle9">Increase your speed by 15%</dynamic-text>
     <dynamic-text name="CardTitle14">Increase your speed by 20%</dynamic-text>
+    <dynamic-text name="ThanksForPurchase">Thank you for purchasing this character.</dynamic-text>
+    <dynamic-text name="NotEnought">Not enought points.</dynamic-text>
   </ENG>
 	<HUN>
 		<element name="/Canvas/Main_menu/Frame/rush_mode_btn">Rush mód</element>
@@ -95,7 +97,7 @@ Thirly look at the combo points. Picking up points as more time as you can do un
     <element name="/Canvas/Settings/lang_text">Nyelv</element>
     <element name="/Canvas/Settings/music_text">Zene</element>
     <element name="/Canvas/Settings/VolumeTitle">Zene hangereje:</element>
-    <element name="/Canvas/Dropping_menu/tutorial_text">Koppints egy kártyára az aktíváláshoz!</element>
+    <element name="/Canvas/Dropping_menu/dropping_text">Koppints egy kártyára az aktíváláshoz!</element>
     <element name="/Canvas/Dropping_menu/are_you_sure/Text">Biztos vagy benne?</element>
     <element name="/Canvas/Dropping_menu/are_you_sure/No_btn/Text">Nem</element>
     <element name="/Canvas/Dropping_menu/are_you_sure/Yes_btn/Text">Igen</element>
@@ -169,5 +171,7 @@ Harmadik lépésként figyelj a kombóra. Minél több pontot veszel el egyszerr
     <dynamic-text name="CardTitle4">10%-al gyorsabban mozogsz</dynamic-text>
     <dynamic-text name="CardTitle9">15%-al gyorsabban mozogsz</dynamic-text>
     <dynamic-text name="CardTitle14">20%-al gyorsabban mozogsz</dynamic-text>
+    <dynamic-text name="ThanksForPurchase">Köszönjük, hogy megvásároltad ezt a figurát.</dynamic-text>
+    <dynamic-text name="NotEnought">Nincs elég pontod.</dynamic-text>
 	</HUN>
 </Languages>

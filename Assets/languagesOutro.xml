@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>  
 <Languages>
 	<ENG>
+        <element name="Canvas/SkipBtn">Skip</element>
         <dynamic-text name="Outro0">Congratulations!</dynamic-text>
         <dynamic-text name="Outro1">You completed all levels of Rush mode.</dynamic-text>
         <dynamic-text name="Outro1.classic">You completed all levels of Classic mode.</dynamic-text>
-        <dynamic-text name="Outro2">I hope yout enjoy it.</dynamic-text>
+        <dynamic-text name="Outro2">I hope you enjoy it.</dynamic-text>
         <dynamic-text name="Outro3">More levels coming soon.</dynamic-text>
         <dynamic-text name="Outro4">Until this time, previovus levels are wainting for you to play again and collect more stars.</dynamic-text>
         <dynamic-text name="Outro5">You haven't completed all levels of Rush mode yet.</dynamic-text>
@@ -12,6 +13,7 @@
         <dynamic-text name="Outro6">Thank you for playing PockRunner.</dynamic-text>
     </ENG>
     <HUN>
+        <element name="Canvas/SkipBtn">Kihagyás</element>
         <dynamic-text name="Outro0">Gratulálunk!</dynamic-text>
         <dynamic-text name="Outro1">Teljesítetted a Rush mód minden pályáját.</dynamic-text>
         <dynamic-text name="Outro1.classic">Teljesítetted a Classic mód minden pályáját.</dynamic-text>

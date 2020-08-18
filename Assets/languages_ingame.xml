@@ -4,7 +4,7 @@
 		<element name="/Canvas/ready_to_go">Get ready!</element>
 		<element name="/Canvas/comp_title">Completed</element>
 		<element name="/Canvas/game_over_text">Game over</element>
-		<element name="/Canvas/comp_panel/Button/text">Next level</element>
+		<element name="/Canvas/comp_panel/Button/Text">Next level</element>
 		<element name="/Canvas/comp_panel/comp_txt">Level completed!</element>
 		<element name="/Canvas/comp_panel/rating">Rating:</element>
 		<element name="/Canvas/comp_panel/Exit/Text">Exit</element>
@@ -34,7 +34,7 @@
 		<element name="/Canvas/ready_to_go">Készülj!</element>
 		<element name="/Canvas/comp_title">Teljesítve</element>
 		<element name="/Canvas/game_over_text">Vesztettél</element>
-		<element name="/Canvas/comp_panel/Button/text">Következő szint</element>
+		<element name="/Canvas/comp_panel/Button/Text">Következő szint</element>
 		<element name="/Canvas/comp_panel/comp_txt">Szint teljesítve!</element>
 		<element name="/Canvas/comp_panel/rating">Értékelésed:</element>
 		<element name="/Canvas/comp_panel/Exit/Text">Exit</element>
@@ -42,7 +42,7 @@
 +200</element>
 		<element name="/Canvas/game_over_panel/game_over_txt">Vesztettél! Légy keményebb!</element>
 		<element name="/Canvas/game_over_panel/retry/Text">Újra</element>
-		<element name="/Canvas/game_over_panel/exit/Text">Kilépés</element>
+		<element name="/Canvas/game_over_panel/Exit/Text">Kilépés</element>
 		<element name="/Canvas/pause_panel/Text">Szünet menü</element>
 		<element name="/Canvas/pause_panel/resume_btn/Text">Folytatás</element>
 		<element name="/Canvas/pause_panel/restart_btn/Text">Újra</element>
