@@ -24,8 +24,16 @@ public class AdManager : MonoBehaviour {
 	void Start () {
 		// Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(initStatus => { });
+        List<string> deviceIds = new List<string>();
+        deviceIds.Add("4JPNU18502103746");
+        RequestConfiguration requestConfiguration = new RequestConfiguration
+            .Builder()
+            .SetTestDeviceIds(deviceIds)
+            .build();
 
-        if (enableBanner)
+        MobileAds.SetRequestConfiguration(requestConfiguration);
+
+        if (enableBanner && PlayerPrefs.GetInt("EnableAds", 1) == 1)
             this.RequestBanner();
         if (enableInterstitial)            
             this.RequestInterstitial();
@@ -69,10 +77,10 @@ public class AdManager : MonoBehaviour {
 	public void RequestBanner()
     {
         #if UNITY_ANDROID
-            string adUnitId = "ca-app-pub-3940256099942544/6300978111";
+            string adUnitId = "ca-app-pub-7198482875251564/3801369470";
             Debug.Log("Android");
         #elif UNITY_IPHONE
-            string adUnitId = "ca-app-pub-3940256099942544/2934735716";
+            string adUnitId = "ca-app-pub-3940256099942544/2934735716"; //test id
             Debug.Log("Iphone");
         #else
             string adUnitId = "unexpected_platform";
@@ -105,9 +113,9 @@ public class AdManager : MonoBehaviour {
     public void RequestInterstitial()
     {
         #if UNITY_ANDROID
-            string adUnitId = "ca-app-pub-3940256099942544/1033173712";
+            string adUnitId = "ca-app-pub-7198482875251564/5333108841";
         #elif UNITY_IPHONE
-            string adUnitId = "ca-app-pub-3940256099942544/4411468910";
+            string adUnitId = "ca-app-pub-3940256099942544/4411468910"; //test id
         #else
             string adUnitId = "unexpected_platform";
         #endif
@@ -134,10 +142,10 @@ public class AdManager : MonoBehaviour {
 
 	public void CreateAndLoadRewardedAd() {
         #if UNITY_ANDROID
-            string adUnitId = "ca-app-pub-3940256099942544/5224354917";
+            string adUnitId = "ca-app-pub-7198482875251564/3957174344";
             Debug.Log("Android");
         #elif UNITY_IPHONE
-            string adUnitId = "ca-app-pub-3940256099942544/1712485313";
+            string adUnitId = "ca-app-pub-3940256099942544/1712485313"; //test id
             Debug.Log("Iphone");
         #else
             string adUnitId = "unexpected_platform";
