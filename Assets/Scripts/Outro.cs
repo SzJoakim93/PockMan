@@ -15,6 +15,11 @@ public class Outro : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!MainTitle.isActive()) {
+			if (clip >= 7) {
+				ReturnToMenu();
+				return;
+			}
+				
 			if (Global.classic && (clip == 1 || clip == 5))
 				MainTitle.GetComponent<Text>().text = languageManager.GetTextByValue("Outro" + clip + ".classic");
 			else
@@ -26,12 +31,14 @@ public class Outro : MonoBehaviour {
 				(Global.classic && Global.unlocked_levels == 30 ||
 				!Global.classic && Global.unlocked_clevels == 30))
 				clip++;
-
-			if (clip >= 6) {
-
-				Global.level_menu = 1;
-				SceneManager.LoadScene("Menu");
-			}
 		}
+	}
+
+	public void ReturnToMenu() {
+		if (Global.classic)
+			Global.level_menu = 2;
+		else
+			Global.level_menu = 1;
+		SceneManager.LoadScene("Menu");
 	}
 }

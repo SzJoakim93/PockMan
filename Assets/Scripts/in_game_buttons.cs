@@ -20,24 +20,32 @@ public class in_game_buttons : MonoBehaviour {
     }
     SelectedButton selectedButton;
     static bool secondLevel = false;
+    bool enableAds;
 
     void Start() {
         if (Global.controll_type == 0) {
             arrows.SetActive(false);
             arrows_smooth.SetActive(true);
         }
+
+        enableAds = PlayerPrefs.GetInt("EnableAds", 1) == 1;
     }
 
 	public void RestartBtn() {
         selectedButton = SelectedButton.RestartLevel;
 
+        #if !UNITY_EDITOR
         if (!isCharacterPlayable()) {
             CharacterPanel.SetActive(true);
             return;
         }
 
-        if (adManager.ShowInterstitialAd())
+        if (enableAds && secondLevel && adManager.ShowInterstitialAd()) {
+            secondLevel = false;
             return;
+        } else
+            secondLevel = true;
+        #endif
 
         restart();
 
@@ -46,17 +54,18 @@ public class in_game_buttons : MonoBehaviour {
 	public void next_level() {
         selectedButton = SelectedButton.NextLevel;
 
+        #if !UNITY_EDITOR
         if (!isCharacterPlayable()) {
             CharacterPanel.SetActive(true);
             return;
         }
  
-        if (secondLevel && adManager.ShowInterstitialAd()) {
+        if (enableAds && secondLevel && adManager.ShowInterstitialAd()) {
             secondLevel = false;
             return;
-        }
-        else
+        } else
             secondLevel = true;
+        #endif
 
         nextLevel();
 	}
@@ -64,6 +73,7 @@ public class in_game_buttons : MonoBehaviour {
 	public void return_to_menu() {
         selectedButton = SelectedButton.QuitToMenu;
 
+        #if !UNITY_EDITOR
         if (!isCharacterPlayable()) {
             CharacterPanel.SetActive(true);
             return;
@@ -71,6 +81,7 @@ public class in_game_buttons : MonoBehaviour {
 
         if (adManager.ShowInterstitialAd())
             return;
+        #endif
 
         returnToMenu();
 	}
@@ -131,9 +142,8 @@ public class in_game_buttons : MonoBehaviour {
     void nextLevel() {
         if (Global.classic) {
 
-            if (Global.level == 29 && PlayerPrefs.GetInt("OutroRush", 0) == 0) {
+            if (Global.level == 29) {
                 SceneManager.LoadScene("outro");
-                PlayerPrefs.SetInt("OutroRush", 1);
                 return;
             }
 
@@ -147,9 +157,8 @@ public class in_game_buttons : MonoBehaviour {
 
         }  
         else {
-            if (Global.level == 29 && PlayerPrefs.GetInt("OutroClassic", 0) == 0) {
+            if (Global.level == 29) {
                 SceneManager.LoadScene("outro");
-                PlayerPrefs.SetInt("OutroClassic", 1);
                 return;
             }
 

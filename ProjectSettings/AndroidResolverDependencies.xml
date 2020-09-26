@@ -34,7 +34,7 @@
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-19.2.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-base-19.2.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-identifier-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-19.2.0</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-19.2.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-basement-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-gass-19.2.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-measurement-base-17.1.0.aar</file>
@@ -42,10 +42,10 @@
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-17.0.0.aar</file>
   </files>
   <settings>
-    <setting name="androidAbis" value="armeabi-v7a,x86" />
-    <setting name="bundleId" value="com.JokrStore.PockRunner" />
+    <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
+    <setting name="bundleId" value="com.JokrGames.PockRunner" />
     <setting name="explodeAars" value="True" />
-    <setting name="gradleBuildEnabled" value="False" />
+    <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradleTemplateEnabled" value="False" />
     <setting name="installAndroidPackages" value="True" />
     <setting name="localMavenRepoDir" value="Assets/GeneratedLocalRepo" />
