@@ -7,7 +7,7 @@ public class load_level : MonoBehaviour {
 
 	public Transform player;
 	public Transform Pickup_pack;
-	public Transform Tile_pack;
+	public Transform [] Tile_pack;
 	public GameObject [] Minor_pack;
     public GameObject flower_pack;
 	public GameObject fire;
@@ -27,7 +27,6 @@ public class load_level : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		tiles = Tile_pack.GetComponentsInChildren<Transform>();
 		pickup_graph = Pickup_pack.GetComponentsInChildren<Transform> ();
         flowers = flower_pack.GetComponentsInChildren<Transform>();
 
@@ -139,7 +138,21 @@ public class load_level : MonoBehaviour {
                                     Instantiate(flowers[line[j]-'L'], new Vector3((j-k)*0.5f + 0.25f, (i-4)*0.5f - 0.25f, 0.0f) , Quaternion.identity);
 								else {
 									Global.levelmatrix[i-4,j-k] = line[j]-48;
-									Instantiate(tiles[Global.levelmatrix[i-4,j-k]+level_graphics_int*12+1], new Vector3((j-k)*0.5f, (i-4)*0.5f, 0.0f), Quaternion.identity);
+									Instantiate(tiles[Global.levelmatrix[i-4,j-k]+1], new Vector3((j-k)*0.5f, (i-4)*0.5f, 0.0f), Quaternion.identity);
+								}
+							}
+
+							if (level_graphics_int > 9 && level_graphics_int < 22 || level_graphics_int > 26) {
+								if (line[j] < '0' || line[j] > ';')
+									Instantiate(tiles[13], new Vector3((j-k)*0.5f, (i-4)*0.5f, 0.0f), Quaternion.identity);
+
+								//Add background tiles to border
+								if (j == 0) {
+									Instantiate(tiles[13], new Vector3(-0.5f, (i-4)*0.5f, 0.0f), Quaternion.identity);
+									Instantiate(tiles[13], new Vector3(-1.0f, (i-4)*0.5f, 0.0f), Quaternion.identity);
+									Instantiate(tiles[13], new Vector3(-0.5f, (i-4)*0.5f, 0.0f), Quaternion.identity);
+									for (int l = line.Length; l < 20; l++)
+										Instantiate(tiles[13], new Vector3(l*0.5f, (i-4)*0.5f, 0.0f), Quaternion.identity);
 								}
 							}
 						}
@@ -187,6 +200,16 @@ public class load_level : MonoBehaviour {
 			
 			i++;
 			
+		}
+
+		if (level_graphics_int > 9 && level_graphics_int < 22 || level_graphics_int > 26) {
+			for (int j = 0; j < 21; j++)
+				for (int k = 0; k < 6; k++)
+					Instantiate(tiles[13], new Vector3(-0.5f+j*0.5f, -3.0f+k*0.5f, 0.0f), Quaternion.identity);
+
+			for (int j = 0; j < 21; j++)
+				for (int k = 0; k < 15; k++)
+					Instantiate(tiles[13], new Vector3(-0.5f+j*0.5f, Global.level_height*0.5f+k*0.5f, 0.0f), Quaternion.identity);
 		}
 		
 		player.position = new Vector2 (Global.startcoord_x / 2.0f, Global.startcoord_y / 2.0f);
@@ -242,6 +265,7 @@ public class load_level : MonoBehaviour {
 			minor_offset = 2;
 
 		minor_objects = Minor_pack[minor_offset].GetComponentsInChildren<Transform> ();
+		tiles = Tile_pack[level_graphics_int].GetComponentsInChildren<Transform>();
 
 		if (level_graphics_int == 5)
 			main_camera.backgroundColor = new Color(0.375f, 0.25f, 0);

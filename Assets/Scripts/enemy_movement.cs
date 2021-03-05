@@ -105,15 +105,6 @@ public class enemy_movement : MonoBehaviour {
                     //get enemy pos from coordinates
 					enemy_pos = Global.levelmatrix [matrix_y, matrix_x];
 
-					//fix enemy position when go out of playground
-					/*if (((enemy_pos == 2 || enemy_pos == 5 || enemy_pos == 9) && transform.position.x > roundedPosX) ||
-						((enemy_pos == 3 || enemy_pos == 4 || enemy_pos == 8) && transform.position.x < roundedPosX) ||
-						((enemy_pos == 4 || enemy_pos == 5 || enemy_pos == 6) && transform.position.y > roundedPosY) ||
-						((enemy_pos == 2 || enemy_pos == 3 || enemy_pos == 7) && transform.position.y < roundedPosY)) {
-							Debug.Log("" + transform.position.x + " " + roundedPosX + " " + transform.position.y + " " + roundedPosY);
-							transform.position = new Vector3(roundedPosX, roundedPosY, 0);
-					}*/
-
 					if (enemy_pos > 1)
 						transform.position = new Vector3(roundedPosX, roundedPosY, 0);
 
@@ -540,10 +531,7 @@ public class enemy_movement : MonoBehaviour {
 		else {
 
             int j, k;
-            if (enemy_type == 0 || enemy_type == 1 || enemy_type > 3) 
-                j = (int)(camera.transform.position.y+4.0f)*2;
-            else
-                j = (int)(camera.transform.position.y-1.0f)*2;
+            j = (int)(camera.transform.position.y+4.0f)*2;
 
             if (j > Global.level_height - 7)
             {
@@ -551,13 +539,14 @@ public class enemy_movement : MonoBehaviour {
                 return;
             }
 
-            if (enemy_type == 0 || enemy_type == 3)
-                k = 7;
+            if (UnityEngine.Random.Range(0.0f, 1.9f) < 1.0f)
+                k = 18;
             else
                 k = 0;
+			Debug.Log("K: " + k);
 
             bool no_safe = false;
-            for (; k < 14 && (Global.levelmatrix[j, k] == -1 || !no_safe); k++)
+            for (; k < 18 && (Global.levelmatrix[j, k] == -1 || !no_safe); k++)
             {
                 no_safe = true;
 				if (Global.safety_coords != null)
@@ -568,9 +557,8 @@ public class enemy_movement : MonoBehaviour {
 	                }
             }
 
-            if (k == 14)
+            if (k == 18)
             {
-                k = 7;
                 no_safe = false;
                 for (; k > 0 && (Global.levelmatrix[j, k] == -1 || !no_safe); k--)
                 {

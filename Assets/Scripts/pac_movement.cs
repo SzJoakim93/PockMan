@@ -56,6 +56,7 @@ public class pac_movement : MonoBehaviour {
 	int prev_pos_y;
 	bool nodeReached = true;
 	bool enemyBehind = false;
+	float dropMineTime = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -110,14 +111,18 @@ public class pac_movement : MonoBehaviour {
 	void Update () {
 		if (!Global.pause_game) {
 
-			if (Input.GetKey (KeyCode.LeftArrow))
+			if (Input.GetAxis ("Horizontal") < 0.0f)
 				req_direction = 0;
-			else if (Input.GetKey (KeyCode.RightArrow))
+			else if (Input.GetAxis ("Horizontal") > 0.0f)
 				req_direction = 1;
-			else if (Input.GetKey (KeyCode.UpArrow))
+			else if (Input.GetAxis ("Vertical") > 0.0f)
 				req_direction = 2;
-			else if (Input.GetKey (KeyCode.DownArrow))
+			else if (Input.GetAxis ("Vertical") < 0.0f)
 				req_direction = 3;
+			if (Input.GetButton("Fire1"))
+				shot_ammo();
+			if (Input.GetButton("Fire2"))
+				drop_mine();
 
 			if (Global.controll_type == 0)
 			{
@@ -260,7 +265,7 @@ public class pac_movement : MonoBehaviour {
 				 
 
                 //vertical moving of camera in classic mode
-                if (Global.classic && transform.position.y > 2.0f && transform.position.y < Global.level_height - 5.4f)
+                if (Global.classic && transform.position.y > 2.0f && transform.position.y < Global.level_height - 12.0f)
                 {
                     if (pac_direction == 2)
                         camera.Translate(0, speed * Time.deltaTime, 0);
@@ -423,8 +428,9 @@ public class pac_movement : MonoBehaviour {
 
 	public void drop_mine() {
 		//drop mines
-		if (Global.Mine.Quantity > 0) {
+		if (Global.Mine.Quantity > 0 && Time.timeSinceLevelLoad - dropMineTime > 0.5f) {
 			Global.Mine.Quantity--;
+			dropMineTime = Time.timeSinceLevelLoad;
 			mine_text.text = "X " + Global.Mine.Quantity.ToString();
 			Instantiate(mine, transform.position, Quaternion.identity);
 		}
@@ -456,12 +462,30 @@ public class pac_movement : MonoBehaviour {
 	}
 
 	void setCamera() {
-		if (transform.position.x < 2.8f)
+		/*if (transform.position.x < 2.8f)
 			camera.position = new Vector3(2.8f, transform.position.y, camera.position.z);
 		else if (transform.position.x > 5.2f)
 			camera.position = new Vector3(5.2f, transform.position.y, camera.position.z);
 		else
-			camera.position = new Vector3(transform.position.x, transform.position.y, camera.position.z);
+			camera.position = new Vector3(transform.position.x, transform.position.y, camera.position.z);*/
+		float x, y;
+		if (transform.position.x < 2.8f)
+			x = 2.8f;
+		else if (transform.position.x > 5.2f)
+			x = 5.2f;
+		else
+			x = transform.position.x;
+
+		if (Global.level_height < 12.0f)
+			y = Global.level_height / 2.0f - Global.level_height / 4.0f - 1.0f;
+		else if (transform.position.y < 2.0f)
+			y = 2.0f;
+		else if (transform.position.y > Global.level_height - 12.0f)
+			y = Global.level_height - 12.0f;
+		else
+			y = transform.position.y;
+
+		camera.position = new Vector3(x, y, camera.position.z);
 	}
 
 	void fixReqDirection(Vector2 touchDeltaPosition) {

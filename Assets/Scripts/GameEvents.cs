@@ -44,14 +44,14 @@ public class GameEvents : MonoBehaviour {
 		Global.pause_game = true;
 
 		if (Global.classic)
-			Global.enemy_rise = 6.0f - Global.level * 0.1f;
+			Global.enemy_rise = 5.5f - Global.level * 0.1f;
 		else
-			Global.enemy_rise = 3.5f;
+			Global.enemy_rise = 3.0f;
 
 		Global.followEnemyAlive = false;
 		Global.blockenemyAlive = false;
 
-		nextEnemyTime = 3.25f;
+		nextEnemyTime = 1.0f;
 
 		enemy = enemy_pack[Global.enemy_animation_offset].GetComponentsInChildren<enemy_movement> (true);
 
@@ -64,11 +64,11 @@ public class GameEvents : MonoBehaviour {
 				camera_speed_decreaser = 0.8f;
 
 			if (Global.own_cards [Global.ac] == 3)
-				respawn_delay = 0.5f;
+				respawn_delay = 1.2f;
 			else if (Global.own_cards [Global.ac] == 8)
-				respawn_delay = 0.3f;
+				respawn_delay = 1.3f;
 			else if (Global.own_cards [Global.ac] == 13)
-				respawn_delay = 0.1f;
+				respawn_delay = 1.5f;
 
 			//invoke card signal
 			ExtraCardSignal.gameObject.SetActive(true);
@@ -162,10 +162,10 @@ public class GameEvents : MonoBehaviour {
 
 				enemy_movement new_enemy;
 
-				if (Global.classic && !Global.followEnemyAlive && Global.enemies.Count > 2) {
+				if (Global.classic && !Global.followEnemyAlive && Global.enemies.Count > 1) {
 					Global.followEnemyAlive = true;
 					new_enemy = (enemy_movement)Instantiate(enemy[0], spawn_enemy(), Quaternion.identity);
-				} else if (Global.classic && !Global.blockenemyAlive && Global.enemies.Count > 4) {
+				} else if (Global.classic && !Global.blockenemyAlive && Global.enemies.Count > 3) {
 					Global.blockenemyAlive = true;
 					new_enemy = (enemy_movement)Instantiate(enemy[1], spawn_enemy(), Quaternion.identity);
 				} else
@@ -174,10 +174,10 @@ public class GameEvents : MonoBehaviour {
 				new_enemy.gameObject.SetActive(true);
 				Global.enemies.Add(new_enemy);
 
-				nextEnemyTime += Global.enemy_rise;
+				nextEnemyTime += Global.enemy_rise * respawn_delay;
 
 				if (!Global.classic && Global.enemy_rise > 1.25f)
-					Global.enemy_rise -= 0.05f * respawn_delay;
+					Global.enemy_rise -= 0.05f;
 					
 			}
 
@@ -339,7 +339,7 @@ public class GameEvents : MonoBehaviour {
 			int j = (int)(transform.position.y+7.0f)*2;
             bool no_safe = false;
 			int k, l, m;
-            for (k=0, l=7, m=7; k % 2 == 0 && Global.levelmatrix[j,l] == -1 || k % 2 == 1 && Global.levelmatrix[j,m] == -1  || !no_safe; k++)
+            for (k=0, l=9, m=9; k % 2 == 0 && Global.levelmatrix[j,l] == -1 || k % 2 == 1 && Global.levelmatrix[j,m] == -1  || !no_safe; k++)
             {
                 no_safe = true;
 				if (Global.safety_coords != null)
@@ -360,9 +360,6 @@ public class GameEvents : MonoBehaviour {
 			else
 				return new Vector2(m/2.0f, j/2.0f);
 		}
-		
-		
-		
 	}
 
 	int getTrackByIndex(int x) {

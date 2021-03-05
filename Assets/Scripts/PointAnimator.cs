@@ -28,7 +28,7 @@ public class PointAnimator : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (currentPoints < Global.score) {
-			currentPoints+=10;
+			currentPoints+=20;
 			if (currentPoints >= Global.score) {
 				currentPoints -= Global.score - currentPoints;
 				if (noDead) {

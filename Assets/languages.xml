@@ -30,6 +30,7 @@
     <element name="/Canvas/About/Slider/About/MucicTitle">Music</element>
     <element name="/Canvas/About2/Slider/About2/SoundTitle">Sound effects</element>
     <element name="/Canvas/About2/Slider/About2/GermanTitle">German translation</element>
+    <element name="/Canvas/About/Slider/About3/TextureTitle">Textures</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/MainTitle">Game modes</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/RushModeTitle">Rush mode:</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/ClassicModeTitle">Classic mode:</element>
@@ -78,9 +79,9 @@ Thirly look at the combo points. Picking up points as more time as you can do un
     <dynamic-text name="CardTitle2">All bonuses leasts longer by 20%</dynamic-text>
     <dynamic-text name="CardTitle7">All bonuses leasts longer by 30%</dynamic-text>
     <dynamic-text name="CardTitle12">All bonuses leasts longer by 40%</dynamic-text>
-    <dynamic-text name="CardTitle3">Decreases enemmy's respawn frequency by 50%</dynamic-text>
-    <dynamic-text name="CardTitle8">Decreases enemmy's respawn frequency by 70%</dynamic-text>
-    <dynamic-text name="CardTitle13">Decreases enemmy's respawn frequency by 90%</dynamic-text>
+    <dynamic-text name="CardTitle3">Decreases enemmy's respawn frequency by 20%</dynamic-text>
+    <dynamic-text name="CardTitle8">Decreases enemmy's respawn frequency by 30%</dynamic-text>
+    <dynamic-text name="CardTitle13">Decreases enemmy's respawn frequency by 50%</dynamic-text>
     <dynamic-text name="CardTitle4">Increase your speed by 10%</dynamic-text>
     <dynamic-text name="CardTitle9">Increase your speed by 15%</dynamic-text>
     <dynamic-text name="CardTitle14">Increase your speed by 20%</dynamic-text>
@@ -117,6 +118,7 @@ Thirly look at the combo points. Picking up points as more time as you can do un
     <element name="/Canvas/About/Slider/About/MusicTitle">Zene</element>
     <element name="/Canvas/About/Slider/About2/SoundTitle">Hang effektek</element>
     <element name="/Canvas/About/Slider/About2/GermanTitle">Német fordítás</element>
+    <element name="/Canvas/About/Slider/About3/TextureTitle">Textúrák</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/MainTitle">Játékmódok</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/RushModeTitle">Rush mód:</element>
     <element name="/Canvas/About/Slider/TutorialGameMode/ClassicModeTitle">Classic mód:</element>
@@ -165,9 +167,9 @@ Harmadik lépésként figyelj a kombóra. Minél több pontot veszel el egyszerr
     <dynamic-text name="CardTitle2">Minden bónusz 20%-al tovább tart</dynamic-text>
     <dynamic-text name="CardTitle7">Minden bónusz 30%-al tovább tart</dynamic-text>
     <dynamic-text name="CardTitle12">Minden bónusz 40%-al tovább tart</dynamic-text>
-    <dynamic-text name="CardTitle3">50%-al csökkenti az ellenfelek gyakoriságát</dynamic-text>
-    <dynamic-text name="CardTitle8">70%-al csökkenti az ellenfelek gyakoriságát</dynamic-text>
-    <dynamic-text name="CardTitle13">90%-al csökkenti az ellenfelek gyakoriságát</dynamic-text>
+    <dynamic-text name="CardTitle3">20%-al csökkenti az ellenfelek gyakoriságát</dynamic-text>
+    <dynamic-text name="CardTitle8">30%-al csökkenti az ellenfelek gyakoriságát</dynamic-text>
+    <dynamic-text name="CardTitle13">50%-al csökkenti az ellenfelek gyakoriságát</dynamic-text>
     <dynamic-text name="CardTitle4">10%-al gyorsabban mozogsz</dynamic-text>
     <dynamic-text name="CardTitle9">15%-al gyorsabban mozogsz</dynamic-text>
     <dynamic-text name="CardTitle14">20%-al gyorsabban mozogsz</dynamic-text>

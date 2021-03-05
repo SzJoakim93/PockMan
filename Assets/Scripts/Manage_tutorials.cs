@@ -65,6 +65,7 @@ public class Manage_tutorials : MonoBehaviour {
                             own_place.color = red;
                             TutorialText.SetText(language_Manager.GetTextByValue("Tutorial1"));
                             back_btn.SetActive(false);
+                            DropText.gameObject.SetActive(false);
                         } else if (tutorial_frame == 2)
                             TutorialText.SetText(language_Manager.GetTextByValue("Tutorial2"));
                         else if (tutorial_frame == 3)
